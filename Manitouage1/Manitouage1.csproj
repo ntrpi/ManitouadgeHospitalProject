@@ -190,10 +190,15 @@
     <Compile Include="Migrations\202103182010184_Manitouage_202103181610.Designer.cs">
       <DependentUpon>202103182010184_Manitouage_202103181610.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202103182019420_Manitouage_202103181619.cs" />
+    <Compile Include="Migrations\202103182019420_Manitouage_202103181619.Designer.cs">
+      <DependentUpon>202103182019420_Manitouage_202103181619.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -284,6 +289,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202103182010184_Manitouage_202103181610.resx">
       <DependentUpon>202103182010184_Manitouage_202103181610.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103182019420_Manitouage_202103181619.resx">
+      <DependentUpon>202103182019420_Manitouage_202103181619.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

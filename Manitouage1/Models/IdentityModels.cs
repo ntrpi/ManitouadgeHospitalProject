@@ -29,5 +29,9 @@ namespace Manitouage1.Models
         {
             return new ManitouageDbContext();
         }
+
+        public DbSet<Product> products {
+            get; set;
+        }
     }
 }
