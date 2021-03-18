@@ -18,16 +18,16 @@ namespace Manitouage1.Models
         }
     }
 
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+    public class ManitouageDbContext: IdentityDbContext<ApplicationUser>
     {
-        public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+        public ManitouageDbContext()
+            : base( "ManitouageDb", throwIfV1Schema: false)
         {
         }
 
-        public static ApplicationDbContext Create()
+        public static ManitouageDbContext Create()
         {
-            return new ApplicationDbContext();
+            return new ManitouageDbContext();
         }
     }
 }
