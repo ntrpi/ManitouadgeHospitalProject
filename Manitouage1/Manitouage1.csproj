@@ -184,6 +184,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
+    <Compile Include="Controllers\ProductsDataController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -206,6 +207,10 @@
     <Compile Include="Migrations\202103182046415_Manitouage_202103181642.cs" />
     <Compile Include="Migrations\202103182046415_Manitouage_202103181642.Designer.cs">
       <DependentUpon>202103182046415_Manitouage_202103181642.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202103182127361_Manitouage_202103181725.cs" />
+    <Compile Include="Migrations\202103182127361_Manitouage_202103181725.Designer.cs">
+      <DependentUpon>202103182127361_Manitouage_202103181725.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -290,6 +295,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Products\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -319,6 +325,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202103182046415_Manitouage_202103181642.resx">
       <DependentUpon>202103182046415_Manitouage_202103181642.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103182127361_Manitouage_202103181725.resx">
+      <DependentUpon>202103182127361_Manitouage_202103181725.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

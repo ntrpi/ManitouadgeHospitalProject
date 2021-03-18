@@ -18,6 +18,15 @@ namespace Manitouage1.Models
         public DateTime created {
             get; set;
         }
+
+        [ForeignKey( "ApplicationUser" )]
+        public string Id {
+            get; set;
+        }
+
+        public virtual ApplicationUser ApplicationUser {
+            get; set;
+        }
     }
 
     public class InvoiceDto
@@ -27,6 +36,10 @@ namespace Manitouage1.Models
         }
 
         public DateTime created {
+            get; set;
+        }
+
+        public string Id {
             get; set;
         }
     }
