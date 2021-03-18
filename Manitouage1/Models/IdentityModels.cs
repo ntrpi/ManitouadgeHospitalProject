@@ -41,5 +41,16 @@ namespace Manitouage1.Models
         public DbSet<ProductXInvoice> productXInvoices {
             get; set;
         }
+
+        public DbSet<Testimonial> testimonials
+        {
+            get; set;
+        }
+
+        public DbSet<Volunteer> volunteers
+        {
+            get; set;
+        }
+
     }
 }
