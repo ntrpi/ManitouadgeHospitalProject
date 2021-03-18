@@ -33,5 +33,13 @@ namespace Manitouage1.Models
         public DbSet<Product> products {
             get; set;
         }
+
+        public DbSet<Invoice> invoices {
+            get; set;
+        }
+
+        public DbSet<ProductXInvoice> productXInvoices {
+            get; set;
+        }
     }
 }
