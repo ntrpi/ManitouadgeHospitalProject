@@ -203,6 +203,10 @@
     <Compile Include="Migrations\202103182035007_Manitouage_202103181634.Designer.cs">
       <DependentUpon>202103182035007_Manitouage_202103181634.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202103182046415_Manitouage_202103181642.cs" />
+    <Compile Include="Migrations\202103182046415_Manitouage_202103181642.Designer.cs">
+      <DependentUpon>202103182046415_Manitouage_202103181642.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -311,6 +315,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202103182035007_Manitouage_202103181634.resx">
       <DependentUpon>202103182035007_Manitouage_202103181634.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103182046415_Manitouage_202103181642.resx">
+      <DependentUpon>202103182046415_Manitouage_202103181642.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
