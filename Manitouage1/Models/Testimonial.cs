@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using Microsoft.AspNet.Identity;
 
 namespace Manitouage1.Models
 {
@@ -19,9 +20,10 @@ namespace Manitouage1.Models
         [Required]
         public string testimonial { get; set; }
 
+        public string UserId { get; set; }
+
         [ForeignKey("UserId")]
-        public int UserId { get; set; }
-        public virtual ApplicationUser ApplicationUser { get; set; }
+        public virtual ApplicationUser User { get; set; }
 
     }
 

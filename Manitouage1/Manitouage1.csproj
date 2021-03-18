@@ -331,12 +331,15 @@
     <EmbeddedResource Include="Migrations\202103182046415_Manitouage_202103181642.resx">
       <DependentUpon>202103182046415_Manitouage_202103181642.cs</DependentUpon>
     </EmbeddedResource>
+<<<<<<< HEAD
     <EmbeddedResource Include="Migrations\202103182127361_Manitouage_202103181725.resx">
       <DependentUpon>202103182127361_Manitouage_202103181725.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202103182153290_Manitouage_202103181753.resx">
       <DependentUpon>202103182153290_Manitouage_202103181753.cs</DependentUpon>
     </EmbeddedResource>
+=======
+>>>>>>> 7e9047a7135642263949550702fc340dd686eb3b
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
