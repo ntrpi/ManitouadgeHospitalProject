@@ -16,7 +16,7 @@ namespace Manitouage1.Controllers
     {
         private ManitouageDbContext db = new ManitouageDbContext();
 
-        public IEnumerable<ProductDto> Getproducts()
+        public IEnumerable<ProductDto> GetProducts()
         {
             List<Product> products = db.products.ToList<Product>();
             List<ProductDto> dtos = new List<ProductDto>();
@@ -26,7 +26,7 @@ namespace Manitouage1.Controllers
             return dtos;
         }
 
-        [ResponseType( typeof( Product ) )]
+        [ResponseType( typeof( ProductDto ) )]
         public IHttpActionResult GetProduct( int id )
         {
             Product product = db.products.Find( id );
@@ -34,7 +34,7 @@ namespace Manitouage1.Controllers
                 return NotFound();
             }
 
-            return Ok( product );
+            return Ok( product.getDto() );
         }
 
         [ResponseType( typeof( void ) )]
@@ -63,7 +63,7 @@ namespace Manitouage1.Controllers
             return StatusCode( HttpStatusCode.NoContent );
         }
 
-        [ResponseType( typeof( Product ) )]
+        [ResponseType( typeof( int ) )]
         public IHttpActionResult CreateProduct( Product product )
         {
             if( !ModelState.IsValid ) {

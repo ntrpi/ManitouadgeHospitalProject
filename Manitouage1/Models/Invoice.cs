@@ -20,12 +20,26 @@ namespace Manitouage1.Models
         }
 
         [ForeignKey( "ApplicationUser" )]
+        // ApplicationUser.Id
         public string Id {
             get; set;
         }
 
         public virtual ApplicationUser ApplicationUser {
             get; set;
+        }
+
+        public virtual IList<ProductXInvoice> ProductXInvoices {
+            get; set;
+        }
+
+        public InvoiceDto getDto()
+        {
+            return new InvoiceDto {
+                invoiceId = invoiceId,
+                created = created,
+                Id = Id
+            };
         }
     }
 
@@ -39,6 +53,7 @@ namespace Manitouage1.Models
             get; set;
         }
 
+        // ApplicationUser.Id
         public string Id {
             get; set;
         }

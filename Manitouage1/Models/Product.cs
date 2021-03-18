@@ -29,6 +29,10 @@ namespace Manitouage1.Models
             get; set;
         }
 
+        public virtual IList<ProductXInvoice> ProductXInvoices {
+            get; set;
+        }
+
         public ProductDto getDto()
         {
             return new ProductDto {

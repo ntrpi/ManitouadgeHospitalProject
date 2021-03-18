@@ -181,6 +181,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ControllersHelper.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
@@ -211,6 +212,10 @@
     <Compile Include="Migrations\202103182127361_Manitouage_202103181725.cs" />
     <Compile Include="Migrations\202103182127361_Manitouage_202103181725.Designer.cs">
       <DependentUpon>202103182127361_Manitouage_202103181725.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202103182153290_Manitouage_202103181753.cs" />
+    <Compile Include="Migrations\202103182153290_Manitouage_202103181753.Designer.cs">
+      <DependentUpon>202103182153290_Manitouage_202103181753.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -329,6 +334,9 @@
     <EmbeddedResource Include="Migrations\202103182127361_Manitouage_202103181725.resx">
       <DependentUpon>202103182127361_Manitouage_202103181725.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103182153290_Manitouage_202103181753.resx">
+      <DependentUpon>202103182153290_Manitouage_202103181753.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -348,7 +356,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>62591</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>https://localhost:44375/</IISUrl>
+          <IISUrl>https://localhost:44397/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

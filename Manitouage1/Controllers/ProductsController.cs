@@ -3,21 +3,44 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Net.Http;
+using Manitouage1.Models;
 
 namespace Manitouage1.Controllers
 {
-    public class ProductsController : Controller
+    public class ProductsController: Controller
     {
+        private static readonly ControllersHelper helper;
+
+        static ProductsController()
+        {
+            helper = new ControllersHelper( "Product" );
+        }
+
+        private string getUrl( string action, int id = 0 )
+        {
+            return helper.getUrl( action, id );
+        }
+
         // GET: Products
         public ActionResult Index()
         {
-            return View();
+            return View( helper.doGetRequest( getUrl( "Get" ) + "s" ) );
+        }
+
+        private ProductDto getProductDto( int productId )
+        {
+            HttpResponseMessage response = helper.doGetRequest( getUrl( "Get", productId ) );
+            if( !response.IsSuccessStatusCode ) {
+                return null;
+            }
+            return helper.getFromResponse<ProductDto>( response );
         }
 
         // GET: Products/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details( int id )
         {
-            return View();
+            return View( getProductDto( id ) );
         }
 
         // GET: Products/Create
@@ -26,64 +49,59 @@ namespace Manitouage1.Controllers
             return View();
         }
 
-        // POST: Products/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult Create( Product product )
         {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
+            HttpResponseMessage response = helper.doPostRequest( getUrl( "Create" ), product );
+            if( !response.IsSuccessStatusCode ) {
+                ViewBag.errorMessage = "Unable to add product.";
                 return View();
             }
+
+            ProductDto productDto = helper.getFromResponse<ProductDto>( response );
+            return RedirectToAction( "Details", new {
+                id = productDto.productId
+            } );
         }
 
         // GET: Products/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit( int id )
         {
             return View();
         }
 
-        // POST: Products/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit( int id, Product product )
         {
-            try
-            {
-                // TODO: Add update logic here
+            // Just in case.
+            product.productId = id;
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
+            HttpResponseMessage response = helper.doPostRequest( getUrl( "Update", id ), product );
+            if( !response.IsSuccessStatusCode ) {
+                ViewBag.errorMessage = "Unable to add product.";
                 return View();
             }
+
+            ProductDto productDto = helper.getFromResponse<ProductDto>( response );
+            return RedirectToAction( "Details", new {
+                id = productDto.productId
+            } );
         }
 
-        // GET: Products/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult DeleteConfirm( int id )
         {
-            return View();
+            return View( getProductDto( id ) );
         }
 
-        // POST: Products/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete( int id, FormCollection collection )
         {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            // TODO: do something with the response.
+            helper.doPostRequest( getUrl( "Delete", id ), "" );
+            return RedirectToAction( "Index" );
         }
     }
 }
