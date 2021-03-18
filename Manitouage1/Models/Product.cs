@@ -28,6 +28,16 @@ namespace Manitouage1.Models
         public decimal taxRate {
             get; set;
         }
+
+        public ProductDto getDto()
+        {
+            return new ProductDto {
+                productId = productId,
+                productName = productName,
+                price = price,
+                taxRate = taxRate
+            };
+        }
     }
 
     public class ProductDto
