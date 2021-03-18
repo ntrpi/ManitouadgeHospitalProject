@@ -20,6 +20,7 @@ namespace Manitouage1.Models
         public string testimonial { get; set; }
 
         [ForeignKey("UserId")]
+        public int UserId { get; set; }
         public virtual ApplicationUser ApplicationUser { get; set; }
 
     }
