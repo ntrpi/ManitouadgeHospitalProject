@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
 
@@ -15,16 +16,19 @@ namespace Manitouage1.Models
             get; set;
         }
 
+        [DisplayName( "Product Name" )]
         [Required]
         public string productName {
             get; set;
         }
 
+        [DisplayName( "Price" )]
         [Required]
         public decimal price {
             get; set;
         }
 
+        [DisplayName( "Tax" )]
         public decimal taxRate {
             get; set;
         }
