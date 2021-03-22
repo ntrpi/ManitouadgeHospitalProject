@@ -26,6 +26,10 @@ namespace Manitouage1.Models.ViewModels
             get; set;
         }
 
+        public ApplicationUser applicationUser {
+            get; set;
+        }
+
         public IEnumerable<ProductDto> productDtos {
             get; set;
         }
@@ -41,13 +45,12 @@ namespace Manitouage1.Models.ViewModels
                 foreach( ProductDto product in productDtos ) {
                     subTotal += product.price;
                     taxes += product.price * product.taxRate;
-                    total += subTotal + taxes;
                 }
                 totals = new Totals {
                     subTotal = subTotal,
                     taxes = taxes,
-                    total = total
-                };
+                    total = subTotal + taxes
+            };
             }
             return totals;
         }

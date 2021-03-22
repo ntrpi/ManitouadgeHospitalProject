@@ -45,10 +45,12 @@ namespace Manitouage1.Models
 
     public class InvoiceDto
     {
+        [DisplayName( "Invoice Number" )]
         public int invoiceId {
             get; set;
         }
 
+        [DisplayName( "Date" )]
         public DateTime created {
             get; set;
         }

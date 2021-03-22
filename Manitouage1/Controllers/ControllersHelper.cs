@@ -111,6 +111,11 @@ namespace Manitouage1.Controllers
             }
         }
 
+        public T doGetAndGetFromResponse<T>( string url )
+        {
+            return getFromResponse<T>( doGetRequest( url ) );
+        }
+
         /// <summary>
         /// Since the url strings for the DataControllers follow a pretty basic convention,
         /// use this function to construct the urls consistently.
@@ -119,6 +124,19 @@ namespace Manitouage1.Controllers
         /// <param name="id">The id of the object to act upon. An id of 0 will not be added to the url.</param>
         /// <returns>A string with a format of <model name>sData/<action><model name>[/<id>].</returns>
         public string getUrl( string action, int id )
+        {
+            return getUrl( modelName, action, id );
+        }
+
+        /// <summary>
+        /// Since the url strings for the DataControllers follow a pretty basic convention,
+        /// use this function to construct the urls consistently.
+        /// </summary>
+        /// <param name="modelName">The name of the model on which to operate.</param>
+        /// <param name="action">One of Get, Create, Update, or Delete</param>
+        /// <param name="id">The id of the object to act upon. An id of 0 will not be added to the url.</param>
+        /// <returns>A string with a format of <model name>sData/<action><model name>[/<id>].</returns>
+        public static string getUrl( string modelName, string action, int id )
         {
             string url = modelName + "sData/" + action + modelName;
             if( id != 0 ) {

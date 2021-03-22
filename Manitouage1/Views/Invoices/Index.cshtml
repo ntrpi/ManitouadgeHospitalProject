@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Manitouage1.Models.InvoiceDto>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.invoiceId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.created)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.invoiceId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.created)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.invoiceId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.invoiceId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.invoiceId })
+        </td>
+    </tr>
+}
+
+</table>

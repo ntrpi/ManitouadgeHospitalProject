@@ -32,6 +32,15 @@ namespace Manitouage1.Models
         public virtual Invoice Invoice {
             get; set;
         }
+
+        public ProductXInvoiceDto getDto()
+        {
+            return new ProductXInvoiceDto {
+                id = id,
+                productId = productId,
+                invoiceId = invoiceId
+            };
+        }
     }
 
     public class ProductXInvoiceDto
