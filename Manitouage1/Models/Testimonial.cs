@@ -20,6 +20,9 @@ namespace Manitouage1.Models
         [Required]
         public string testimonial { get; set; }
 
+        [Required]
+        public bool approved { get; set; }
+
         public string UserId { get; set; }
 
         [ForeignKey("UserId")]
