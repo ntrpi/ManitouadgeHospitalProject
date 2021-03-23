@@ -28,6 +28,9 @@ namespace Manitouage1.Models
         [Required]
         public string phone { get; set; }
 
+        [Required]
+        public bool approved { get; set; }
+
     }
 
     public class VolunteerDto
