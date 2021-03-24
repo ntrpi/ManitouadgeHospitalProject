@@ -57,5 +57,18 @@ namespace Manitouage1.Models
             get; set;
         }
 
+        public DbSet<Department> departments
+        {
+            get; set;
+        }
+
+        public DbSet<JobPosting> jobpostings
+        {
+            get; set;
+        }
+
+
+
+
     }
 }
