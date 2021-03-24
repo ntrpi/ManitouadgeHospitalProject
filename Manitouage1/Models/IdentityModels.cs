@@ -3,12 +3,17 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.Collections.Generic;
 
 namespace Manitouage1.Models
 {
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit https://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
     {
+        public IList<Invoice> invoices {
+            get; set;
+        }
+
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
@@ -18,16 +23,39 @@ namespace Manitouage1.Models
         }
     }
 
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+    public class ManitouageDbContext: IdentityDbContext<ApplicationUser>
     {
-        public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+        public ManitouageDbContext()
+            : base( "ManitouageDb", throwIfV1Schema: false)
         {
         }
 
-        public static ApplicationDbContext Create()
+        public static ManitouageDbContext Create()
         {
-            return new ApplicationDbContext();
+            return new ManitouageDbContext();
         }
+
+        public DbSet<Product> products {
+            get; set;
+        }
+
+        public DbSet<Invoice> invoices {
+            get; set;
+        }
+
+        public DbSet<ProductXInvoice> productXInvoices {
+            get; set;
+        }
+
+        public DbSet<Testimonial> testimonials
+        {
+            get; set;
+        }
+
+        public DbSet<Volunteer> volunteers
+        {
+            get; set;
+        }
+
     }
 }
