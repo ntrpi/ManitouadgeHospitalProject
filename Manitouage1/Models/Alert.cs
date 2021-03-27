@@ -8,42 +8,46 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Manitouage1.Models
 {
-    public class Event
-    {
+    public class Alert
+    { 
         [Key]
+        public int alertId
+        {
+            get; set;
+        }
+        [Required]
+        public string title
+        {
+            get; set;
+        }
+        [Required]
+        public DateTime dateTime
+        {
+            get; set;
+        }
+        [Required]
+        public string description
+        {
+            get; set;
+        }
+        [ForeignKey("JobPosting")]
+        public int jobPostingId 
+        { 
+            get; set; 
+        }
+        public virtual JobPosting JobPosting
+        {
+            get; set;
+        }
+        [ForeignKey("Event")]
         public int EventId
         {
             get; set;
         }
-        [Required]
-        public string Title
+        public virtual Event Event
         {
             get; set;
         }
-        [Required]
-        public string Description
-        {
-            get; set;
-        }
-        [Required]
-        public DateTime DateTime
-        {
-            get; set;
-        }
-        [Required]
-        public string Location
-        {
-            get; set;
-        }
-        [Required]
-        public Decimal Duration
-        {
-            get; set;
-        }
-        [Required]
-        public string ContactPerson
-        {
-            get; set;
-        }
+
     }
 }

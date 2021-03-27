@@ -71,6 +71,10 @@ namespace Manitouage1.Models
         {
             get; set;
         }
+        public DbSet<Alert> alerts
+        {
+            get; set;
+        }
 
 
 
