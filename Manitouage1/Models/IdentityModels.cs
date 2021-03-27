@@ -67,6 +67,11 @@ namespace Manitouage1.Models
             get; set;
         }
 
+        public DbSet<Event> events
+        {
+            get; set;
+        }
+
 
 
 
