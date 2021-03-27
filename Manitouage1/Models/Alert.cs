@@ -30,24 +30,24 @@ namespace Manitouage1.Models
         {
             get; set;
         }
-        [ForeignKey("JobPosting")]
-        public int jobPostingId 
-        { 
-            get; set; 
-        }
-        public virtual JobPosting JobPosting
-        {
-            get; set;
-        }
-        [ForeignKey("Event")]
-        public int EventId
-        {
-            get; set;
-        }
-        public virtual Event Event
-        {
-            get; set;
-        }
+        //[ForeignKey("JobPosting")]
+        //public int jobPostingId 
+        //{ 
+        //    get; set; 
+        //}
+        //public virtual JobPosting JobPosting
+        //{
+        //    get; set;
+        //}
+        //[ForeignKey("Event")]
+        //public int EventId
+        //{
+        //    get; set;
+        //}
+        //public virtual Event Event
+        //{
+        //    get; set;
+        //}
 
     }
 }

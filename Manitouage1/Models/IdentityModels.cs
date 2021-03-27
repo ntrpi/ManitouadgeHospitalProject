@@ -62,7 +62,7 @@ namespace Manitouage1.Models
             get; set;
         }
 
-        public DbSet<JobPosting> jobpostings
+        public DbSet<JobPosting> jobPostings
         {
             get; set;
         }
