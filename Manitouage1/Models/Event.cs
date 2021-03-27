@@ -31,7 +31,7 @@ namespace Manitouage1.Models
         {
             get; set;
         }
-        public string Duration
+        public Decimal Duration
         {
             get; set;
         }

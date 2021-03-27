@@ -67,8 +67,13 @@ namespace Manitouage1.Models
             get; set;
         }
 
-        public System.Data.Entity.DbSet<Manitouage1.Models.InvoiceDto> InvoiceDtoes {
+        public DbSet<Event> events
+        {
             get; set;
         }
+
+
+
+
     }
 }

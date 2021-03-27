@@ -209,6 +209,10 @@
     <Compile Include="Migrations\202103270057247_202103262057_sandra.Designer.cs">
       <DependentUpon>202103270057247_202103262057_sandra.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202103270148206_202103262148_sandra.cs" />
+    <Compile Include="Migrations\202103270148206_202103262148_sandra.Designer.cs">
+      <DependentUpon>202103270148206_202103262148_sandra.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Department.cs" />
@@ -331,6 +335,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202103270057247_202103262057_sandra.resx">
       <DependentUpon>202103270057247_202103262057_sandra.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103270108062_20210326210700.resx">
+      <DependentUpon>202103270108062_20210326210700.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103270148206_202103262148_sandra.resx">
+      <DependentUpon>202103270148206_202103262148_sandra.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
