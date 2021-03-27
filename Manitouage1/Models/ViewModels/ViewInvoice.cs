@@ -41,7 +41,6 @@ namespace Manitouage1.Models.ViewModels
             if( totals == null ) {
                 decimal subTotal = 0;
                 decimal taxes = 0;
-                decimal total = 0;
                 foreach( ProductDto product in productDtos ) {
                     subTotal += product.price;
                     taxes += product.price * product.taxRate;
@@ -50,7 +49,7 @@ namespace Manitouage1.Models.ViewModels
                     subTotal = subTotal,
                     taxes = taxes,
                     total = subTotal + taxes
-            };
+                };
             }
             return totals;
         }

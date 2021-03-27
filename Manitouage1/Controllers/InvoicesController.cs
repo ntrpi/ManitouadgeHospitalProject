@@ -110,6 +110,9 @@ namespace Manitouage1.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create( Invoice invoice )
         {
+            invoice.created = DateTime.Now;
+            invoice.status = Invoice.Status.Created;
+
             HttpResponseMessage response = helper.doPostRequest( getUrl( "Create" ), invoice );
             if( !response.IsSuccessStatusCode ) {
                 ViewBag.errorMessage = "Unable to add invoice.";
@@ -149,6 +152,23 @@ namespace Manitouage1.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit( int id, Invoice invoice )
         {
+            switch( invoice.status ) {
+                case Invoice.Status.Created: {
+                    invoice.issued = null;
+                    invoice.paid = null;
+                    break;
+                }
+                case Invoice.Status.Issued: {
+                    invoice.issued = DateTime.Now;
+                    invoice.paid = null;
+                    break;
+                }
+                case Invoice.Status.Paid: {
+                    invoice.paid = DateTime.Now;
+                    break;
+                }
+            }
+
             HttpResponseMessage response = helper.doPostRequest( getUrl( "Update", id ), invoice );
             if( !response.IsSuccessStatusCode ) {
                 ViewBag.errorMessage = "Unable to add invoice.";

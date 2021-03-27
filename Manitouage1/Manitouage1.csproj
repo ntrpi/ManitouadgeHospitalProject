@@ -188,21 +188,26 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\ProductsDataController.cs" />
+    <Compile Include="Controllers\ProductXInvoicesController.cs" />
     <Compile Include="Controllers\ProductXInvoicesDataController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202103182033244_3182021163300.cs" />
-    <Compile Include="Migrations\202103182033244_3182021163300.Designer.cs">
-      <DependentUpon>202103182033244_3182021163300.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202103260120339_20210325.cs" />
-    <Compile Include="Migrations\202103260120339_20210325.Designer.cs">
-      <DependentUpon>202103260120339_20210325.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\202103260128369_20212503212800.cs" />
     <Compile Include="Migrations\202103260128369_20212503212800.Designer.cs">
       <DependentUpon>202103260128369_20212503212800.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202103270012254_202103262002_sandra.cs" />
+    <Compile Include="Migrations\202103270012254_202103262002_sandra.Designer.cs">
+      <DependentUpon>202103270012254_202103262002_sandra.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202103270031212_202103262031_sandra.cs" />
+    <Compile Include="Migrations\202103270031212_202103262031_sandra.Designer.cs">
+      <DependentUpon>202103270031212_202103262031_sandra.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202103270057247_202103262057_sandra.cs" />
+    <Compile Include="Migrations\202103270057247_202103262057_sandra.Designer.cs">
+      <DependentUpon>202103270057247_202103262057_sandra.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -293,9 +298,13 @@
     <Content Include="Views\Products\Edit.cshtml" />
     <Content Include="Views\Products\DeleteConfirm.cshtml" />
     <Content Include="Views\Invoices\Index.cshtml" />
+    <Content Include="Views\Invoices\Create.cshtml" />
+    <Content Include="Views\Invoices\Edit.cshtml" />
+    <Content Include="Views\Invoices\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\ProductXInvoices\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -311,14 +320,17 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202103182033244_3182021163300.resx">
-      <DependentUpon>202103182033244_3182021163300.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202103260120339_20210325.resx">
-      <DependentUpon>202103260120339_20210325.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202103260128369_20212503212800.resx">
       <DependentUpon>202103260128369_20212503212800.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103270012254_202103262002_sandra.resx">
+      <DependentUpon>202103270012254_202103262002_sandra.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103270031212_202103262031_sandra.resx">
+      <DependentUpon>202103270031212_202103262031_sandra.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103270057247_202103262057_sandra.resx">
+      <DependentUpon>202103270057247_202103262057_sandra.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

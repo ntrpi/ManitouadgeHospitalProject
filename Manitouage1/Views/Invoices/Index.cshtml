@@ -4,30 +4,54 @@
     @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.invoiceId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.created)
-        </th>
-        <th></th>
-    </tr>
+  <tr>
+    <th>
+      @Html.DisplayNameFor( model => model.invoiceId )
+    </th>
+    <th>
+      @Html.DisplayNameFor( model => model.created )
+    </th>
+    <th>
+      @Html.DisplayNameFor( model => model.issued )
+    </th>
+    <th>
+      @Html.DisplayNameFor( model => model.status )
+    </th>
+    <th>
+      @Html.DisplayNameFor( model => model.Id )
+    </th>
+    <th></th>
+  </tr>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.invoiceId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.created)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.invoiceId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.invoiceId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.invoiceId })
-        </td>
-    </tr>
+<tr>
+  <td>
+    @Html.DisplayFor( modelItem => item.invoiceId )
+  </td>
+  <td>
+    @Html.DisplayFor( modelItem => item.created )
+  </td>
+  <td>
+    @Html.DisplayFor( modelItem => item.issued )
+  </td>
+  <td>
+    @Html.DisplayFor( modelItem => item.status )
+  </td>
+  <td>
+    @Html.DisplayFor( modelItem => item.Id )
+  </td>
+  <td>
+    @Html.ActionLink( "Edit", "Edit", new {
+      id = item.Id
+    } ) |
+    @Html.ActionLink( "Details", "Details", new {
+      id = item.Id
+    } ) |
+    @Html.ActionLink( "Delete", "Delete", new {
+      id = item.Id
+    } )
+  </td>
+</tr>
 }
 
 </table>

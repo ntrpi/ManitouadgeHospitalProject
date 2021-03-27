@@ -10,12 +10,31 @@ namespace Manitouage1.Models
 {
     public class Invoice
     {
+        public enum Status
+        {
+            Created,
+            Issued,
+            Paid
+        }
+
         [Key]
         public int invoiceId {
             get; set;
         }
 
         public DateTime created {
+            get; set;
+        }
+
+        public DateTime? issued {
+            get; set;
+        }
+
+        public DateTime? paid {
+            get; set;
+        }
+
+        public Status status {
             get; set;
         }
 
@@ -38,6 +57,8 @@ namespace Manitouage1.Models
             return new InvoiceDto {
                 invoiceId = invoiceId,
                 created = created,
+                issued = issued,
+                status = status,
                 Id = Id
             };
         }
@@ -50,11 +71,30 @@ namespace Manitouage1.Models
             get; set;
         }
 
-        [DisplayName( "Date" )]
+        [DisplayName( "Date Created" )]
+        [DataType( DataType.Date )]
         public DateTime created {
             get; set;
         }
 
+        [DisplayName( "Date Issued" )]
+        [DataType( DataType.Date )]
+        public DateTime? issued {
+            get; set;
+        }
+
+        [DisplayName( "Date Paid" )]
+        [DataType( DataType.Date )]
+        public DateTime? paid {
+            get; set;
+        }
+
+        [DisplayName( "Status" )]
+        public Invoice.Status status {
+            get; set;
+        }
+
+        [DisplayName( "User ID" )]
         // ApplicationUser.Id
         public string Id {
             get; set;

@@ -1,0 +1,66 @@
+﻿@model Manitouage1.Models.ViewModels.ViewInvoice
+
+@{
+    var invoice = Model.invoiceDto;
+    var statusCreated = Manitouage1.Models.Invoice.Status.Created;
+    var statusPaid = Manitouage1.Models.Invoice.Status.Paid;
+}
+
+<div>
+  <h4>Invoice</h4>
+  <hr />
+  <dl class="dl-horizontal">
+    <dt>
+      @Html.DisplayNameFor( model => invoice.created )
+    </dt>
+
+    <dd>
+      @Html.DisplayFor( model => invoice.created )
+    </dd>
+
+    <dt>
+      @Html.DisplayNameFor( model => invoice.Id )
+    </dt>
+
+    <dd>
+      @Html.DisplayFor( model => invoice.Id )
+    </dd>
+
+    @if( invoice.status == statusCreated ) {
+      <dt>
+        @Html.DisplayNameFor( model => invoice.status )
+      </dt>
+      <dd>
+        Not Issued
+      </dd>
+    } else {
+      <dt>
+        @Html.DisplayNameFor( model => invoice.issued )
+      </dt>
+      <dd>
+        @Html.DisplayFor( model => invoice.issued )
+      </dd>
+      if( invoice.status != statusPaid ) {
+        <dt>
+          @Html.DisplayNameFor( model => invoice.status )
+        </dt>
+        <dd>
+          Not Paid
+        </dd>
+      } else {
+        <dt>
+          @Html.DisplayNameFor( model => invoice.paid )
+        </dt>
+        <dd>
+          @Html.DisplayFor( model => invoice.paid )
+        </dd>
+      }
+    }
+  </dl>
+</div>
+<p>
+  @Html.ActionLink( "Edit", "Edit", new {
+    id = invoice.invoiceId
+  } ) |
+  @Html.ActionLink( "Back to List", "Index" )
+</p>
