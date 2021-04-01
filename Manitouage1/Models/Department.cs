@@ -31,6 +31,7 @@ namespace Manitouage1.Models
         [Required]
         public string category { get; set; }
 
+
     }
 
     public class DepartmentDto
@@ -47,7 +48,7 @@ namespace Manitouage1.Models
         [DisplayName("Phone")]
         public string phone { get; set; }
 
-        [DisplayName("Faz")]
+        [DisplayName("Fax")]
         public string fax { get; set; }
 
         [DisplayName("Extension")]

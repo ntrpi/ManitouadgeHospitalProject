@@ -62,6 +62,7 @@ namespace Manitouage1.Models
             get; set;
         }
 
+   
         public DbSet<JobPosting> jobPostings
         {
             get; set;

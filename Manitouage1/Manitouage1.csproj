@@ -182,6 +182,8 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ControllersHelper.cs" />
+    <Compile Include="Controllers\DepartmentController.cs" />
+    <Compile Include="Controllers\DepartmentDataController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InvoicesController.cs" />
     <Compile Include="Controllers\InvoicesDataController.cs" />
@@ -192,6 +194,30 @@
     <Compile Include="Controllers\ProductXInvoicesDataController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202104010133568_new.cs" />
+    <Compile Include="Migrations\202104010133568_new.Designer.cs">
+      <DependentUpon>202104010133568_new.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202104010406482_department.cs" />
+    <Compile Include="Migrations\202104010406482_department.Designer.cs">
+      <DependentUpon>202104010406482_department.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202104010407048_department1.cs" />
+    <Compile Include="Migrations\202104010407048_department1.Designer.cs">
+      <DependentUpon>202104010407048_department1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202104011344540_changeDepartment.cs" />
+    <Compile Include="Migrations\202104011344540_changeDepartment.Designer.cs">
+      <DependentUpon>202104011344540_changeDepartment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202104011431060_dropDepartmentCategory.cs" />
+    <Compile Include="Migrations\202104011431060_dropDepartmentCategory.Designer.cs">
+      <DependentUpon>202104011431060_dropDepartmentCategory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202104011434355_editDepartment.cs" />
+    <Compile Include="Migrations\202104011434355_editDepartment.Designer.cs">
+      <DependentUpon>202104011434355_editDepartment.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -205,6 +231,8 @@
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductXInvoice.cs" />
     <Compile Include="Models\Testimonial.cs" />
+    <Compile Include="Models\ViewModels\ShowDepartment.cs" />
+    <Compile Include="Models\ViewModels\UpdateDepartment.cs" />
     <Compile Include="Models\ViewModels\ViewInvoice.cs" />
     <Compile Include="Models\Volunteer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -286,6 +314,11 @@
     <Content Include="Views\Invoices\Create.cshtml" />
     <Content Include="Views\Invoices\Edit.cshtml" />
     <Content Include="Views\Invoices\Details.cshtml" />
+    <Content Include="Views\Department\List.cshtml" />
+    <Content Include="Views\Department\Create.cshtml" />
+    <Content Include="Views\Department\DeleteConfirm.cshtml" />
+    <Content Include="Views\Department\Details.cshtml" />
+    <Content Include="Views\Department\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -303,6 +336,26 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202104010133568_new.resx">
+      <DependentUpon>202104010133568_new.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104010406482_department.resx">
+      <DependentUpon>202104010406482_department.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104010407048_department1.resx">
+      <DependentUpon>202104010407048_department1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104011344540_changeDepartment.resx">
+      <DependentUpon>202104011344540_changeDepartment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104011431060_dropDepartmentCategory.resx">
+      <DependentUpon>202104011431060_dropDepartmentCategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104011434355_editDepartment.resx">
+      <DependentUpon>202104011434355_editDepartment.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
