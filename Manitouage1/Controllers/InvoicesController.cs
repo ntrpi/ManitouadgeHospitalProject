@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Net.Http;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Manitouage1.Models;
 using Manitouage1.Models.ViewModels;
 
@@ -94,7 +96,13 @@ namespace Manitouage1.Controllers
         /// </example>
         public ActionResult Create()
         {
-            return View();
+            List<string> users = new List<string>();
+            users.Add( "9f08e9de-d61f-45f7-bcea-4c66589b8ff4" );
+            UpdateInvoice updateInvoice = new UpdateInvoice {
+                productDtos = helper.doGetAndGetFromResponse<IEnumerable<ProductDto>>( "ProductsData/GetProducts" ),
+                applicationUsers = users
+            };
+            return View( updateInvoice );
         }
 
         /// <summary>

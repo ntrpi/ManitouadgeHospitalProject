@@ -40,7 +40,7 @@ namespace Manitouage1.Models
 
         [ForeignKey( "ApplicationUser" )]
         // ApplicationUser.Id
-        public string Id {
+        public string userId {
             get; set;
         }
 
@@ -59,7 +59,7 @@ namespace Manitouage1.Models
                 created = created,
                 issued = issued,
                 status = status,
-                Id = Id
+                userId = userId
             };
         }
     }
@@ -96,7 +96,7 @@ namespace Manitouage1.Models
 
         [DisplayName( "User ID" )]
         // ApplicationUser.Id
-        public string Id {
+        public string userId {
             get; set;
         }
     }

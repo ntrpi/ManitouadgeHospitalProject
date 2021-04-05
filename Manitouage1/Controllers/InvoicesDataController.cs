@@ -8,6 +8,8 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Manitouage1.Models;
 
 namespace Manitouage1.Controllers
@@ -26,6 +28,7 @@ namespace Manitouage1.Controllers
         [HttpGet]
         public IEnumerable<InvoiceDto> GetInvoices()
         {
+            List<ApplicationUser> users = db.Users.ToList<ApplicationUser>();
             List<Invoice> invoices = db.invoices.ToList<Invoice>();
             List<InvoiceDto> dtos = new List<InvoiceDto>();
             foreach( Invoice invoice in invoices ) {

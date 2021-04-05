@@ -205,6 +205,7 @@
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductXInvoice.cs" />
     <Compile Include="Models\Testimonial.cs" />
+    <Compile Include="Models\ViewModels\UpdateInvoice.cs" />
     <Compile Include="Models\ViewModels\ViewInvoice.cs" />
     <Compile Include="Models\Volunteer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -283,9 +284,9 @@
     <Content Include="Views\Products\Edit.cshtml" />
     <Content Include="Views\Products\DeleteConfirm.cshtml" />
     <Content Include="Views\Invoices\Index.cshtml" />
-    <Content Include="Views\Invoices\Create.cshtml" />
     <Content Include="Views\Invoices\Edit.cshtml" />
     <Content Include="Views\Invoices\Details.cshtml" />
+    <Content Include="Views\Invoices\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
