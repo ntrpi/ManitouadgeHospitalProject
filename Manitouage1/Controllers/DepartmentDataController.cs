@@ -19,6 +19,8 @@ namespace Manitouage1.Controllers
     {
         private ManitouageDbContext db = new ManitouageDbContext();
 
+
+
         // GET: api/DepartmentData/GetDepartments
         [ResponseType(typeof(IEnumerable<DepartmentDto>))]
         public IHttpActionResult GetDepartments()
@@ -31,15 +33,7 @@ namespace Manitouage1.Controllers
             
             foreach (var Department in Departments)
             {
-               // Salon Salon = db.Salons
-               //.Where(s => s.Members.Any(m => m.SalonID == Member.SalonID))
-               //.FirstOrDefault();
-                //if not found, return 404 status code.
-               // if (Salon == null)
-               // {
-                 //   return NotFound();
-               // }
-
+               
                 DepartmentDto NewDepartment = new DepartmentDto
                 {
                     departmentId = Department.departmentId,
@@ -53,7 +47,7 @@ namespace Manitouage1.Controllers
 
                 DepartmentDtos.Add(NewDepartment);
             }
-
+            Debug.WriteLine("Get DepartmentDtos");
             return Ok(DepartmentDtos);
         }
 
@@ -94,32 +88,39 @@ namespace Manitouage1.Controllers
             return Ok(DepartmentDto);
         }
 
-        // PUT: api/MemberData/FindSalonForMember/5
-       // [HttpGet]
-       // [ResponseType(typeof(IEnumerable<SalonDto>))]
-       // public IHttpActionResult FindSalonForMember(int id)
-        //{
 
-          //  Salon Salon = db.Salons
-           //     .Where(s => s.Members.Any(m => m.SalonID == id))
-             //   .FirstOrDefault();
+
+        // <example>
+        // GET: api/DepartementData/FindDepartmentForJobposting/5
+        // </example>
+        [HttpGet]
+        [ResponseType(typeof(Department))]
+        public IHttpActionResult FindDepartmentForJobposting(int id)
+        {
+
+            Department Department = db.departments
+                .Where(m => m.jobpostings.Any(p => p.jobPostingId == id))
+                .FirstOrDefault();
             //if not found, return 404 status code.
-           // if (Salon == null)
-            //{
-              //  return NotFound();
-            //}
+            if (Department == null)
+            {
+                return NotFound();
+            }
 
-            //SalonDto SalonDto = new SalonDto
-            //{
-              //  SalonID = Salon.SalonID,
-                //SalonName = Salon.SalonName
-
-            //};
+            DepartmentDto DepartmentDto = new DepartmentDto
+            {
+                departmentId = Department.departmentId,
+                departmentName = Department.departmentName
+               
+            };
 
 
             //pass along data as 200 status code OK response
-            //return Ok(SalonDto);
-        //}
+            return Ok(DepartmentDto);
+        }
+
+
+
 
         /// POST: api/DepartmentData/AddDepartment
         ///  FORM DATA: Department JSON Object
@@ -179,69 +180,7 @@ namespace Manitouage1.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-      //  [HttpPost]
-      // public IHttpActionResult UpdateMemberPic(int id)
-       // {
-
-       //     bool haspic = false;
-         //   string picextension;
-          //  if (Request.Content.IsMimeMultipartContent())
-         //   {
-         //       Debug.WriteLine("Received multipart form data.");
-
-          //      int numfiles = HttpContext.Current.Request.Files.Count;
-          //      Debug.WriteLine("Files Received: " + numfiles);
-
-                //Check if a file is posted
-             //   if (numfiles == 1 && HttpContext.Current.Request.Files[0] != null)
-            //    {
-             //       var MemberPic = HttpContext.Current.Request.Files[0];
-                    //Check if the file is empty
-            //        if (MemberPic.ContentLength > 0)
-             //       {
-               //         var valtypes = new[] { "jpeg", "jpg", "png", "gif" };
-             //           var extension = Path.GetExtension(MemberPic.FileName).Substring(1);
-                        //Check the extension of the file
-                 //       if (valtypes.Contains(extension))
-                  //      {
-                    //        try
-                      //      {
-                                //file name is the id of the image
-                        //        string fn = id + "." + extension;
-
-                                //get a direct file path to ~/Content/Members/{id}.{extension}
-                          //      string path = Path.Combine(HttpContext.Current.Server.MapPath("~/Content/Members/"), fn);
-
-                                //save the file
-                            //    MemberPic.SaveAs(path);
-
-                                //if these are all successful then we can set these fields
-                              //  haspic = true;
-                                //picextension = extension;
-
-                                //Update the member haspic and picextension fields in the database
-                                //Member SelectedMember = db.Members.Find(id);
-                                //SelectedMember.MemberHasPic = haspic;
-                                //SelectedMember.Picture = extension;
-                                //db.Entry(SelectedMember).State = EntityState.Modified;
-
- //                                db.SaveChanges();
-
-   //                         }
-     //                       catch (Exception ex)
-       //                     {
-         //                       Debug.WriteLine("Member Image was not saved successfully.");
-           //                     Debug.WriteLine("Exception:" + ex);
-             //               }
-               //         }
-                 //   }
-
-               // }
-           // }
-
-           // return Ok();
-//        }
-
+      
 
 
 

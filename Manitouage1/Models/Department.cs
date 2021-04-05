@@ -31,6 +31,8 @@ namespace Manitouage1.Models
         [Required]
         public string category { get; set; }
 
+        public ICollection<JobPosting> jobpostings { get; set; }
+
 
     }
 

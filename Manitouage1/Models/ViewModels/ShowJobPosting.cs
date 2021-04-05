@@ -5,10 +5,10 @@ using System.Web;
 
 namespace Manitouage1.Models.ViewModels
 {
-    public class UpdateDepartment
+    public class ShowJobPosting
     {
-        public DepartmentDto department { get; set; }
+        public JobPostingDto jobposting { get; set; }
 
-        public JobPostingDto jobPosting { get; set; }
+        public DepartmentDto department { get; set; }
     }
 }

@@ -12,6 +12,9 @@
 <table class="table">
     <tr>
         <th>
+            @Html.DisplayNameFor(model => model.departmentId)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.departmentName)
         </th>
         <th>
@@ -33,31 +36,34 @@
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.departmentName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.phone)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.fax)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.extension)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.category)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.departmentId }) |
-            @Html.ActionLink("Details", "Details", new { id = item.departmentId }) |
-            @Html.ActionLink("Delete", "DeleteConfirm", new { id = item.departmentId })
-        </td>
-    </tr>
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.departmentId)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.departmentName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.email)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.phone)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.fax)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.extension)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.category)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.departmentId }) |
+        @Html.ActionLink("Details", "Details", new { id = item.departmentId }) |
+        @Html.ActionLink("Delete", "DeleteConfirm", new { id = item.departmentId })
+    </td>
+</tr>
 }
 
 </table>

@@ -14,7 +14,7 @@ namespace Manitouage1.Models
         public int jobPostingId { get; set; }
 
         [Required]
-        public string jonNumber { get; set; }
+        public string jobNumber { get; set; }
 
         [Required]
         public string jobTitle { get; set; }
@@ -26,14 +26,18 @@ namespace Manitouage1.Models
         public string jobDescription { get; set; }
 
         [Required]
+        public string salary { get; set; }
+
+        [Required]
         public DateTime closingDate { get; set; }
 
         [ForeignKey("Department")]
-
         public int departmentId { get; set; }
         public string departmentName { get; set; }
 
         public virtual Department Department { get; set; }
+
+       // public ICollection<Department> Hairstyles { get; set; }
 
     }
 
@@ -43,16 +47,19 @@ namespace Manitouage1.Models
         public int jobPostingId { get; set; }
 
         [DisplayName("Job Number")]
-        public string jonNumber { get; set; }
+        public string jobNumber { get; set; }
 
         [DisplayName("Job Title")]
         public string jobTitle { get; set; }
 
-        [DisplayName("Job Tupe")]
+        [DisplayName("Job Type")]
         public string jobType { get; set; }
 
         [DisplayName("Job Description")]
         public string jobDescription { get; set; }
+
+        [DisplayName("Salary")]
+        public string salary { get; set; }
 
         [DisplayName("Closing Date")]
         public DateTime closingDate { get; set; }
@@ -62,6 +69,5 @@ namespace Manitouage1.Models
 
         [DisplayName("Department Name")]
         public string departmentName { get; set; }
-
     }
 }
