@@ -1,4 +1,6 @@
-﻿using System;
+﻿// Created by Sandra Kupfer 2021/03
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -96,8 +98,7 @@ namespace Manitouage1.Controllers
         /// </example>
         public ActionResult Create()
         {
-            List<string> users = new List<string>();
-            users.Add( "9f08e9de-d61f-45f7-bcea-4c66589b8ff4" );
+            IEnumerable<ApplicationUser> users = helper.doGetAndGetFromResponse<IEnumerable<ApplicationUser>>( "InvoicesData/GetUsers" );
             UpdateInvoice updateInvoice = new UpdateInvoice {
                 productDtos = helper.doGetAndGetFromResponse<IEnumerable<ProductDto>>( "ProductsData/GetProducts" ),
                 applicationUsers = users

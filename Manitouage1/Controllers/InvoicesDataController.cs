@@ -1,4 +1,6 @@
-﻿using System;
+﻿// Created by Sandra Kupfer 2021/03
+
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -28,13 +30,18 @@ namespace Manitouage1.Controllers
         [HttpGet]
         public IEnumerable<InvoiceDto> GetInvoices()
         {
-            List<ApplicationUser> users = db.Users.ToList<ApplicationUser>();
             List<Invoice> invoices = db.invoices.ToList<Invoice>();
             List<InvoiceDto> dtos = new List<InvoiceDto>();
             foreach( Invoice invoice in invoices ) {
                 dtos.Add( invoice.getDto() );
             }
             return dtos;
+        }
+
+        [HttpGet]
+        public IEnumerable<ApplicationUser> GetUsers()
+        {
+            return db.Users.ToList<ApplicationUser>();
         }
 
         /// <summary>

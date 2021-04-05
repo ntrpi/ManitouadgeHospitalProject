@@ -10,6 +10,10 @@ namespace Manitouage1.Controllers
     {
         public ActionResult Index()
         {
+            // This is a workaround to make sure everyone has the same roles in 
+            // their database.
+            new RolesController();
+
             return View();
         }
 

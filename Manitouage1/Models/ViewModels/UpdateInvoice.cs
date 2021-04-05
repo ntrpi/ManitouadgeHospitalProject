@@ -1,4 +1,6 @@
-﻿using System;
+﻿// Created by Sandra Kupfer 2021/03
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -15,11 +17,8 @@ namespace Manitouage1.Models.ViewModels
             get; set;
         }
 
-        public IEnumerable<string> applicationUsers {
+        public IEnumerable<ApplicationUser> applicationUsers {
             get; set;
         }
-        //public IEnumerable<ApplicationUser> applicationUsers {
-        //    get; set;
-        //}
     }
 }
