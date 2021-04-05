@@ -1,0 +1,123 @@
+﻿@model Manitouage1.Models.JobPostingDto
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <h4>JobPosting</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.jobNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.jobNumber, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.jobNumber, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.jobTitle, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.jobTitle, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.jobTitle, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.jobType, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.jobType, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.jobType, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.jobDescription, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextAreaFor(model => model.jobDescription, new { rows = "10", cols = "40" })
+            @Html.ValidationMessageFor(model => model.jobDescription, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.salary, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.salary, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.salary, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.closingDate, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.closingDate, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.closingDate, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    @*
+        <div class="form-group">
+            @Html.LabelFor(model => model.departmentId, "departmentId", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("departmentId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.departmentId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    *@
+
+    @*
+        <div class="form-group">
+            @Html.LabelFor(model => model.departmentId, "departmentId", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <select name="SalonID">
+                    @foreach (var department in Model.alldepartments)
+                    {
+                        <option value="@department.departmentId">@department.departmentId</option>
+                    }
+                </select>
+
+
+
+            </div>
+        </div>
+    *@
+    <div class="form-group">
+        @Html.LabelFor(model => model.departmentId, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.departmentId, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.departmentId, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    @*
+        <div class="form-group">
+            @Html.LabelFor(model => model.departmentName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.departmentName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.departmentName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    *@
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "List")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

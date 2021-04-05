@@ -1,0 +1,75 @@
+﻿@model IEnumerable<Manitouage1.Models.JobPostingDto>
+
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>List</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.jobPostingId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.jobNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.jobTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.jobType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.jobDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.salary)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.closingDate)
+        </th>
+        <th>
+            Department
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.jobPostingId)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.jobNumber)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.jobTitle)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.jobType)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.jobDescription)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.salary)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.closingDate)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.departmentId) - @Html.DisplayFor(modelItem => item.departmentName)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.jobPostingId }) |
+        @Html.ActionLink("Details", "Details", new { id = item.jobPostingId }) |
+        @Html.ActionLink("Delete", "DeleteConfirm", new { id = item.jobPostingId })
+    </td>
+</tr>
+}
+
+</table>

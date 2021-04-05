@@ -1,0 +1,73 @@
+﻿@model Manitouage1.Models.ViewModels.ShowDepartment
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Department</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.department.departmentId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.department.departmentId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.department.departmentName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.department.departmentName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.department.email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.department.email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.department.phone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.department.phone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.department.fax)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.department.fax)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.department.extension)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.department.extension)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.department.category)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.department.category)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.department.departmentId }) |
+    @Html.ActionLink("Back to List", "List")
+</p>
