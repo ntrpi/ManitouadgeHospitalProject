@@ -77,6 +77,11 @@ namespace Manitouage1.Models
             get; set;
         }
 
+        public DbSet<Donation> donations
+        {
+            get; set;
+        }
+
 
 
 
