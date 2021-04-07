@@ -31,7 +31,7 @@ namespace Manitouage1.Models
             get; set;
         }
         [ForeignKey("JobPosting")]
-        public int jobPostingId 
+        public int? jobPostingId 
         { 
             get; set; 
         }
@@ -40,7 +40,7 @@ namespace Manitouage1.Models
             get; set;
         }
         [ForeignKey("Event")]
-        public int EventId
+        public int? EventId
         {
             get; set;
         }
@@ -50,4 +50,5 @@ namespace Manitouage1.Models
         }
 
     }
+
 }
