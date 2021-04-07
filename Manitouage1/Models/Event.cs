@@ -45,6 +45,9 @@ namespace Manitouage1.Models
         {
             get; set;
         }
+
+        //Wafa: an event can have many donations
+        public ICollection<Donation> Donations { get; set; }
     }
     public class EventDto
     {
@@ -68,5 +71,8 @@ namespace Manitouage1.Models
 
         [DisplayName("Contact Personnel")]
         public string ContactPerson { get; set; }
+
+        //Wafa
+        public int donationId { get; set; }
     }
 }

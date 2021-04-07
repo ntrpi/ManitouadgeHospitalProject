@@ -39,9 +39,17 @@ namespace Manitouage1.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<ApplicationUser> GetUsers()
+        [ResponseType( typeof( IEnumerable<ApplicationUser> ) )]
+        public IHttpActionResult GetUsers()
         {
-            return db.Users.ToList<ApplicationUser>();
+            return Ok( db.Users.ToList<ApplicationUser>() );
+        }
+
+        [HttpGet]
+        [ResponseType( typeof( ApplicationUser ) )]
+        public IHttpActionResult GetUser( string id )
+        {
+            return Ok( db.Users.Find( id ) );
         }
 
         /// <summary>
