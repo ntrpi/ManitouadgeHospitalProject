@@ -68,7 +68,19 @@ namespace Manitouage1.Controllers
         }
         public ActionResult Details(int id)
         {
-            return View();
+            // Create the string just as you would if you were typing it in the browser.
+            string url = "EventsData/GetQuestion/" + id;
+
+            // Send the http request and get an http action response.
+            HttpResponseMessage response = client.GetAsync(url).Result;
+
+            // The http call worked.
+            if (response.IsSuccessStatusCode)
+            {
+                EventDto eventDto = response.Content.ReadAsAsync<EventDto>().Result;
+                return View(eventDto);
+            }
+            return RedirectToAction("Error");
         }
 
         // GET: Events/Create

@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Manitouage1.Models;
+using System.Diagnostics;
 
 namespace Manitouage1.Controllers
 {
@@ -16,8 +17,25 @@ namespace Manitouage1.Controllers
     {
         private ManitouageDbContext db = new ManitouageDbContext();
 
-        // GET: api/GetEvents
-        public IHttpActionResult GetEvents()
+        // GET: api/EventsData/5
+        public IHttpActionResult GetEvent(int id)
+        {
+            Event @event = db.events.Find(id);
+            EventDto eventDto = new EventDto
+            {
+                EventId = @event.EventId,
+                Title = @event.Title,
+                Description = @event.Description,
+                DateTime = @event.DateTime,
+                Location = @event.Location,
+                Duration = @event.Duration,
+                ContactPerson = @event.ContactPerson
+        };
+            return Ok(eventDto);
+    }
+
+    // GET: api/GetEvents
+    public IHttpActionResult GetEvents()
         {
             // Get the rows from the Questions table and put them in a List object.
             List<Event> Events = db.events.ToList();
@@ -47,22 +65,11 @@ namespace Manitouage1.Controllers
             // Return the Ok http action result containing the dto list.
             return Ok(EventDtos);
         }
-        // GET: api/EventsData/5
-        [ResponseType(typeof(Event))]
-        public IHttpActionResult GetEvent(int id)
-        {
-            Event @event = db.events.Find(id);
-            if (@event == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(@event);
-        }
 
         // PUT: api/EventsData/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutEvent(int id, Event @event)
+        [HttpPost]
+        public IHttpActionResult UpdateEvent(int id, Event @event)
         {
             if (!ModelState.IsValid)
             {
