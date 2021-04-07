@@ -35,6 +35,37 @@ namespace Manitouage1.Controllers
         }
 
         // GET: Events/Details/5
+
+        public ActionResult Index()
+        {
+            return RedirectToAction("List");
+        }
+
+        [HttpGet]
+        public ActionResult List()
+        {
+            Debug.WriteLine("Here");
+            // Create the string just as you would if you were typing it in the browser.
+            string url = "EventsData/GetEvents";
+
+            // Send the http request and get an http action response.
+            HttpResponseMessage response = client.GetAsync(url).Result;
+
+            // The http call worked.
+            if (response.IsSuccessStatusCode)
+            {
+                IEnumerable<EventDto> EventDtos = response.Content.ReadAsAsync<IEnumerable<EventDto>>().Result;
+                return View(EventDtos);
+
+            }
+            else
+            {
+                // The http call failed.
+                return RedirectToAction("Error");
+            }
+
+            //always insert variable from second statement into brackets beside view
+        }
         public ActionResult Details(int id)
         {
             return View();
