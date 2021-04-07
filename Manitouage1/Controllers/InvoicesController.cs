@@ -81,12 +81,35 @@ namespace Manitouage1.Controllers
                         productsUrl + "/" + productXInvoice.productId ) );
             }
 
+            // Get the user.
+            // TODO: find out the right way to do this.
+            HttpResponseMessage response = helper.doGetRequest( "InvoicesData/GetUser/1" );
+            if( !response.IsSuccessStatusCode ) {
+                ViewBag.errorMessage = "Unable to get invoice.";
+                return View();
+            }
+            ApplicationUser user = helper.getFromResponse<ApplicationUser>( response );
+
             ViewInvoice viewInvoice = new ViewInvoice {
                 invoiceDto = invoiceDto,
                 productDtos = productDtos
             };
 
             return View( viewInvoice );
+        }
+
+        // Utility function to create an UpdateInvoice object.
+        private UpdateInvoice getUpdateInvoice( int id = 0 )
+        {
+            IEnumerable<ApplicationUser> users = helper.doGetAndGetFromResponse<IEnumerable<ApplicationUser>>( "InvoicesData/GetUsers" );
+            UpdateInvoice updateInvoice = new UpdateInvoice {
+                productDtos = helper.doGetAndGetFromResponse<IEnumerable<ProductDto>>( "ProductsData/GetProducts" ),
+                applicationUsers = users
+            };
+            if( id != 0 ) {
+                updateInvoice.invoiceDto = helper.doGetAndGetFromResponse<InvoiceDto>( getUrl( "Get", id ) );
+            }
+            return updateInvoice;
         }
 
         /// <summary>
@@ -98,12 +121,7 @@ namespace Manitouage1.Controllers
         /// </example>
         public ActionResult Create()
         {
-            IEnumerable<ApplicationUser> users = helper.doGetAndGetFromResponse<IEnumerable<ApplicationUser>>( "InvoicesData/GetUsers" );
-            UpdateInvoice updateInvoice = new UpdateInvoice {
-                productDtos = helper.doGetAndGetFromResponse<IEnumerable<ProductDto>>( "ProductsData/GetProducts" ),
-                applicationUsers = users
-            };
-            return View( updateInvoice );
+            return View( getUpdateInvoice() );
         }
 
         /// <summary>
@@ -144,7 +162,7 @@ namespace Manitouage1.Controllers
         /// </example>
         public ActionResult Edit( int id )
         {
-            return View( getInvoiceDto( id ) );
+            return View( getUpdateInvoice( id ) );
         }
 
         /// <summary>
@@ -180,7 +198,7 @@ namespace Manitouage1.Controllers
 
             HttpResponseMessage response = helper.doPostRequest( getUrl( "Update", id ), invoice );
             if( !response.IsSuccessStatusCode ) {
-                ViewBag.errorMessage = "Unable to add invoice.";
+                ViewBag.errorMessage = "Unable to update invoice.";
                 return View();
             }
 

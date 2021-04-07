@@ -1,8 +1,11 @@
-﻿@model Manitouage1.Models.Invoice
+﻿@model Manitouage1.Models.ViewModels.UpdateInvoice
 
 @{
     var statusCreated = Manitouage1.Models.Invoice.Status.Created;
     var statusPaid = Manitouage1.Models.Invoice.Status.Paid;
+    var invoice = Model.invoiceDto;
+    var products = Model.productDtos;
+    var users = Model.applicationUsers;
 }
 
 @using( Html.BeginForm() ) {
@@ -14,52 +17,52 @@
   @Html.ValidationSummary( true, "", new {
     @class = "text-danger"
   } )
-  @Html.HiddenFor( model => model.invoiceId )
+  @Html.HiddenFor( model => invoice.invoiceId )
 
   <div class="form-group">
-    @Html.LabelFor( model => model.created, htmlAttributes: new {
+    @Html.LabelFor( model => invoice.created, htmlAttributes: new {
       @class = "control-label col-md-2"
     } )
     <div class="col-md-10">
-      @Html.EditorFor( model => model.created, new {
+      @Html.EditorFor( model => invoice.created, new {
          htmlAttributes = new {
            @class = "form-control"
          }
        } )
-      @Html.ValidationMessageFor( model => model.created, "", new {
+      @Html.ValidationMessageFor( model => invoice.created, "", new {
          @class = "text-danger"
        } )
     </div>
   </div>
 
-  @if( Model.status != statusCreated ) {
+  @if( invoice.status != statusCreated ) {
     <div class="form-group">
-      @Html.LabelFor( model => model.issued, htmlAttributes: new {
+      @Html.LabelFor( model => invoice.issued, htmlAttributes: new {
    @class = "control-label col-md-2"
  } )
       <div class="col-md-10">
-        @Html.EditorFor( model => model.issued, new {
+        @Html.EditorFor( model => invoice.issued, new {
      htmlAttributes = new {
        @class = "form-control"
      }
    } )
-        @Html.ValidationMessageFor( model => model.issued, "", new {
+        @Html.ValidationMessageFor( model => invoice.issued, "", new {
      @class = "text-danger"
    } )
       </div>
     </div>
-    if( Model.status == statusPaid ) {
+    if( invoice.status == statusPaid ) {
       <div class="form-group">
-        @Html.LabelFor( model => model.paid, htmlAttributes: new {
+        @Html.LabelFor( model => invoice.paid, htmlAttributes: new {
      @class = "control-label col-md-2"
    } )
         <div class="col-md-10">
-          @Html.EditorFor( model => model.paid, new {
+          @Html.EditorFor( model => invoice.paid, new {
        htmlAttributes = new {
          @class = "form-control"
        }
      } )
-          @Html.ValidationMessageFor( model => model.paid, "", new {
+          @Html.ValidationMessageFor( model => invoice.paid, "", new {
        @class = "text-danger"
      } )
         </div>
@@ -67,14 +70,14 @@
     }
   } else {
     <div class="form-group">
-      @Html.LabelFor( model => model.status, htmlAttributes: new {
+      @Html.LabelFor( model => invoice.status, htmlAttributes: new {
           @class = "control-label col-md-2"
         } )
       <div class="col-md-10">
-        @Html.EnumDropDownListFor( model => model.status, htmlAttributes: new {
+        @Html.EnumDropDownListFor( model => invoice.status, htmlAttributes: new {
            @class = "form-control"
          } )
-        @Html.ValidationMessageFor( model => model.status, "", new {
+        @Html.ValidationMessageFor( model => invoice.status, "", new {
            @class = "text-danger"
          } )
       </div>
@@ -82,14 +85,24 @@
   }
 
   <div class="form-group">
-    @Html.LabelFor( model => model.Id, "Id", htmlAttributes: new {
+    @Html.LabelFor( model => invoice.userId, "Client", htmlAttributes: new {
         @class = "control-label col-md-2"
       } )
     <div class="col-md-10">
-      @Html.DropDownList( "Id", null, htmlAttributes: new {
+      @{
+          var usersListItems = new List<SelectListItem>();
+          foreach( var user in users ) {
+            var selected = false;
+            if( invoice.userId == user.Id ) {
+              selected = true;
+            }
+            usersListItems.Add( new SelectListItem { Text = user.Email, Value = user.Id, Selected = selected } );
+          }
+      }
+      @Html.DropDownListFor( model => invoice.userId, usersListItems, htmlAttributes: new {
          @class = "form-control"
        } )
-      @Html.ValidationMessageFor( model => model.Id, "", new {
+      @Html.ValidationMessageFor( model => invoice.userId, "", new {
          @class = "text-danger"
        } )
     </div>
