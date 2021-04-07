@@ -16,29 +16,135 @@ namespace Manitouage1.Controllers
     {
         private ManitouageDbContext db = new ManitouageDbContext();
 
-        // GET: api/DonationData
-        public IQueryable<Donation> Getdonations()
+        /// <summary>
+        /// Gets a list of donations in the database with the status code (200 ok)
+        /// this is in direct reference to playersdatacontroller(varsity_w_auth)
+        /// </summary>
+        /// <returns>
+        /// returns a list of all the donations made
+        /// </returns>
+        /// <example>
+        // GET: api/DonationData/getdonations
+        /// </example>
+        [HttpGet]
+        [ResponseType(typeof(IEnumerable<DonationDto>))]
+        //creating a route for api data controller
+        [Route("api/DonationData/getdonations")]
+        public IHttpActionResult GetDonations()
         {
-            return db.donations;
+            //FOR MY UNDERSTANDING: go to donations dto and get the list 
+            List<Donation> Donations = db.donations.ToList();
+            //FOR MY UNDERSTANDING: show the list in the donation database 
+            List<DonationDto> DonationDtos = new List<DonationDto> { };
+
+            //information to be displayed 
+            foreach (var Donation in Donations)
+            {
+                DonationDto NewDonation = new DonationDto
+                {
+                    donationId = Donation.donationId,
+                    firstName = Donation.firstName,
+                    lastName = Donation.lastName,
+                    email = Donation.email,
+                    phoneNumber = Donation.phoneNumber,
+                    amount = Donation.amount,
+                    //add event id 
+                    EventId = Donation.EventId
+                };
+                DonationDtos.Add(NewDonation);
+            }
+
+            //if status code 200 list donations
+            return Ok(DonationDtos);
         }
 
-        // GET: api/DonationData/5
-        [ResponseType(typeof(Donation))]
-        public IHttpActionResult GetDonation(int id)
+
+        /// <summary> 
+        /// Finds a specfic donation by id with an OK status code. if donation is not found displays status code 404
+        /// </summary>
+        /// <param name="id">The donation id</param>
+        /// <returns>information about the donation: donation made by, amount and if it was made to an event</returns>
+        // <example>
+        // GET: api/DonationsData/FindDonation/5
+        // </example>
+        [HttpGet]
+        [ResponseType(typeof(DonationDto))]
+        public IHttpActionResult FindDonation(int id)
         {
-            Donation donation = db.donations.Find(id);
-            if (donation == null)
+            Donation Donation = db.donations.Find(id);
+
+            //not found 404 status code.
+            if (Donation == null)
             {
                 return NotFound();
             }
 
-            return Ok(donation);
+            DonationDto DonationDto = new DonationDto
+            {
+                donationId = Donation.donationId,
+                firstName = Donation.firstName,
+                lastName = Donation.lastName,
+                email = Donation.email,
+                phoneNumber = Donation.phoneNumber,
+                amount = Donation.amount,
+                //add event id
+                EventId = Donation.EventId
+
+            };
+
+
+            //if donation is in the database 200 status code OK response
+            return Ok(DonationDto);
         }
 
-        // PUT: api/DonationData/5
-        [ResponseType(typeof(void))]
-        public IHttpActionResult PutDonation(int id, Donation donation)
+
+
+
+        /// <summary>
+        /// ASK CHRISTINE HOW WOULD I DISPLAY A DROP DOWN FOR EVENTS
+        /// Adds a donation to the database.
+        /// </summary>
+        /// <param name="donation">adds a donation object. POST request through form</param>
+        /// <returns>status code 200 if successful. 400 if unsuccessful</returns>
+        /// <example>
+        /// POST: api/DonationData/AddDonation
+        /// FORM DATA: Donation JSON Object
+        /// </example>
+        [ResponseType(typeof(Donation))]
+        [HttpPost]
+        public IHttpActionResult AddDonation([FromBody] Donation donation)
         {
+            //validate according to data annotation discribed in my doination model
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState); //400 status code if database is not updated
+            }
+
+            db.donations.Add(donation);
+            db.SaveChanges();
+
+            return Ok(donation.donationId); 
+        }
+
+
+        /// <summary>
+        /// Updates a donation in the database
+        /// </summary>
+        /// <param name="id">donation id</param>
+        /// <param name="firstName">Received as POST data.</param>
+        /// <param name="lastName">Received as POST data.</param>
+        /// <param name="email">Received as POST data.</param>
+        /// <returns>redirect to list page with the updated donation information</returns>
+        /// <example>
+        /// POST: api/DonationData/UpdateDonation/5
+        /// FORM DATA: Donatrion JSON Object
+        /// </example>
+        [ResponseType(typeof(void))]
+        [HttpPost]
+        //[Authorize(Roles = "Admin")] //only admin can update donation info
+        public IHttpActionResult UpdateDonation(int id, [FromBody] Donation donation)
+        {
+            //checking for model state and donation id ... if not valid throw error
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -48,7 +154,7 @@ namespace Manitouage1.Controllers
             {
                 return BadRequest();
             }
-
+            //updating the database entry
             db.Entry(donation).State = EntityState.Modified;
 
             try
@@ -70,22 +176,8 @@ namespace Manitouage1.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/DonationData
-        [ResponseType(typeof(Donation))]
-        public IHttpActionResult PostDonation(Donation donation)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
 
-            db.donations.Add(donation);
-            db.SaveChanges();
-
-            return CreatedAtRoute("DefaultApi", new { id = donation.donationId }, donation);
-        }
-
-        // DELETE: api/DonationData/5
+        // DELETE: api/DonationsData/DeleteDonation/5
         [ResponseType(typeof(Donation))]
         public IHttpActionResult DeleteDonation(int id)
         {
@@ -112,7 +204,9 @@ namespace Manitouage1.Controllers
 
         private bool DonationExists(int id)
         {
-            return db.donations.Count(e => e.donationId == id) > 0;
+            return db.donations.Count(d => d.donationId == id) > 0;
         }
     }
 }
+
+
