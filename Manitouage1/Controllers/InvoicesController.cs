@@ -11,6 +11,8 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Manitouage1.Models;
 using Manitouage1.Models.ViewModels;
 
+
+// Temporary comment.
 namespace Manitouage1.Controllers
 {
     public class InvoicesController: Controller
