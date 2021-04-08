@@ -41,13 +41,13 @@ namespace Manitouage1.Controllers
         public IHttpActionResult GetEvents()
         {
             // Get the rows from the Questions table and put them in a List object.
-            List<Event> Events = db.events.ToList();
+            List<Event> myevent = db.events.ToList();
 
             // Create a List object to hold the dtos.
             List<EventDto> EventDtos = new List<EventDto> { };
 
             // Convert each Question into a QuestionDto and put it in the list.
-            foreach (var Event in Events)
+            foreach (var Event in myevent)
             {
                 EventDto NewEvent = new EventDto
                 {
@@ -119,6 +119,7 @@ namespace Manitouage1.Controllers
             return Ok(myevent.EventId);
         }
         // DELETE: api/EventsData/5
+        [HttpPost]
         [ResponseType(typeof(Event))]
         public IHttpActionResult DeleteEvent(int id)
         {
@@ -131,7 +132,7 @@ namespace Manitouage1.Controllers
             db.events.Remove(myevent);
             db.SaveChanges();
 
-            return Ok(myevent);
+            return Ok();
         }
         protected override void Dispose(bool disposing)
         {

@@ -125,8 +125,8 @@ namespace Manitouage1.Controllers
             // The http call worked.
             if (response.IsSuccessStatusCode)
             {
-                EventDto eventDto = response.Content.ReadAsAsync<EventDto>().Result;
-                return View(eventDto);
+                EventDto SelectedEvent = response.Content.ReadAsAsync<EventDto>().Result;
+                return View(SelectedEvent);
             }
 
             return RedirectToAction("Error");
@@ -134,9 +134,9 @@ namespace Manitouage1.Controllers
         // POST: Events/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken()]
-        public ActionResult Update(int id, Event EventInfo)
+        public ActionResult Edit(int id, Event EventInfo)
         {
-            string url = "QuestionData/UpdateQuestion/" + id;
+            string url = "EventData/UpdateEvent/" + id;
 
             Debug.WriteLine(jss.Serialize(EventInfo));
             HttpContent content = new StringContent(jss.Serialize(EventInfo));
