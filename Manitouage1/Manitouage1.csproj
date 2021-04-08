@@ -191,6 +191,7 @@
     <Compile Include="Controllers\DepartmentDataController.cs" />
     <Compile Include="Controllers\DonationController.cs" />
     <Compile Include="Controllers\DonationDataController.cs" />
+    <Compile Include="Controllers\EventController.cs" />
     <Compile Include="Controllers\EventDataController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InvoicesController.cs" />
@@ -206,9 +207,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202104071641376_amandamigration.cs" />
-    <Compile Include="Migrations\202104071641376_amandamigration.designer.cs">
-      <DependentUpon>202104071641376_amandamigration.cs</DependentUpon>
+    <Compile Include="Migrations\202104082015034_04082021amanda.cs" />
+    <Compile Include="Migrations\202104082015034_04082021amanda.designer.cs">
+      <DependentUpon>202104082015034_04082021amanda.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -430,6 +431,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Donation\" />
+    <Folder Include="Views\Event\" />
     <Folder Include="Views\ProductXInvoices\" />
   </ItemGroup>
   <ItemGroup>
@@ -444,8 +446,8 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202104071641376_amandamigration.resx">
-      <DependentUpon>202104071641376_amandamigration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202104082015034_04082021amanda.resx">
+      <DependentUpon>202104082015034_04082021amanda.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
