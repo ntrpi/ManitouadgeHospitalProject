@@ -15,6 +15,7 @@ namespace Manitouage1.Controllers
     public class DonationDataController : ApiController
     {
         private ManitouageDbContext db = new ManitouageDbContext();
+        //hello world
 
         /// <summary>
         /// Gets a list of donations in the database with the status code (200 ok)
