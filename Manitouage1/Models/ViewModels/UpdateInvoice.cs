@@ -20,5 +20,9 @@ namespace Manitouage1.Models.ViewModels
         public IEnumerable<ApplicationUser> applicationUsers {
             get; set;
         }
+
+        public ProductsTotals totals {
+            get; set;
+        }
     }
 }

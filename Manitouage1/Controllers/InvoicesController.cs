@@ -92,7 +92,8 @@ namespace Manitouage1.Controllers
 
             ViewInvoice viewInvoice = new ViewInvoice {
                 invoiceDto = invoiceDto,
-                productDtos = productDtos
+                productDtos = productDtos,
+                totals = new ProductsTotals( productDtos )
             };
 
             return View( viewInvoice );
@@ -101,11 +102,20 @@ namespace Manitouage1.Controllers
         // Utility function to create an UpdateInvoice object.
         private UpdateInvoice getUpdateInvoice( int id = 0 )
         {
+            // Get the list of users.
             IEnumerable<ApplicationUser> users = helper.doGetAndGetFromResponse<IEnumerable<ApplicationUser>>( "InvoicesData/GetUsers" );
+
+            // Get the list of products.
+            IEnumerable<ProductDto> productDtos = helper.doGetAndGetFromResponse<IEnumerable<ProductDto>>( "ProductsData/GetProducts" );
+
+            // Create the UpdateInvoice object with the users, products, and product totals.
             UpdateInvoice updateInvoice = new UpdateInvoice {
-                productDtos = helper.doGetAndGetFromResponse<IEnumerable<ProductDto>>( "ProductsData/GetProducts" ),
-                applicationUsers = users
+                productDtos = productDtos,
+                applicationUsers = users,
+                totals = new ProductsTotals( productDtos )
             };
+
+            // If the id is not 0, then this invoice alread exists, so set the dto.
             if( id != 0 ) {
                 updateInvoice.invoiceDto = helper.doGetAndGetFromResponse<InvoiceDto>( getUrl( "Get", id ) );
             }
@@ -137,15 +147,18 @@ namespace Manitouage1.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create( Invoice invoice )
         {
+            // Set the default values for a new invoice.
             invoice.created = DateTime.Now;
             invoice.status = Invoice.Status.Created;
 
+            // Send the post request.
             HttpResponseMessage response = helper.doPostRequest( getUrl( "Create" ), invoice );
             if( !response.IsSuccessStatusCode ) {
                 ViewBag.errorMessage = "Unable to add invoice.";
                 return View();
             }
 
+            // TODO: just send the id instead of the whole dto.
             InvoiceDto invoiceDto = helper.getFromResponse<InvoiceDto>( response );
             return RedirectToAction( "Details", new {
                 id = invoiceDto.invoiceId
