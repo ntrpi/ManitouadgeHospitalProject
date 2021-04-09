@@ -53,6 +53,9 @@ namespace Manitouage1.Models
         [DisplayName("Phone")]
         public string phone { get; set; }
 
+        [DisplayName("Approved")]
+        public bool approved { get; set; }
+
 
     }
 }

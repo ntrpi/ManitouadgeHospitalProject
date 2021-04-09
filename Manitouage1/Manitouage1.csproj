@@ -205,6 +205,8 @@
     <Compile Include="Controllers\ProductXInvoicesController.cs" />
     <Compile Include="Controllers\ProductXInvoicesDataController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
+    <Compile Include="Controllers\VolunteerController.cs" />
+    <Compile Include="Controllers\VolunteerDataController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -444,11 +446,17 @@
     <Content Include="Views\Alert\Create.cshtml" />
     <Content Include="Views\Alert\Edit.cshtml" />
     <Content Include="Views\Alert\DeleteConfirm.cshtml" />
+    <Content Include="Views\Volunteer\Index.cshtml" />
+    <Content Include="Views\Volunteer\Create.cshtml" />
+    <Content Include="Views\Volunteer\Error.cshtml" />
+    <Content Include="Views\Volunteer\List.cshtml" />
+    <Content Include="Views\Volunteer\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Donation\" />
     <Folder Include="Views\ProductXInvoices\" />
+    <Folder Include="Views\VolunteerData\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
