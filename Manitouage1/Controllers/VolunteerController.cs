@@ -72,9 +72,24 @@ namespace Manitouage1.Controllers
 
         // POST : bind volunteer model to form post
         [HttpPost]
-        public ActionResult Create(Volunteer volunteer)
+        [ValidateAntiForgeryToken()]
+        public ActionResult Create(Volunteer Volunteer)
         {
-            return RedirectToAction("List");
+
+            string url = "volunteerdata/addvolunteer";
+            HttpContent content = new StringContent(jss.Serialize(Volunteer));
+            content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+            HttpResponseMessage res = client.PostAsync(url, content).Result;
+
+            if (res.IsSuccessStatusCode)
+            {
+                return RedirectToAction("List");
+            }
+            else
+            {
+                return RedirectToAction("Error");
+            }
+
         }
 
         public ActionResult Edit(int id)

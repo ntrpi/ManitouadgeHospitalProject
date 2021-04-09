@@ -44,5 +44,19 @@ namespace Manitouage1.Controllers
             return Ok(VolunteerDtos);
         }
 
+        [ResponseType(typeof(Volunteer))]
+        [HttpPost]
+        public IHttpActionResult AddVolunteer([FromBody] Volunteer volunteer)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            db.volunteers.Add(volunteer);
+            db.SaveChanges();
+            return Ok();
+        }
+
     }
 }
