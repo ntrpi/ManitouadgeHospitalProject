@@ -147,7 +147,10 @@ Describe all the awesome stuff you did here.
 
 
 ### Kyle
-Describe all the awesome stuff you did here.
+- Testimonial Model
+- Volunteer Model
+- Testimonial Controller 
+- Volunteer Controller
 
 
 ### Miho
