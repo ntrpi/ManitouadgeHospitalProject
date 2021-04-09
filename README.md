@@ -119,9 +119,20 @@ Use this space to show useful examples of how a project can be used. Additional 
 ### <Feature Name 1>
 <description, usage, images, etc.>
 
-### <Feature Name 1>
-<description, usage, images, etc.>
+### Department Feature
+- The departments feature is directories and provides information about each department.
 
+Visitors to the website will see a link called, “department” under For Medical Professionals section in footer and be able to click on the link and view the department information, such as department neme, categories, phone number as well as extension numbers, email address, and FAX.
+
+The department feature will have an administrative backend that will manage the departments. Administration staff can create, display, update, delete the contents by content management system. Administrative users will have to login to the administrative side of the application and then choose “Department” from the available links on the main dashboard. On the department page, user click one of the lists to editor delete, or if it was the first time to edit the Departments, there is no list so they can create a new department.
+
+The Job posting entity is associated with the Departments entity. These have one to many relationships. department_id in Job posting will be a foreign key to retrieve department name (and other information) for job posting
+
+### Job Posting Feature
+- The Job posting feature is that the hospital can announce the job availability and recruit the public on the home page.
+
+Visitors to the website will see the job posting under Recruitment on the main navigation. Each job posting may include the contents such as department information, job title, job description, salary, deadline for the application. Also, from this page, visitors to the website can apply for the job (“Apply for the job” is another feature).
+The job posting feature will have an administrative backend that will manage the job posting. Administration staff can create, display, update, delete the contents by content management system. Administrative users will have to login to the administrative side of the application and then choose “Job Posting” from the available links on the main dashboard. On the Job posting page, user clicks one of the lists to edit or delete, or create a new job posting.
 
 <!-- CONTRIBUTING -->
 ## Contributions
@@ -140,8 +151,7 @@ Describe all the awesome stuff you did here.
 
 
 ### Miho
-Describe all the awesome stuff you did here.
-
+- All of the members has communicated well to solve the issues and helped each others.
 
 ### Sandra
 Describe all the awesome stuff you did here.
