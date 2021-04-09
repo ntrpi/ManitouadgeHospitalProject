@@ -30,24 +30,9 @@ namespace Manitouage1.Models
         {
             get; set;
         }
-        [ForeignKey("JobPosting")]
-        public int? jobPostingId 
-        { 
-            get; set; 
-        }
-        public virtual JobPosting JobPosting
-        {
-            get; set;
-        }
-        [ForeignKey("Event")]
-        public int? EventId
-        {
-            get; set;
-        }
-        public virtual Event Event
-        {
-            get; set;
-        }
+        public ICollection<JobPosting> jobpostings { get; set; }
+
+        public ICollection<Event> events { get; set; }
 
     }
     public class AlertDto
@@ -63,6 +48,10 @@ namespace Manitouage1.Models
 
         [DisplayName("Description")]
         public  string description { get; set; }
+
+        public int? jobPostingId { get; set; }
+
+        public int? EventId { get; set; }
 
     }
 

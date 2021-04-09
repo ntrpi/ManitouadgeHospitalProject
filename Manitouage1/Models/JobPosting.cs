@@ -37,7 +37,17 @@ namespace Manitouage1.Models
 
         public virtual Department Department { get; set; }
 
-       // public ICollection<Department> Hairstyles { get; set; }
+        // public ICollection<Department> Hairstyles { get; set; }
+
+        [ForeignKey("Alert")]
+        public int? alertId
+        {
+            get; set;
+        }
+         public virtual Alert Alert
+        {
+            get; set;
+        }
 
     }
 
