@@ -10,15 +10,14 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Diagnostics;
 using System.Web.Script.Serialization;
-
 namespace Manitouage1.Controllers
 {
-    public class EventController : Controller
+    public class AlertController : Controller
     {
         private JavaScriptSerializer jss = new JavaScriptSerializer();
         private static readonly HttpClient client;
-
-        static EventController()
+        // GET: Alert
+        static AlertController()
         {
             HttpClientHandler handler = new HttpClientHandler()
             {
@@ -34,19 +33,16 @@ namespace Manitouage1.Controllers
             //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", ACCESS_TOKEN);
 
         }
-
+        // GET: Alert
         public ActionResult Index()
         {
-            return RedirectToAction("List");
+            return View();
         }
-
-        // GET: Event/List
-        [HttpGet]
-        public ActionResult List()
+        // GET: Alert/Details/5
+        public ActionResult Details(int id)
         {
-            Debug.WriteLine("Here");
             // Create the string just as you would if you were typing it in the browser.
-            string url = "EventData/GetEvents";
+            string url = "AlertData/GetAlert/" + id;
 
             // Send the http request and get an http action response.
             HttpResponseMessage response = client.GetAsync(url).Result;
@@ -54,8 +50,28 @@ namespace Manitouage1.Controllers
             // The http call worked.
             if (response.IsSuccessStatusCode)
             {
-                IEnumerable<EventDto> EventDtos = response.Content.ReadAsAsync<IEnumerable<EventDto>>().Result;
-                return View(EventDtos);
+                AlertDto alertDto = response.Content.ReadAsAsync<AlertDto>().Result;
+                return View(alertDto);
+            }
+            return RedirectToAction("Error");
+        }
+
+        // GET: Alert/GetAlerts
+        [HttpGet]
+        public ActionResult List()
+        {
+            Debug.WriteLine("Here");
+            // Create the string just as you would if you were typing it in the browser.
+            string url = "AlertData/GetAlerts";
+
+            // Send the http request and get an http action response.
+            HttpResponseMessage response = client.GetAsync(url).Result;
+
+            // The http call worked.
+            if (response.IsSuccessStatusCode)
+            {
+                IEnumerable<AlertDto> AlertDtos = response.Content.ReadAsAsync<IEnumerable<AlertDto>>().Result;
+                return View(AlertDtos);
 
             }
             else
@@ -67,56 +83,37 @@ namespace Manitouage1.Controllers
             //always insert variable from second statement into brackets beside view
         }
 
-        // GET: Event/Details/5
-        public ActionResult Details(int id)
-        {
-            // Create the string just as you would if you were typing it in the browser.
-            string url = "EventData/GetEvent/" + id;
-
-            // Send the http request and get an http action response.
-            HttpResponseMessage response = client.GetAsync(url).Result;
-
-            // The http call worked.
-            if (response.IsSuccessStatusCode)
-            {
-                EventDto eventDto = response.Content.ReadAsAsync<EventDto>().Result;
-                return View(eventDto);
-            }
-            return RedirectToAction("Error");
-        }
-
-        // GET: Event/Create
+        // GET: Alert/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Event/Create
+        // POST: Alert/Create
         [HttpPost]
-        public ActionResult Create(Event Events)
+        public ActionResult Create(Alert Alerts)
         {
             Debug.WriteLine("Here");
             // Create the string just as you would if you were typing it in the browser.
-            string url = "EventData/AddEvent";
-            HttpContent content = new StringContent(jss.Serialize(Events));
+            string url = "AlertData/AddAlert";
+            HttpContent content = new StringContent(jss.Serialize(Alerts));
             content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
             HttpResponseMessage response = client.PostAsync(url, content).Result;
 
             if (response.IsSuccessStatusCode)
             {
 
-                int EventId = response.Content.ReadAsAsync<int>().Result;
-                return RedirectToAction("Details", new { id = EventId });
+                int alertId = response.Content.ReadAsAsync<int>().Result;
+                return RedirectToAction("Details", new { id = alertId });
             }
             return RedirectToAction("Error");
         }
 
-
-        // GET: Event/Edit/5
+        // GET: Alert/Edit/5
         public ActionResult Edit(int id)
         {
             // Create the string just as you would if you were typing it in the browser.
-            string url = "EventData/GetEvent/" + id;
+            string url = "AlertData/GetAlert/" + id;
 
             // Send the http request and get an http action response.
             HttpResponseMessage response = client.GetAsync(url).Result;
@@ -124,21 +121,22 @@ namespace Manitouage1.Controllers
             // The http call worked.
             if (response.IsSuccessStatusCode)
             {
-                EventDto SelectedEvent = response.Content.ReadAsAsync<EventDto>().Result;
-                return View(SelectedEvent);
+                AlertDto SelectedAlert = response.Content.ReadAsAsync<AlertDto>().Result;
+                return View(SelectedAlert);
             }
 
             return RedirectToAction("Error");
         }
-        // POST: Event/Edit/5
+
+        // POST: Alert/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken()]
-        public ActionResult Edit(int id, Event EventInfo)
+        public ActionResult Edit(int id, Alert AlertInfo)
         {
-            string url = "EventData/UpdateEvent/" + id;
+            string url = "AlertData/UpdateAlert/" + id;
 
-            Debug.WriteLine(jss.Serialize(EventInfo));
-            HttpContent content = new StringContent(jss.Serialize(EventInfo));
+            Debug.WriteLine(jss.Serialize(AlertInfo));
+            HttpContent content = new StringContent(jss.Serialize(AlertInfo));
             content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
             HttpResponseMessage response = client.PostAsync(url, content).Result;
 
@@ -150,31 +148,29 @@ namespace Manitouage1.Controllers
             return RedirectToAction("Error");
         }
 
-
-        // GET: Event/Delete/5
+        // GET: Alert/Delete/5
         [HttpGet]
         public ActionResult DeleteConfirm(int id)
         {
-            string url = "EventData/GetEvent/" + id;
+            string url = "AlertData/GetAlert/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
 
             if (response.IsSuccessStatusCode)
             {
-                EventDto SelectedEvent = response.Content.ReadAsAsync<EventDto>().Result;
-                return View(SelectedEvent);
+                AlertDto SelectedAlert = response.Content.ReadAsAsync<AlertDto>().Result;
+                return View(SelectedAlert);
             }
             else
             {
                 return RedirectToAction("Error");
             }
         }
-
-        // POST: Event/Delete/5
+        // POST: Alert/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken()]
         public ActionResult Delete(int id)
         {
-            string url = "EventData/DeleteEvent/" + id;
+            string url = "AlertData/DeleteAlert/" + id;
 
             HttpContent content = new StringContent("");
             HttpResponseMessage response = client.PostAsync(url, content).Result;
@@ -189,10 +185,6 @@ namespace Manitouage1.Controllers
                 return RedirectToAction("Error");
             }
 
-        }
-        public ActionResult Error()
-        {
-            return View();
         }
     }
 }

@@ -185,6 +185,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AlertController.cs" />
     <Compile Include="Controllers\AlertDataController.cs" />
     <Compile Include="Controllers\ControllersHelper.cs" />
     <Compile Include="Controllers\DepartmentController.cs" />
@@ -210,10 +211,6 @@
     <Compile Include="Migrations\202104082015034_04082021amanda.cs" />
     <Compile Include="Migrations\202104082015034_04082021amanda.designer.cs">
       <DependentUpon>202104082015034_04082021amanda.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202104090014071_20210804813amanda.cs" />
-    <Compile Include="Migrations\202104090014071_20210804813amanda.Designer.cs">
-      <DependentUpon>202104090014071_20210804813amanda.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -441,6 +438,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Alert\" />
     <Folder Include="Views\Donation\" />
     <Folder Include="Views\ProductXInvoices\" />
   </ItemGroup>
@@ -458,9 +456,6 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202104082015034_04082021amanda.resx">
       <DependentUpon>202104082015034_04082021amanda.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202104090014071_20210804813amanda.resx">
-      <DependentUpon>202104090014071_20210804813amanda.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
