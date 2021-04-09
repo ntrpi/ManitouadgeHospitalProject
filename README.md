@@ -170,7 +170,7 @@ Describe all the awesome stuff you did here.
 - Amanda - amanda.elias@live.ca
 - Farshan - email
 - Kyle - email
-- Miho - email
+- Miho - mihoko.s0408@gmail.com
 - Sandra - kupfer.sandra@gmail.com
 - Wafa - email
 
