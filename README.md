@@ -129,6 +129,7 @@ Use this space to show useful examples of how a project can be used. Additional 
 ### Amanda
 - I met with Christine to debug and work on git/migration issues and informed the team of what I learned so they can apply the same knowledge
 - Assisted Miho in debugging on 4/8/2021
+- Kyle, Miho and I communicated any changes that were made to models and worked together on 04/08/2021
 
 ### Farshan
 Describe all the awesome stuff you did here.
