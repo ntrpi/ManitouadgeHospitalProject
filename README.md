@@ -127,7 +127,8 @@ Use this space to show useful examples of how a project can be used. Additional 
 ## Contributions
 
 ### Amanda
-Describe all the awesome stuff you did here.
+- I met with Christine to debug and work on git/migration issues and informed the team of what I learned so they can apply the same knowledge
+- Assisted Miho in debugging on 4/8/2021
 
 ### Farshan
 Describe all the awesome stuff you did here.
