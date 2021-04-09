@@ -212,6 +212,10 @@
     <Compile Include="Migrations\202104082015034_04082021amanda.designer.cs">
       <DependentUpon>202104082015034_04082021amanda.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202104090149279_20210804949amanda.cs" />
+    <Compile Include="Migrations\202104090149279_20210804949amanda.Designer.cs">
+      <DependentUpon>202104090149279_20210804949amanda.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Alert.cs" />
@@ -435,10 +439,14 @@
     <Content Include="Views\Event\Create.cshtml" />
     <Content Include="Views\Event\Edit.cshtml" />
     <Content Include="Views\Event\DeleteConfirm.cshtml" />
+    <Content Include="Views\Alert\List.cshtml" />
+    <Content Include="Views\Alert\Details.cshtml" />
+    <Content Include="Views\Alert\Create.cshtml" />
+    <Content Include="Views\Alert\Edit.cshtml" />
+    <Content Include="Views\Alert\DeleteConfirm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Alert\" />
     <Folder Include="Views\Donation\" />
     <Folder Include="Views\ProductXInvoices\" />
   </ItemGroup>
@@ -456,6 +464,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202104082015034_04082021amanda.resx">
       <DependentUpon>202104082015034_04082021amanda.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104090149279_20210804949amanda.resx">
+      <DependentUpon>202104090149279_20210804949amanda.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

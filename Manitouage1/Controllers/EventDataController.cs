@@ -40,13 +40,13 @@ namespace Manitouage1.Controllers
         // GET: api/GetEvents
         public IHttpActionResult GetEvents()
         {
-            // Get the rows from the Questions table and put them in a List object.
+            // Get the rows from the Event table and put them in a List object.
             List<Event> myevent = db.events.ToList();
 
             // Create a List object to hold the dtos.
             List<EventDto> EventDtos = new List<EventDto> { };
 
-            // Convert each Question into a QuestionDto and put it in the list.
+            // Convert each Event into a EventDto and put it in the list.
             foreach (var Event in myevent)
             {
                 EventDto NewEvent = new EventDto
