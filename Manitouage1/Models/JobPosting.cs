@@ -37,7 +37,7 @@ namespace Manitouage1.Models
 
         public virtual Department Department { get; set; }
 
-       // public ICollection<Department> Hairstyles { get; set; }
+       
 
     }
 
