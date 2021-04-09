@@ -50,5 +50,20 @@ namespace Manitouage1.Models
         }
 
     }
+    public class AlertDto
+    {
+        [DisplayName("Alert ID")]
+        public int alertId { get; set; }
+
+        [DisplayName("Title")]
+        public string title { get; set; }
+
+        [DisplayName("Date and Time")]
+        public DateTime dateTime { get; set; }
+
+        [DisplayName("Description")]
+        public  string description { get; set; }
+
+    }
 
 }

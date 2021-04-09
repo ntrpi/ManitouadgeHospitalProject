@@ -21,7 +21,7 @@ namespace Manitouage1.Controllers
     {
         private ManitouageDbContext db = new ManitouageDbContext();
 
-        // GET: api/EventsData/5
+        // GET: api/EventData/5
         public IHttpActionResult GetEvent(int id)
         {
             Event myevent = db.events.Find(id);
@@ -68,7 +68,7 @@ namespace Manitouage1.Controllers
             // Return the Ok http action result containing the dto list.
             return Ok(EventDtos);
         }
-        // PUT: api/EventsData/5
+        // PUT: api/EventData/5
         [ResponseType(typeof(void))]
         [HttpPost]
         public IHttpActionResult UpdateEvent(int id, [FromBody] Event myevent)
@@ -103,7 +103,7 @@ namespace Manitouage1.Controllers
 
             return StatusCode(HttpStatusCode.NoContent);
         }
-        // POST: api/EventsData
+        // POST: api/EventData
         [ResponseType(typeof(Event))]
         [HttpPost]
         public IHttpActionResult AddEvent(Event myevent)
@@ -118,7 +118,7 @@ namespace Manitouage1.Controllers
 
             return Ok(myevent.EventId);
         }
-        // DELETE: api/EventsData/5
+        // DELETE: api/EventData/5
         [HttpPost]
         [ResponseType(typeof(Event))]
         public IHttpActionResult DeleteEvent(int id)
