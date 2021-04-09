@@ -156,7 +156,7 @@ Describe all the awesome stuff you did here.
 <!-- CONTACT -->
 ## Contact
 
-- Amanda - email
+- Amanda - amanda.elias@live.ca
 - Farshan - email
 - Kyle - email
 - Miho - email
