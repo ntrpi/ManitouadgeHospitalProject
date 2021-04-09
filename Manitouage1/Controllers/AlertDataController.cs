@@ -35,13 +35,13 @@ namespace Manitouage1.Controllers
         }
         public IHttpActionResult GetAlerts()
         {
-            // Get the rows from the Questions table and put them in a List object.
+            // Get the rows from the Alerts table and put them in a List object.
             List<Alert> myalert = db.alerts.ToList();
 
             // Create a List object to hold the dtos.
             List<AlertDto> AlertDtos = new List<AlertDto> { };
 
-            // Convert each Question into a QuestionDto and put it in the list.
+            // Convert each Alert into a AlertDto and put it in the list.
             foreach (var Alert in myalert)
             {
                 AlertDto NewAlert = new AlertDto
