@@ -36,8 +36,9 @@ namespace Manitouage1.Controllers
         // GET: Alert
         public ActionResult Index()
         {
-            return View();
+            return RedirectToAction("List");
         }
+
         // GET: Alert/Details/5
         public ActionResult Details(int id)
         {

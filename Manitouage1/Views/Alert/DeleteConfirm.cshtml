@@ -5,21 +5,6 @@
     <h4>Alert</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Event.Title)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Event.Title)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.JobPosting.jobNumber)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.JobPosting.jobNumber)
-        </dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.title)
@@ -47,7 +32,8 @@
 
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm("Delete", "Alert", new { id = Model.alertId }))
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
