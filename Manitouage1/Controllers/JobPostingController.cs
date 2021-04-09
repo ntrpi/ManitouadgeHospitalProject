@@ -83,32 +83,17 @@ namespace Manitouage1.Controllers
          public ActionResult Create()
         {
 
-          return View();
+            UpdateJobPosting ViewModel = new UpdateJobPosting();
+            //get information about Department
+            string url = "departmentdata/getdepartments";
+            HttpResponseMessage response = client.GetAsync(url).Result;
+            IEnumerable<DepartmentDto> PotentialDepartments = response.Content.ReadAsAsync<IEnumerable<DepartmentDto>>().Result;
+            ViewModel.alldepartments = PotentialDepartments;
+
+            return View(ViewModel);
         }
 
-        // GET: JobPosting/Create
-        //public ActionResult Create()
-        //{
-
-           // string url = "deparetmentdata/getdepartments";
-            //HttpResponseMessage response = client.GetAsync(url).Result;
-
-            //Debug.WriteLine(response);
-            
-            
-           // if (response.IsSuccessStatusCode)
-            //{
-              //  IEnumerable<DepartmentDto> potentialDepartments = response.Content.ReadAsAsync<IEnumerable<DepartmentDto>>().Result;
-                //return View(potentialDepartments);
-            //}
-            //else
-            //{
-              //  return RedirectToAction("Error");
-            //}
-
-
-        //}
-
+        
 
         // POST: JobPosting/Create
         [HttpPost]
