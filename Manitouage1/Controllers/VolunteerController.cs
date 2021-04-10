@@ -94,6 +94,15 @@ namespace Manitouage1.Controllers
 
         public ActionResult Edit(int id)
         {
+
+            string url = "volunteerdata/findvolunteer/" + id;
+            HttpResponseMessage res = client.GetAsync(url).Result;
+
+            if (res.IsSuccessStatusCode)
+            {
+                VolunteerDto VolunteerDto = res.Content.ReadAsAsync<VolunteerDto>().Result;
+                return View(VolunteerDto);
+            }
             return View();
         }
 

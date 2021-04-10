@@ -58,5 +58,30 @@ namespace Manitouage1.Controllers
             return Ok();
         }
 
+        [HttpGet]
+        [ResponseType(typeof(VolunteerDto))]
+        public IHttpActionResult FindVolunteer(int id)
+        {
+            Volunteer Volunteer = db.volunteers.Find(id);
+
+            if (Volunteer == null)
+            {
+                return NotFound();
+            }
+
+            VolunteerDto VolunteerDto = new VolunteerDto
+            {
+                volunteerId = Volunteer.volunteerId,
+                firstName = Volunteer.firstName,
+                lastName = Volunteer.lastName,
+                policeCheckPass = Volunteer.policeCheckPass,
+                email = Volunteer.email,
+                phone = Volunteer.phone,
+                approved = Volunteer.approved
+            };
+
+            return Ok(VolunteerDto);
+        }
+
     }
 }
