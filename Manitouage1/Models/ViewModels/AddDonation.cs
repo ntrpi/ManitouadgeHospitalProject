@@ -11,6 +11,6 @@ namespace Manitouage1.Models.ViewModels
         //Information about the donation
         public DonationDto donation { get; set; }
         //Needed for a dropdownlist which will let users add donation to a specfic event
-        public IEnumerable<EventDto> allevents { get; set; }
+        public IEnumerable<EventDto> Events { get; set; }
     }
 }

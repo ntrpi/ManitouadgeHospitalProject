@@ -33,12 +33,10 @@ namespace Manitouage1.Controllers
         /// </example>
         [HttpGet]
         [ResponseType(typeof(IEnumerable<DonationDto>))]
-        //creating a route for api data controller
-        [Route("api/DonationData/getdonations")]
         public IHttpActionResult GetDonations()
         {
             //FOR MY UNDERSTANDING: go to donations dto and get the list 
-            List<Donation> Donations = db.donations.ToList();
+            List<Donation> Donations = db.donations.Include(e=>e.Event).ToList();
             //FOR MY UNDERSTANDING: show the list in the donation database 
             List<DonationDto> DonationDtos = new List<DonationDto> { };
 
