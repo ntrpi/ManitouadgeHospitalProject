@@ -83,5 +83,28 @@ namespace Manitouage1.Controllers
             return Ok(VolunteerDto);
         }
 
+        [HttpPost]
+        public IHttpActionResult DeleteVolunteer(int id)
+        {
+            Volunteer volunteer = db.volunteers.Find(id);
+            if (volunteer == null)
+            {
+                return NotFound();
+            }
+
+            db.volunteers.Remove(volunteer);
+            db.SaveChanges();
+            return Ok();
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
     }
 }
