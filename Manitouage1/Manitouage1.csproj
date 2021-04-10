@@ -453,6 +453,7 @@
     <Content Include="Views\Volunteer\Error.cshtml" />
     <Content Include="Views\Volunteer\List.cshtml" />
     <Content Include="Views\Volunteer\Edit.cshtml" />
+    <Content Include="Views\Volunteer\DeleteConfirm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

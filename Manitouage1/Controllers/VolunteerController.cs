@@ -94,17 +94,43 @@ namespace Manitouage1.Controllers
 
         public ActionResult Edit(int id)
         {
-            return View();
+            string url = "volunteerdata/findvolunteer/" + id;
+            HttpResponseMessage res = client.GetAsync(url).Result;
+
+            if (res.IsSuccessStatusCode)
+            {
+                VolunteerDto VolunteerDto = res.Content.ReadAsAsync<VolunteerDto>().Result;
+                return View(VolunteerDto);
+            }
+            return RedirectToAction("Error");
         }
 
         public ActionResult DeleteConfirm(int id)
         {
+            string url = "volunteerdata/findvolunteer/" + id;
+            HttpResponseMessage res = client.GetAsync(url).Result;
+
+            if (res.IsSuccessStatusCode)
+            {
+                VolunteerDto VolunteerDto = res.Content.ReadAsAsync<VolunteerDto>().Result;
+                return View(VolunteerDto);
+            }
             return RedirectToAction("Error");
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken()]
         public ActionResult Delete(int id)
         {
-            return RedirectToAction("List");
+            string url = "volunteerdata/deletevolunteer/" + id;
+            HttpContent content = new StringContent("");
+            HttpResponseMessage res = client.PostAsync(url, content).Result;
+
+            if (res.IsSuccessStatusCode)
+            {
+                return RedirectToAction("List");
+            }
+            return RedirectToAction("Error");
         }
 
         public ActionResult Error()
