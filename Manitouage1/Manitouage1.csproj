@@ -187,8 +187,6 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AlertController.cs" />
     <Compile Include="Controllers\AlertDataController.cs" />
-    <Compile Include="Controllers\ContactUsController.cs" />
-    <Compile Include="Controllers\ContactUsDataController.cs" />
     <Compile Include="Controllers\ControllersHelper.cs" />
     <Compile Include="Controllers\DepartmentController.cs" />
     <Compile Include="Controllers\DepartmentDataController.cs" />
@@ -236,6 +234,8 @@
     <Compile Include="Models\Testimonial.cs" />
     <Compile Include="Models\ViewModels\AddDonation.cs" />
     <Compile Include="Models\ViewModels\ShowDepartment.cs" />
+    <Compile Include="Models\ViewModels\ShowDonation.cs" />
+    <Compile Include="Models\ViewModels\ViewDonation.cs" />
     <Compile Include="Models\ViewModels\ShowJobPosting.cs" />
     <Compile Include="Models\ViewModels\UpdateDepartment.cs" />
     <Compile Include="Models\ViewModels\UpdateJobPosting.cs" />
@@ -454,11 +454,15 @@
     <Content Include="Views\Volunteer\List.cshtml" />
     <Content Include="Views\Volunteer\Edit.cshtml" />
     <Content Include="Views\Volunteer\DeleteConfirm.cshtml" />
+    <Content Include="Views\Donation\List.cshtml" />
+    <Content Include="Views\Donation\Details.cshtml" />
+    <Content Include="Views\Donation\Create.cshtml" />
+    <Content Include="Views\Donation\Edit.cshtml" />
+    <Content Include="Views\Donation\DeleteConfirm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\ContactUs\" />
-    <Folder Include="Views\Donation\" />
     <Folder Include="Views\ProductXInvoices\" />
     <Folder Include="Views\VolunteerData\" />
   </ItemGroup>

@@ -5,10 +5,10 @@ using System.Web;
 
 namespace Manitouage1.Models.ViewModels
 {
-    public class ShowDonation
+    public class ViewDonation
     {
 
-        public DonationDto donation { get; set; }
+        public IEnumerable<DonationDto> donation { get; set; }
 
         public EventDto EventId { get; set; }
 

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+using System.Web;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -9,6 +11,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Manitouage1.Models;
+using System.Diagnostics;
 
 namespace Manitouage1.Controllers
 {
@@ -30,12 +33,10 @@ namespace Manitouage1.Controllers
         /// </example>
         [HttpGet]
         [ResponseType(typeof(IEnumerable<DonationDto>))]
-        //creating a route for api data controller
-        [Route("api/DonationData/getdonations")]
         public IHttpActionResult GetDonations()
         {
             //FOR MY UNDERSTANDING: go to donations dto and get the list 
-            List<Donation> Donations = db.donations.ToList();
+            List<Donation> Donations = db.donations.Include(e=>e.Event).ToList();
             //FOR MY UNDERSTANDING: show the list in the donation database 
             List<DonationDto> DonationDtos = new List<DonationDto> { };
 
