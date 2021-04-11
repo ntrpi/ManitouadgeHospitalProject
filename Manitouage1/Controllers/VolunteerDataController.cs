@@ -97,6 +97,20 @@ namespace Manitouage1.Controllers
             return Ok();
         }
 
+        [HttpPost]
+        public IHttpActionResult ApproveVolunteer(int id)
+        {
+            Volunteer volunteer = db.volunteers.Find(id);
+            if (volunteer == null)
+            {
+                return NotFound();
+            }
+
+            volunteer.approved = true;
+            db.SaveChanges();
+            return Ok();
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

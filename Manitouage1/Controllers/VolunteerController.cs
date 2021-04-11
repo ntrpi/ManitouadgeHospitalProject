@@ -71,6 +71,8 @@ namespace Manitouage1.Controllers
         }
 
         // POST : bind volunteer model to form post
+        // TODO: create some screening questions for the application
+        // TODO: add validation to create form
         [HttpPost]
         [ValidateAntiForgeryToken()]
         public ActionResult Create(Volunteer Volunteer)
@@ -123,6 +125,33 @@ namespace Manitouage1.Controllers
         public ActionResult Delete(int id)
         {
             string url = "volunteerdata/deletevolunteer/" + id;
+            HttpContent content = new StringContent("");
+            HttpResponseMessage res = client.PostAsync(url, content).Result;
+
+            if (res.IsSuccessStatusCode)
+            {
+                return RedirectToAction("List");
+            }
+            return RedirectToAction("Error");
+        }
+
+        public ActionResult ApproveConfirm(int id)
+        {
+            string url = "volunteerdata/findvolunteer/" + id;
+            HttpResponseMessage res = client.GetAsync(url).Result;
+
+            if (res.IsSuccessStatusCode)
+            {
+                VolunteerDto VolunteerDto = res.Content.ReadAsAsync<VolunteerDto>().Result;
+                return View(VolunteerDto);
+            }
+            return RedirectToAction("Error");
+        }
+
+        [HttpPost]
+        public ActionResult Approve(int id)
+        {
+            string url = "volunteerdata/approvevolunteer/" + id;
             HttpContent content = new StringContent("");
             HttpResponseMessage res = client.PostAsync(url, content).Result;
 
