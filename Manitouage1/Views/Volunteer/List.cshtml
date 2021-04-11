@@ -53,9 +53,9 @@
             @Html.DisplayFor(modelItem => item.approved)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.volunteerId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.volunteerId }) |
-            @Html.ActionLink("Delete", "DeleteConfirm", new { id=item.volunteerId })
+            @Html.ActionLink("View", "Edit", new { id=item.volunteerId }) |
+            @Html.ActionLink("Delete", "DeleteConfirm", new { id = item.volunteerId }) |
+            @Html.ActionLink("Approve", "ApproveConfirm", new { id = item.volunteerId })
         </td>
     </tr>
 }
