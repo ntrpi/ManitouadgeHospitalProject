@@ -143,7 +143,9 @@ The job posting feature will have an administrative backend that will manage the
 - Kyle, Miho and I communicated any changes that were made to models and worked together on 04/08/2021
 
 ### Farshan
-Describe all the awesome stuff you did here.
+- Contact us model
+- contact us controller
+- Almost deleted wafa's work for good
 
 
 ### Kyle
@@ -173,7 +175,7 @@ Describe all the awesome stuff you did here.
 ## Contact
 
 - Amanda - amanda.elias@live.ca
-- Farshan - email
+- Farshan - farshanaslam@gmail.com
 - Kyle - email
 - Miho - mihoko.s0408@gmail.com
 - Sandra - kupfer.sandra@gmail.com
