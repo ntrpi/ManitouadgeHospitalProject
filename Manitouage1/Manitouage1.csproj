@@ -220,6 +220,10 @@
     <Compile Include="Migrations\202104090149279_20210804949amanda.Designer.cs">
       <DependentUpon>202104090149279_20210804949amanda.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202104120018385_testimonial.cs" />
+    <Compile Include="Migrations\202104120018385_testimonial.Designer.cs">
+      <DependentUpon>202104120018385_testimonial.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Alert.cs" />
@@ -462,12 +466,18 @@
     <Content Include="Views\Donation\Edit.cshtml" />
     <Content Include="Views\Donation\DeleteConfirm.cshtml" />
     <Content Include="Views\Volunteer\ApproveConfirm.cshtml" />
+    <Content Include="Views\Testimonial\Error.cshtml" />
+    <Content Include="Views\Testimonial\Create.cshtml" />
+    <Content Include="Views\Testimonial\List.cshtml" />
+    <Content Include="Views\Testimonial\DeleteConfirm.cshtml" />
+    <Content Include="Views\Testimonial\ApproveConfirm.cshtml" />
+    <Content Include="Views\Testimonial\Index.cshtml" />
+    <Content Include="Views\Testimonial\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\ContactUs\" />
     <Folder Include="Views\ProductXInvoices\" />
-    <Folder Include="Views\Testimonial\" />
     <Folder Include="Views\VolunteerData\" />
   </ItemGroup>
   <ItemGroup>
@@ -487,6 +497,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202104090149279_20210804949amanda.resx">
       <DependentUpon>202104090149279_20210804949amanda.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104120018385_testimonial.resx">
+      <DependentUpon>202104120018385_testimonial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
