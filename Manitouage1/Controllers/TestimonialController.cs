@@ -7,6 +7,7 @@ using Manitouage1.Models;
 using System.Web.Script.Serialization;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Diagnostics;
 
 namespace Manitouage1.Controllers
 {
@@ -65,6 +66,7 @@ namespace Manitouage1.Controllers
         [ValidateAntiForgeryToken()]
         public ActionResult Create(Testimonial Testimonial)
         {
+            //@DateTime.Now.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss")
             string url = "testimonialdata/addtestimonial";
             HttpContent content = new StringContent(jss.Serialize(Testimonial));
             content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
@@ -78,6 +80,7 @@ namespace Manitouage1.Controllers
             {
                 return RedirectToAction("Error");
             }
+
         }
 
         public ActionResult DeleteConfirm(int id)
