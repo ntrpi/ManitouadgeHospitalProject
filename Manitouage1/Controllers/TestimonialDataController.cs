@@ -42,7 +42,8 @@ namespace Manitouage1.Controllers
         [HttpPost]
         public IHttpActionResult AddTestimonial([FromBody] Testimonial testimonial)
         {
-            
+            Debug.WriteLine("Adding Testimonial");
+            Debug.WriteLine(ModelState);
             if (!ModelState.IsValid)
             {
                 Debug.WriteLine("Invalid Model");
