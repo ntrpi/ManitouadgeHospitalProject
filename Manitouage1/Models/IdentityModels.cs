@@ -82,7 +82,10 @@ namespace Manitouage1.Models
             get; set;
         }
 
-
+        public DbSet<ContactUs> contactus
+        {
+            get; set;
+        }
 
 
     }
