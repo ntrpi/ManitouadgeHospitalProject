@@ -141,6 +141,7 @@ The job posting feature will have an administrative backend that will manage the
 - I met with Christine to debug and work on git/migration issues and informed the team of what I learned so they can apply the same knowledge on 04/07/2021
 - Assisted Miho in debugging on 4/8/2021
 - Kyle, Miho and I communicated any changes that were made to models and worked together on 04/08/2021
+- I have contributed the Alerts and Events models, controllers and views
 
 ### Farshan
 - Contact us model
