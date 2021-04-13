@@ -154,8 +154,17 @@ Describe all the awesome stuff you did here.
 - All of the members has communicated well to solve the issues and helped each others.
 
 ### Sandra
-Describe all the awesome stuff you did here.
-
+- Created project and initialized repo.
+- Set up everything so Entity Framework would work.
+- Determined a strategy to prevent database conflicts while the models were in constant flux.
+- CRUD for Products and Invoices.
+- Created a ControllersHelper to reduce errors and create consistency in the interactions between view and data controllers without obscuring access to either of those endpoints.
+- Changes to the IdentityModel to be able to access the Users managed by the framework.
+- Created the many-to-many relationship between Products and Invoices.
+- Created a RolesController to help automate the addition of roles to the database.
+- Added some database seeding for Roles so that they will be consistent for everyone.
+- Created readme with sections for everyone to fill out.
+- Started adding views to manage the relationship between Users and Invoices.
 
 ### Wafa
 Describe all the awesome stuff you did here.
@@ -183,7 +192,7 @@ Project Link: [https://github.com/ntrpi/Manitouage1](https://github.com/ntrpi/Ma
 ## Acknowledgements
 
 * [Christine Bittle](https://github.com/christinebittle)
-* [Dest README Template](https://github.com/othneildrew/Best-README-Template)
+* [Best README Template](https://github.com/othneildrew/Best-README-Template)
 
 
 
