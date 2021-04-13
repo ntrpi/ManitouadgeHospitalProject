@@ -116,8 +116,10 @@ Use this space to show useful examples of how a project can be used. Additional 
 ### <Feature Name 1>
 <description, usage, images, etc.>
 
-### <Feature Name 1>
-<description, usage, images, etc.>
+### Donations Feature
+The donation feature will let users (visitors) send in a donation amount to the hospital. There will be a donation button present on the top right corner of the homepage. It will also be present on the bottom of the homepage to make it easier and quick for the user to navigate to the donations page. Once redirected, the user will be sent to the main donations page where the user will be asked to fill out their general information. This is also where users are able to donate to a an event or just donate towards the hospital. 
+
+I would have liked to implement a captcha feature to validated the user donating once the database in able to hold the data I would also like to add in a paypall API to direct users to a payment page with the values inputted in the donation form fields to create a personalized payment page giving user a feel good experience while donating.
 
 ### Department Feature
 - The departments feature is directories and provides information about each department.
@@ -182,10 +184,14 @@ Department and Job Posting feature
 - Started adding views to manage the relationship between Users and Invoices.
 
 ### Wafa
-Describe all the awesome stuff you did here.
-
-
-
+Donations Feature
+- Donation Model
+- Added foreign key in the events table to create one to many relation between events and donations
+- Donation Data controller, Views and ViewModel connecting to Events 
+- Worked with Amanda with pull and pushing issues
+- Constant communication with the team about any new migrations
+- Communicated with the team about code back ups in case any issues arise
+- Communicated with Amanda to create a database model that will hold FK's in Events and Donations model
 
 
 <!-- CONTACT -->
@@ -193,10 +199,10 @@ Describe all the awesome stuff you did here.
 
 - Amanda - amanda.elias@live.ca
 - Farshan - farshanaslam@gmail.com
-- Kyle - email
+- Kyle - kyle-dev@hotmail.com
 - Miho - mihoko.s0408@gmail.com
 - Sandra - kupfer.sandra@gmail.com
-- Wafa - email
+- Wafa - wafamustafak@gmail.com
 
 
 
