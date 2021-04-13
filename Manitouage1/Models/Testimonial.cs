@@ -25,8 +25,6 @@ namespace Manitouage1.Models
 
         public string UserId { get; set; }
 
-        [ForeignKey("UserId")]
-        public virtual ApplicationUser User { get; set; }
 
     }
 
@@ -41,8 +39,11 @@ namespace Manitouage1.Models
         [DisplayName("Testimonial")]
         public string testimonial { get; set; }
 
+        [DisplayName("Approved")]
+        public bool approved { get; set; }
+
         [DisplayName("User Id")]
-        public virtual ApplicationUser ApplicationUser { get; set; }
+        public string UserId { get; set; }
 
     }
 }

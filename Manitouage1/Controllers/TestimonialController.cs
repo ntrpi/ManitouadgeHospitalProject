@@ -7,17 +7,17 @@ using Manitouage1.Models;
 using System.Web.Script.Serialization;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Diagnostics;
 
 namespace Manitouage1.Controllers
 {
-    public class VolunteerController : Controller
-
+    public class TestimonialController : Controller
     {
 
         private JavaScriptSerializer jss = new JavaScriptSerializer();
         private static readonly HttpClient client;
 
-        static VolunteerController()
+        static TestimonialController()
         {
             HttpClientHandler handler = new HttpClientHandler()
             {
@@ -32,30 +32,24 @@ namespace Manitouage1.Controllers
             client.DefaultRequestHeaders.Accept.Add(
             new MediaTypeWithQualityHeaderValue("application/json"));
         }
-
-
-        // GET: Volunteer
-        // do stuff with this later, maybe admin dashboard?
+        // GET: Testimonial
         public ActionResult Index()
         {
             return View();
         }
 
-        // GET: List all volunteer applications
         public ActionResult List()
         {
-            //List<VolunteerDto> Volunteers = new List<VolunteerDto>();
-
-            string url = "volunteerdata/getvolunteers";
+            string url = "testimonialdata/gettestimonials";
 
             HttpResponseMessage res = client.GetAsync(url).Result;
 
             if (res.IsSuccessStatusCode)
             {
-                IEnumerable<VolunteerDto> VolunteerDtos = res.Content.ReadAsAsync<IEnumerable<VolunteerDto>>().Result;
+                IEnumerable<TestimonialDto> TestimonialDtos = res.Content.ReadAsAsync<IEnumerable<TestimonialDto>>().Result;
 
 
-                return View(VolunteerDtos);
+                return View(TestimonialDtos);
             }
             else
             {
@@ -63,23 +57,18 @@ namespace Manitouage1.Controllers
             }
         }
 
-        // GET: View for volunteer application. 
-        // TODO figure out how to handle policecheck (maybe file upload then admin update?)
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST : bind volunteer model to form post
-        // TODO: create some screening questions for the application
-        // TODO: add validation to create form
         [HttpPost]
         [ValidateAntiForgeryToken()]
-        public ActionResult Create(Volunteer Volunteer)
+        public ActionResult Create(Testimonial Testimonial)
         {
-
-            string url = "volunteerdata/addvolunteer";
-            HttpContent content = new StringContent(jss.Serialize(Volunteer));
+            //@DateTime.Now.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss")
+            string url = "testimonialdata/addtestimonial";
+            HttpContent content = new StringContent(jss.Serialize(Testimonial));
             content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
             HttpResponseMessage res = client.PostAsync(url, content).Result;
 
@@ -94,28 +83,28 @@ namespace Manitouage1.Controllers
 
         }
 
-        public ActionResult Edit(int id)
+        public ActionResult DeleteConfirm(int id)
         {
-            string url = "volunteerdata/findvolunteer/" + id;
+            string url = "testimonialdata/findtestimonial/" + id;
             HttpResponseMessage res = client.GetAsync(url).Result;
 
             if (res.IsSuccessStatusCode)
             {
-                VolunteerDto VolunteerDto = res.Content.ReadAsAsync<VolunteerDto>().Result;
-                return View(VolunteerDto);
+                TestimonialDto TestimonialDto = res.Content.ReadAsAsync<TestimonialDto>().Result;
+                return View(TestimonialDto);
             }
             return RedirectToAction("Error");
         }
 
-        public ActionResult DeleteConfirm(int id)
+        public ActionResult Details(int id)
         {
-            string url = "volunteerdata/findvolunteer/" + id;
+            string url = "testimonialdata/findtestimonial/" + id;
             HttpResponseMessage res = client.GetAsync(url).Result;
 
             if (res.IsSuccessStatusCode)
             {
-                VolunteerDto VolunteerDto = res.Content.ReadAsAsync<VolunteerDto>().Result;
-                return View(VolunteerDto);
+                TestimonialDto TestimonialDto = res.Content.ReadAsAsync<TestimonialDto>().Result;
+                return View(TestimonialDto);
             }
             return RedirectToAction("Error");
         }
@@ -124,7 +113,7 @@ namespace Manitouage1.Controllers
         [ValidateAntiForgeryToken()]
         public ActionResult Delete(int id)
         {
-            string url = "volunteerdata/deletevolunteer/" + id;
+            string url = "testimonialdata/deletetestimonial/" + id;
             HttpContent content = new StringContent("");
             HttpResponseMessage res = client.PostAsync(url, content).Result;
 
@@ -137,13 +126,13 @@ namespace Manitouage1.Controllers
 
         public ActionResult ApproveConfirm(int id)
         {
-            string url = "volunteerdata/findvolunteer/" + id;
+            string url = "testimonialdata/findtestimonial/" + id;
             HttpResponseMessage res = client.GetAsync(url).Result;
 
             if (res.IsSuccessStatusCode)
             {
-                VolunteerDto VolunteerDto = res.Content.ReadAsAsync<VolunteerDto>().Result;
-                return View(VolunteerDto);
+                TestimonialDto TestimonialDto = res.Content.ReadAsAsync<TestimonialDto>().Result;
+                return View(TestimonialDto);
             }
             return RedirectToAction("Error");
         }
@@ -151,7 +140,7 @@ namespace Manitouage1.Controllers
         [HttpPost]
         public ActionResult Approve(int id)
         {
-            string url = "volunteerdata/approvevolunteer/" + id;
+            string url = "testimonialdata/approvetestimonial/" + id;
             HttpContent content = new StringContent("");
             HttpResponseMessage res = client.PostAsync(url, content).Result;
 

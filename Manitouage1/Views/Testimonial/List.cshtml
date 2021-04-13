@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Manitouage1.Models.TestimonialDto>
+
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>List</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.testimonialId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.creationDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.testimonial)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.approved)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserId)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.testimonialId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.creationDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.testimonial)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.approved)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserId)
+        </td>
+        <td>
+            @Html.ActionLink("View", "Details", new { id = item.testimonialId }) | 
+            @Html.ActionLink("Approve", "ApproveConfirm", new { id = item.testimonialId }) |
+            @Html.ActionLink("Delete", "DeleteConfirm", new { id = item.testimonialId })
+        </td>
+    </tr>
+}
+
+</table>

@@ -141,16 +141,31 @@ The job posting feature will have an administrative backend that will manage the
 - I met with Christine to debug and work on git/migration issues and informed the team of what I learned so they can apply the same knowledge on 04/07/2021
 - Assisted Miho in debugging on 4/8/2021
 - Kyle, Miho and I communicated any changes that were made to models and worked together on 04/08/2021
+- I have contributed the Alerts and Events models, controllers and views
 
 ### Farshan
-Describe all the awesome stuff you did here.
+- Contact us model
+- contact us controller
+- Almost deleted wafa's work for good
 
 
 ### Kyle
-Describe all the awesome stuff you did here.
+- Testimonial Model
+- Volunteer Model
+- Testimonial Controller 
+- Volunteer Controller
+- Moral Support
+- Positivity
 
 
 ### Miho
+Department and Job Posting feature
+- Department Model
+- Job Posting Model
+- Department Controller and Department Data Controller
+- Job Posting Controller and Job Posting Data Controller
+- Views and ViewModels for Department and Job Posting
+
 - All of the members has communicated well to solve the issues and helped each others.
 
 ### Sandra
@@ -177,7 +192,7 @@ Describe all the awesome stuff you did here.
 ## Contact
 
 - Amanda - amanda.elias@live.ca
-- Farshan - email
+- Farshan - farshanaslam@gmail.com
 - Kyle - email
 - Miho - mihoko.s0408@gmail.com
 - Sandra - kupfer.sandra@gmail.com

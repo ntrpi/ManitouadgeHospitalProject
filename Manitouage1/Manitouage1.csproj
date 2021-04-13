@@ -187,6 +187,8 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AlertController.cs" />
     <Compile Include="Controllers\AlertDataController.cs" />
+    <Compile Include="Controllers\ContactUsController.cs" />
+    <Compile Include="Controllers\ContactUsDataController.cs" />
     <Compile Include="Controllers\ControllersHelper.cs" />
     <Compile Include="Controllers\DepartmentController.cs" />
     <Compile Include="Controllers\DepartmentDataController.cs" />
@@ -205,6 +207,8 @@
     <Compile Include="Controllers\ProductXInvoicesController.cs" />
     <Compile Include="Controllers\ProductXInvoicesDataController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
+    <Compile Include="Controllers\TestimonialController.cs" />
+    <Compile Include="Controllers\TestimonialDataController.cs" />
     <Compile Include="Controllers\VolunteerController.cs" />
     <Compile Include="Controllers\VolunteerDataController.cs" />
     <Compile Include="Global.asax.cs">
@@ -218,9 +222,14 @@
     <Compile Include="Migrations\202104090149279_20210804949amanda.Designer.cs">
       <DependentUpon>202104090149279_20210804949amanda.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202104120018385_testimonial.cs" />
+    <Compile Include="Migrations\202104120018385_testimonial.Designer.cs">
+      <DependentUpon>202104120018385_testimonial.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Alert.cs" />
+    <Compile Include="Models\ContactUs.cs" />
     <Compile Include="Models\Department.cs" />
     <Compile Include="Models\Donation.cs" />
     <Compile Include="Models\Event.cs" />
@@ -234,6 +243,8 @@
     <Compile Include="Models\Testimonial.cs" />
     <Compile Include="Models\ViewModels\AddDonation.cs" />
     <Compile Include="Models\ViewModels\ShowDepartment.cs" />
+    <Compile Include="Models\ViewModels\ShowDonation.cs" />
+    <Compile Include="Models\ViewModels\ViewDonation.cs" />
     <Compile Include="Models\ViewModels\ShowJobPosting.cs" />
     <Compile Include="Models\ViewModels\UpdateDepartment.cs" />
     <Compile Include="Models\ViewModels\UpdateJobPosting.cs" />
@@ -451,10 +462,28 @@
     <Content Include="Views\Volunteer\Error.cshtml" />
     <Content Include="Views\Volunteer\List.cshtml" />
     <Content Include="Views\Volunteer\Edit.cshtml" />
+    <Content Include="Views\Volunteer\DeleteConfirm.cshtml" />
+    <Content Include="Views\Donation\List.cshtml" />
+    <Content Include="Views\Donation\Details.cshtml" />
+    <Content Include="Views\Donation\Create.cshtml" />
+    <Content Include="Views\Donation\Edit.cshtml" />
+    <Content Include="Views\Donation\DeleteConfirm.cshtml" />
+    <Content Include="Views\Volunteer\ApproveConfirm.cshtml" />
+    <Content Include="Views\Testimonial\Error.cshtml" />
+    <Content Include="Views\Testimonial\Create.cshtml" />
+    <Content Include="Views\Testimonial\List.cshtml" />
+    <Content Include="Views\Testimonial\DeleteConfirm.cshtml" />
+    <Content Include="Views\Testimonial\ApproveConfirm.cshtml" />
+    <Content Include="Views\Testimonial\Index.cshtml" />
+    <Content Include="Views\Testimonial\Details.cshtml" />
+    <Content Include="Views\ContactUs\Edit.cshtml" />
+    <Content Include="Views\ContactUs\Create.cshtml" />
+    <Content Include="Views\ContactUs\List.cshtml" />
+    <Content Include="Views\ContactUs\DeleteConfirm.cshtml" />
+    <Content Include="Views\ContactUs\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Donation\" />
     <Folder Include="Views\ProductXInvoices\" />
     <Folder Include="Views\VolunteerData\" />
   </ItemGroup>
@@ -475,6 +504,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202104090149279_20210804949amanda.resx">
       <DependentUpon>202104090149279_20210804949amanda.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104120018385_testimonial.resx">
+      <DependentUpon>202104120018385_testimonial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

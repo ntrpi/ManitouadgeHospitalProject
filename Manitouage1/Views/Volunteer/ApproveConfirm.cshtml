@@ -1,0 +1,70 @@
+﻿@model Manitouage1.Models.VolunteerDto
+
+@{
+    ViewBag.Title = "ApproveConfirm";
+}
+
+<h1>Are you sure you want to Approve</h1>
+<div>
+    <h4>Volunteer</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.firstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.firstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.lastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.lastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.policeCheckPass)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.policeCheckPass)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.phone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.phone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.approved)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.approved)
+        </dd>
+
+    </dl>
+</div>
+@using (Html.BeginForm("Approve", "Volunteer", new { id = Model.volunteerId }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-actions no-color">
+        <input type="submit" value="Approve" class="btn btn-default" /> |
+        @Html.ActionLink("Back to List", "List")
+    </div>
+}
