@@ -159,6 +159,13 @@ The job posting feature will have an administrative backend that will manage the
 
 
 ### Miho
+Department and Job Posting feature
+- Department Model
+- Job Posting Model
+- Department Controller and Department Data Controller
+- Job Posting Controller and Job Posting Data Controller
+- Views and ViewModels for Department and Job Posting
+
 - All of the members has communicated well to solve the issues and helped each others.
 
 ### Sandra
