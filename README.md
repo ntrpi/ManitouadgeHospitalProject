@@ -199,7 +199,7 @@ Donations Feature
 
 - Amanda - amanda.elias@live.ca
 - Farshan - farshanaslam@gmail.com
-- Kyle - kyle-dev@hotmail.com
+- Kyle - Cheung.kyle1@gmail.com
 - Miho - mihoko.s0408@gmail.com
 - Sandra - kupfer.sandra@gmail.com
 - Wafa - wafamustafak@gmail.com
