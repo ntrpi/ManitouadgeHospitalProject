@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using System.Collections.Generic;
 using System.Web.Mvc;
 using System.Net.Http;
@@ -30,6 +31,10 @@ namespace Manitouage1.Controllers
 
             client.DefaultRequestHeaders.Accept.Add(
             new MediaTypeWithQualityHeaderValue( "application/json" ) );
+
+            // This can be used to override certificate rejection issues.
+            //ServicePointManager.ServerCertificateValidationCallback += 
+            //    ( sender, cert, chain, sslPolicyErrors ) => true;
         }
 
         /// <summary>
