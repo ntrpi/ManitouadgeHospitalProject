@@ -205,7 +205,7 @@ All of the members have communicated well to solve the issues and helped each ot
 - Started adding views to manage the relationship between Users and Invoices.
 - Successfully added client-side functionality to dynamically update the invoice view as products are added.
 - Added links in the readme to the features that have been added.
-- Recoverd the nav that disappeared after a bunch of NuGet packages were updated.
+- Recovered the nav that disappeared after a bunch of NuGet packages were updated.
 - Added some stuff to the layout.
 
 ### Wafa
