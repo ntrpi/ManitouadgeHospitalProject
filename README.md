@@ -180,7 +180,7 @@ Department and Job Posting feature
 - Job Posting Controller and Job Posting Data Controller
 - Views and ViewModels for Department and Job Posting
 
-- All of the members has communicated well to solve the issues and helped each others.
+- All of the members have communicated well to solve the issues and helped each others.
 
 ### Sandra
 - Created project and initialized repo.
@@ -196,6 +196,7 @@ Department and Job Posting feature
 - Started adding views to manage the relationship between Users and Invoices.
 - Successfully added client-side functionality to dynamically update the invoice view as products are added.
 - Added links in the readme to the features that have been added.
+- Recoverd the nav that disappeared after a bunch of NuGet packages were updated.
 
 ### Wafa
 Donations Feature
