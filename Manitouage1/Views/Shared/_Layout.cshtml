@@ -16,7 +16,7 @@
       <div class="d-inline">
         <img src="~/Content/img/Manitouwadge General Hospital_0.png" height="50" />
       </div>
-      <h1 class="d-inline ml-2"><a class="navbar-brand my-lg-5"  style="font-size: 1.9rem;" href="#">Manitouadge General Hospital</a></h1>
+      <h1 class="d-inline ml-2"><a class="navbar-brand my-lg-5" style="font-size: 1.9rem;" href="#">Manitouadge General Hospital</a></h1>
     </div>
     <div class="collapse navbar-collapse d-flex justify-content-end mb-lg-5" id="navbarSupportedContent">
       <form class="form-inline my-2 my-lg-0">
@@ -24,7 +24,7 @@
         <button class="btn btn-info my-2 my-sm-0" type="submit">Search</button>
       </form>
       <form class="form-inline my-2 my-lg-0 ml-3">
-        <button class="btn btn-info my-2 my-sm-0" type="submit">Donate</button>
+        <button class="btn btn-info btn-outline-light my-sm-0" type="submit">Donate</button>
       </form>
     </div>
   </nav>
@@ -53,10 +53,20 @@
   <div class="container body-content">
     @RenderBody()
     <hr />
-    <footer>
-      <p>&copy; @DateTime.Now.Year - Manitouage Hospital</p>
-    </footer>
   </div>
+  <footer>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-navy">
+
+
+
+      <form class="form-inline my-2 my-lg-0 ml-3">
+        <button class="btn btn-info btn-outline-light my-sm-0" type="submit">Donate</button>
+      </form>
+    </nav>
+
+
+    <p class="bg-navy text-light">&copy; @DateTime.Now.Year - Manitouage Hospital</p>
+  </footer>
 
   @Scripts.Render( "~/bundles/jquery" )
   @Scripts.Render( "~/bundles/bootstrap" )
