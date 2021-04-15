@@ -1,39 +1,50 @@
 ﻿@model IEnumerable<Manitouage1.Models.ProductDto>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+<div class="m-4">
+  <h4>Products</h4>
+</div>
+
 <table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.productName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.price)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.taxRate)
-        </th>
-        <th></th>
-    </tr>
+  <tr>
+    <th>
+      @Html.DisplayNameFor( model => model.productName )
+    </th>
+    <th>
+      @Html.DisplayNameFor( model => model.price )
+    </th>
+    <th>
+      @Html.DisplayNameFor( model => model.taxRate )
+    </th>
+    <th></th>
+  </tr>
 
-@foreach (var item in Model) {
+  @foreach( var item in Model ) {
     <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.productName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.price)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.taxRate)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.productId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.productId }) |
-            @Html.ActionLink("Delete", "DeleteConfirm", new { id=item.productId })
-        </td>
+      <td>
+        @Html.DisplayFor( modelItem => item.productName )
+      </td>
+      <td>
+        @Html.DisplayFor( modelItem => item.price )
+      </td>
+      <td>
+        @Html.DisplayFor( modelItem => item.taxRate )
+      </td>
+      <td>
+        @Html.ActionLink( "Edit", "Edit", new {
+          id = item.productId
+        } ) |
+        @Html.ActionLink( "Details", "Details", new {
+          id = item.productId
+        } ) |
+        @Html.ActionLink( "Delete", "DeleteConfirm", new {
+          id = item.productId
+        } )
+      </td>
     </tr>
-}
-
+  }
 </table>
+
+<div class="mt-3 ">
+  @Html.ActionLink( "Create New", "Create", "", new { @class= "btn btn-info"
+} )
+</div>

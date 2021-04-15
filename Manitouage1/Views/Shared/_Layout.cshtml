@@ -11,8 +11,24 @@
 </head>
 <body>
 
-  <nav class="navbar navbar-expand-lg navbar-light bg-info">
-    <a class="navbar-brand" href="#">Manitouadge Hospital</a>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-navy">
+    <div>
+      <div class="d-inline">
+        <img src="~/Content/img/Manitouwadge General Hospital_0.png" height="50" />
+      </div>
+      <h1 class="d-inline ml-2"><a class="navbar-brand my-lg-5"  style="font-size: 1.9rem;" href="#">Manitouadge General Hospital</a></h1>
+    </div>
+    <div class="collapse navbar-collapse d-flex justify-content-end mb-lg-5" id="navbarSupportedContent">
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-info my-2 my-sm-0" type="submit">Search</button>
+      </form>
+      <form class="form-inline my-2 my-lg-0 ml-3">
+        <button class="btn btn-info my-2 my-sm-0" type="submit">Donate</button>
+      </form>
+    </div>
+  </nav>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-navy">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -31,23 +47,19 @@
         </li>
         @Html.Partial( "_LoginPartial" )
       </ul>
-      <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">Search</button>
-      </form>
     </div>
   </nav>
 
-    <div class="container body-content">
-      @RenderBody()
-      <hr />
-      <footer>
-        <p>&copy; @DateTime.Now.Year - Manitouage Hospital</p>
-      </footer>
-    </div>
+  <div class="container body-content">
+    @RenderBody()
+    <hr />
+    <footer>
+      <p>&copy; @DateTime.Now.Year - Manitouage Hospital</p>
+    </footer>
+  </div>
 
-    @Scripts.Render( "~/bundles/jquery" )
-    @Scripts.Render( "~/bundles/bootstrap" )
-    @RenderSection( "scripts", required: false )
+  @Scripts.Render( "~/bundles/jquery" )
+  @Scripts.Render( "~/bundles/bootstrap" )
+  @RenderSection( "scripts", required: false )
 </body>
 </html>
