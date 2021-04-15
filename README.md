@@ -61,7 +61,15 @@
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
+    <li><a href="#features">Features</a>
+      <ul>
+        <li><a href="#feature-name-1">Feature Name 1</a></li>
+        <li><a href="#donations-feature">Donations</a></li>
+        <li><a href="#department-feature">Departments</a></li>
+        <li><a href="#job-posting-feature">Job Postings</a></li>
+        <li><a href="#invoices">Invoices</a></li>
+      </ul>
+    </li>
     <li><a href="#contributing">Contributions</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="#acknowledgements">Acknowledgements</a></li>
@@ -108,12 +116,10 @@ This is an example of how to list things you need to use the software and how to
    ```
 
 
-<!-- USAGE EXAMPLES -->
-## Usage
+## Features
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
 
-### <Feature Name 1>
+### Feature Name 1
 <description, usage, images, etc.>
 
 ### Donations Feature
@@ -135,6 +141,12 @@ The Job posting entity is associated with the Departments entity. These have one
 
 Visitors to the website will see the job posting under Recruitment on the main navigation. Each job posting may include the contents such as department information, job title, job description, salary, deadline for the application. Also, from this page, visitors to the website can apply for the job (“Apply for the job” is another feature).
 The job posting feature will have an administrative backend that will manage the job posting. Administration staff can create, display, update, delete the contents by content management system. Administrative users will have to login to the administrative side of the application and then choose “Job Posting” from the available links on the main dashboard. On the Job posting page, user clicks one of the lists to edit or delete, or create a new job posting.
+
+### Invoices
+
+In Canada we are lucky to have the amazing, publicly funded health care system that we have. Unfortunately, there are times when a visit to the hospital incurs expenses that are not covered by that system and must be paid by an individual. Some of those expenses are services, like ambulance rides or having a private room. Others can be physical products like post operative braces or supports.
+
+Regardless of the type of expense, it makes sense to have a list of the services and products that have an additional cost. It also makes sense to have the ability to easily create invoices for those services and products, issue the invoices to a recipient, and keep track of whether they have been paid or not. This feature provides that ability.
 
 <!-- CONTRIBUTING -->
 ## Contributions
@@ -182,6 +194,8 @@ Department and Job Posting feature
 - Added some database seeding for Roles so that they will be consistent for everyone.
 - Created readme with sections for everyone to fill out.
 - Started adding views to manage the relationship between Users and Invoices.
+- Successfully added client-side functionality to dynamically update the invoice view as products are added.
+- Added links in the readme to the features that have been added.
 
 ### Wafa
 Donations Feature
