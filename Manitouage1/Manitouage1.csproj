@@ -277,6 +277,7 @@
     <Content Include="Content\life-care\css\responsive.css" />
     <Content Include="Content\life-care\css\versions.css" />
     <Content Include="Content\life-care\style.css" />
+    <Content Include="Content\Manitouwadge General Hospital_0.png" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
