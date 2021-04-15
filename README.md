@@ -31,7 +31,7 @@
   <h3 align="center">HTTP5204 Hospital Project</h3>
 
   <p align="center">
-    A proposed redesign of the Manitouage Hospital website.s
+    A proposed redesign of the Manitouadge General Hospital website.
     <br />
     <br />
     <a href="https://github.com/ntrpi/Manitouage1">View Demo</a>
