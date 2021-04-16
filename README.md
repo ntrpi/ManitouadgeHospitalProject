@@ -207,6 +207,7 @@ All of the members have communicated well to solve the issues and helped each ot
 - Added links in the readme to the features that have been added.
 - Recovered the nav that disappeared after a bunch of NuGet packages were updated.
 - Added some stuff to the layout.
+- Home page content and styling.
 
 ### Wafa
 Donations Feature
