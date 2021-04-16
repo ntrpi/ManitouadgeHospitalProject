@@ -21,10 +21,10 @@ namespace Manitouage1.Controllers
         {
             HttpClientHandler handler = new HttpClientHandler()
             {
-                AllowAutoRedirect = false
+                AllowAutoRedirect = false,
+                UseCookies = false
             };
             client = new HttpClient(handler);
-            //change this to match your own local port number
             client.BaseAddress = new Uri("https://localhost:44397/api/");
             client.DefaultRequestHeaders.Accept.Add(
             new MediaTypeWithQualityHeaderValue("application/json"));
@@ -34,18 +34,37 @@ namespace Manitouage1.Controllers
 
         }
 
+        private void GetApplicationCookie()
+        {
+            string token = "";
+            
+            client.DefaultRequestHeaders.Remove("Cookie");
+            if (!User.Identity.IsAuthenticated) return;
+            HttpCookie cookie = System.Web.HttpContext.Current.Request.Cookies.Get(".AspNet.ApplicationCookie");
+            if (cookie != null) token = cookie.Value;
+
+
+            Debug.WriteLine("Token Submitted is : " + token);
+            if (token != "") client.DefaultRequestHeaders.Add("Cookie", ".AspNet.ApplicationCookie=" + token);
+
+            return;
+        }
+
+
         // GET: Department/List
         public ActionResult List()
         {
 
-            Debug.WriteLine("Here");
+            ListDepartments ViewModel = new ListDepartments();
+            ViewModel.isadmin = User.IsInRole("Admin");
 
             string url = "departmentdata/getdepartments";
             HttpResponseMessage response = client.GetAsync(url).Result;
             if (response.IsSuccessStatusCode)
             {
                 IEnumerable<DepartmentDto> SelectedDepaprtments = response.Content.ReadAsAsync<IEnumerable<DepartmentDto>>().Result;
-                return View(SelectedDepaprtments);
+                ViewModel.departments = SelectedDepaprtments;
+                return View(ViewModel);
             }
             else
             {
@@ -83,6 +102,7 @@ namespace Manitouage1.Controllers
         }
 
         // GET: Department/Create
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
            
@@ -92,8 +112,11 @@ namespace Manitouage1.Controllers
         // POST: Department/Create
         [HttpPost]
         [ValidateAntiForgeryToken()]
+        [Authorize(Roles = "Admin")]
         public ActionResult Create(Department DepartmentInfo)
         {
+            GetApplicationCookie();
+
             Debug.WriteLine(DepartmentInfo.departmentName);
             string url = "departmentdata/adddepartment";
             Debug.WriteLine(jss.Serialize(DepartmentInfo));
@@ -116,9 +139,11 @@ namespace Manitouage1.Controllers
         }
 
         // GET: Department/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int id)
         {
-            UpdateDepartment ViewModel = new UpdateDepartment();
+           
+           // UpdateDepartment ViewModel = new UpdateDepartment();
 
             string url = "departmentdata/finddepartment/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
@@ -126,17 +151,10 @@ namespace Manitouage1.Controllers
             Debug.WriteLine("edit: " + response.StatusCode);
             if (response.IsSuccessStatusCode)
             {
-                
+
                 DepartmentDto SelectedDepartment = response.Content.ReadAsAsync<DepartmentDto>().Result;
-                ViewModel.department = SelectedDepartment;
 
-                
-               // url = "teamdata/getteams";
-               // response = client.GetAsync(url).Result;
-                //IEnumerable<TeamDto> PotentialTeams = response.Content.ReadAsAsync<IEnumerable<TeamDto>>().Result;
-               // ViewModel.allteams = PotentialTeams;
-
-                return View(ViewModel);
+                return View(SelectedDepartment);
             }
             else
             {
@@ -147,8 +165,11 @@ namespace Manitouage1.Controllers
         // POST: Department/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken()]
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int id, Department DepartmentInfo)
         {
+            GetApplicationCookie();
+
             Debug.WriteLine("Controller Edit: " +DepartmentInfo.departmentId);
             string url = "departmentdata/updatedepartment/" + id;
             Debug.WriteLine(jss.Serialize(DepartmentInfo));
@@ -178,6 +199,7 @@ namespace Manitouage1.Controllers
 
         // GET: Department/Delete/5
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteConfirm(int id)
         {
             string url = "departmentdata/finddepartment/" + id;
@@ -199,14 +221,15 @@ namespace Manitouage1.Controllers
         // POST: Department/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken()]
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id)
         {
+            GetApplicationCookie();
             string url = "departmentdata/deletedepartment/" + id;
             //post body is empty
             HttpContent content = new StringContent("");
             HttpResponseMessage response = client.PostAsync(url, content).Result;
-            //Can catch the status code (200 OK, 301 REDIRECT), etc.
-            //Debug.WriteLine(response.StatusCode);
+           
             if (response.IsSuccessStatusCode)
             {
 

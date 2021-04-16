@@ -25,7 +25,7 @@ namespace Manitouage1.Controllers
         [ResponseType(typeof(IEnumerable<DepartmentDto>))]
         public IHttpActionResult GetDepartments()
         {
-            List<Department> Departments = db.departments.ToList();
+            IEnumerable<Department> Departments = db.departments.ToList();
             List<DepartmentDto> DepartmentDtos = new List<DepartmentDto> { };
 
             Debug.WriteLine("Files Received");
@@ -127,6 +127,7 @@ namespace Manitouage1.Controllers
         /// </example>
         [ResponseType(typeof(Department))]
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public IHttpActionResult AddDepartment([FromBody] Department department)
         {
             //Will Validate according to data annotations specified on model
@@ -146,6 +147,7 @@ namespace Manitouage1.Controllers
         /// </example>
         [ResponseType(typeof(void))]
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public IHttpActionResult UpdateDepartment(int id, [FromBody] Department department)
         {
             if (!ModelState.IsValid)
@@ -186,6 +188,7 @@ namespace Manitouage1.Controllers
 
         // DELETE: api/DepartmentData/5
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public IHttpActionResult DeleteDepartment(int id)
         {
             Department department = db.departments.Find(id);

@@ -21,7 +21,8 @@ namespace Manitouage1.Controllers
         {
             HttpClientHandler handler = new HttpClientHandler()
             {
-                AllowAutoRedirect = false
+                AllowAutoRedirect = false,
+                UseCookies = false
             };
             client = new HttpClient(handler);
             //change this to match your own local port number
@@ -34,16 +35,36 @@ namespace Manitouage1.Controllers
 
         }
 
+        private void GetApplicationCookie()
+        {
+            string token = "";
+           
+            client.DefaultRequestHeaders.Remove("Cookie");
+            if (!User.Identity.IsAuthenticated) return;
+
+            HttpCookie cookie = System.Web.HttpContext.Current.Request.Cookies.Get(".AspNet.ApplicationCookie");
+            if (cookie != null) token = cookie.Value;
+
+            Debug.WriteLine("Token Submitted is : " + token);
+            if (token != "") client.DefaultRequestHeaders.Add("Cookie", ".AspNet.ApplicationCookie=" + token);
+
+            return;
+        }
+
+
         // GET: JobPostitng/List
         public ActionResult List()
         {
+            ListJobPostings ViewModel = new ListJobPostings();
+            ViewModel.isadmin = User.IsInRole("Admin");
 
             string url = "jobpostingdata/getjobpostings";
             HttpResponseMessage response = client.GetAsync(url).Result;
             if (response.IsSuccessStatusCode)
             {
                 IEnumerable<JobPostingDto> SelectedJobPosting = response.Content.ReadAsAsync<IEnumerable<JobPostingDto>>().Result;
-                return View(SelectedJobPosting);
+                ViewModel.jobpostings = SelectedJobPosting;
+                return View(ViewModel);
             }
             else
             {
@@ -80,7 +101,8 @@ namespace Manitouage1.Controllers
         }
 
         // GET: JobPosting/Create
-         public ActionResult Create()
+        [Authorize(Roles = "Admin")]
+        public ActionResult Create()
         {
 
             UpdateJobPosting ViewModel = new UpdateJobPosting();
@@ -98,8 +120,11 @@ namespace Manitouage1.Controllers
         // POST: JobPosting/Create
         [HttpPost]
         [ValidateAntiForgeryToken()]
+        [Authorize(Roles = "Admin")]
         public ActionResult Create(JobPosting JobPostingInfo)
         {
+            GetApplicationCookie();
+
             Debug.WriteLine("Create Post");
             Debug.WriteLine(JobPostingInfo.jobPostingId);
             string url = "jobpostingdata/addjobposting";
@@ -123,6 +148,7 @@ namespace Manitouage1.Controllers
         }
 
         // GET: JobPosting/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int id)
         {
             UpdateJobPosting ViewModel = new UpdateJobPosting();
@@ -156,8 +182,11 @@ namespace Manitouage1.Controllers
         // POST: JobPosting/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken()]
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int id, JobPosting JobPostingInfo)
         {
+            GetApplicationCookie();
+
             Debug.WriteLine("Controller Edit: " + JobPostingInfo.jobPostingId);
             string url = "jobpostingdata/updatejobposting/" + id;
             Debug.WriteLine(jss.Serialize(JobPostingInfo));
@@ -167,15 +196,6 @@ namespace Manitouage1.Controllers
             Debug.WriteLine(response.StatusCode);
             if (response.IsSuccessStatusCode)
             {
-
-                //Send over image data for player
-                // url = "departmentdata/updatedepartmentpic/" + id;
-                // Debug.WriteLine("Received player picture " + PlayerPic.FileName);
-
-                //MultipartFormDataContent requestcontent = new MultipartFormDataContent();
-                // HttpContent imagecontent = new StreamContent(PlayerPic.InputStream);
-                // requestcontent.Add(imagecontent, "PlayerPic", PlayerPic.FileName);
-                // response = client.PostAsync(url, requestcontent).Result;
 
                 return RedirectToAction("Details", new { id = id });
             }
@@ -187,6 +207,7 @@ namespace Manitouage1.Controllers
 
         // GET: JobPosting/Delete/5
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteConfirm(int id)
         {
             string url = "jobpostingdata/findjobposting/" + id;
@@ -208,8 +229,11 @@ namespace Manitouage1.Controllers
         // POST: JobPosting/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken()]
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id)
         {
+            GetApplicationCookie();
+
             Debug.WriteLine("Delete");
             string url = "jobpostingdata/deletejobposting/" + id;
             //post body is empty

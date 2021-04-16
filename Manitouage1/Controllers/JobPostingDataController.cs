@@ -139,6 +139,7 @@ namespace Manitouage1.Controllers
         /// </example>
         [ResponseType(typeof(JobPosting))]
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public IHttpActionResult AddJobPosting([FromBody] JobPosting jobposting)
         {
             //Will Validate according to data annotations specified on model
@@ -158,6 +159,7 @@ namespace Manitouage1.Controllers
         /// </example>
         [ResponseType(typeof(void))]
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public IHttpActionResult UpdateJobPosting(int id, [FromBody] JobPosting jobPosting)
         {
             if (!ModelState.IsValid)
@@ -260,6 +262,7 @@ namespace Manitouage1.Controllers
 
         // DELETE: api/JobPostingData/5
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public IHttpActionResult DeleteJobPosting(int id)
         {
             JobPosting jobposting = db.jobPostings.Find(id);

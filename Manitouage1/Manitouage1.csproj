@@ -246,11 +246,12 @@
     <Compile Include="Models\ProductXInvoice.cs" />
     <Compile Include="Models\Testimonial.cs" />
     <Compile Include="Models\ViewModels\AddDonation.cs" />
+    <Compile Include="Models\ViewModels\ListDepartments.cs" />
+    <Compile Include="Models\ViewModels\ListJobPostings.cs" />
     <Compile Include="Models\ViewModels\ShowDepartment.cs" />
     <Compile Include="Models\ViewModels\ShowDonation.cs" />
     <Compile Include="Models\ViewModels\ViewDonation.cs" />
     <Compile Include="Models\ViewModels\ShowJobPosting.cs" />
-    <Compile Include="Models\ViewModels\UpdateDepartment.cs" />
     <Compile Include="Models\ViewModels\UpdateJobPosting.cs" />
     <Compile Include="Models\ViewModels\UpdateInvoice.cs" />
     <Compile Include="Models\ViewModels\ViewInvoice.cs" />
