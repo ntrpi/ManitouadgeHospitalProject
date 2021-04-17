@@ -9,7 +9,7 @@
     var totals = Model.totals;
 }
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm( "Create", "Invoices", FormMethod.Post, new { name = "invoiceCreateForm", id = "invoiceCreateForm" } ))
 {
     @Html.AntiForgeryToken()
     
@@ -25,10 +25,12 @@
     } )
     <div class="col-md-10">
       @Html.EditorFor( model => invoice.created, new {
-        htmlAttributes = new {
-          @class = "form-control"
-        }
-      } )
+         htmlAttributes = new {
+           @class = "form-control",
+           name = "created",
+           id = "created"
+         }
+       } )
       @Html.ValidationMessageFor( model => invoice.created, "", new {
         @class = "text-danger"
       } )
@@ -43,15 +45,19 @@
       @Html.DropDownListFor(
         model => invoice.userId,
         new SelectList( users.Select( i => new { Text = i.Id, Value = i.Email } ), "Text", "Value" ),
-        "Select User",
+        "Select",
         htmlAttributes: new {
-          @class = "form-control"
+          @class = "form-control",
+          name = "userId",
+          id = "userId"
         }
       )
 
       @Html.ValidationMessageFor( model => invoice.userId, "", new {
-        @class = "text-danger"
-      } )
+         @class = "text-danger",
+         name = "userIdError",
+         id = "userIdError"
+       } )
     </div>
   </div>
 
@@ -95,7 +101,7 @@
 
   <div class="form-group">
     <div class="col-md-offset-2 col-md-10">
-      <input type="submit" value="Create" class="btn btn-primary" />
+      <input type="submit" value="Create" class="btn btn-primary" name="invoiceSubmit" />
     </div>
   </div>
 </div>

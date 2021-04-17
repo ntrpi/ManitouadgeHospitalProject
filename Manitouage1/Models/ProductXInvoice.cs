@@ -35,12 +35,17 @@ namespace Manitouage1.Models
             get; set;
         }
 
+        public int quantity {
+            get; set;
+        }
+
         public ProductXInvoiceDto getDto()
         {
             return new ProductXInvoiceDto {
                 id = id,
                 productId = productId,
-                invoiceId = invoiceId
+                invoiceId = invoiceId,
+                quantity = quantity
             };
         }
     }
@@ -60,5 +65,11 @@ namespace Manitouage1.Models
         public int invoiceId {
             get; set;
         }
+
+        [DisplayName( "Quantity" )]
+        public int quantity {
+            get; set;
+        }
+
     }
 }

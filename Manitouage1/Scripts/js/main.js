@@ -228,31 +228,74 @@ var productsSelectOnChange = function ()
     return 0;
 }
 
-function postproduct()
+function outputProductAddSuccess( data )
 {
+    let msg = "product " + data.productId + " added to invoice " + data.invoiceId;
+    console.log( msg );
+}
+
+function addProductsToInvoiceAjax( productId, invoiceId, quantity, success, done, fail, always )
+{
+    // Create the invoice and get the ID back.
     $.ajax( {
         type: "POST",
-        url: "ProductXInvoicesData/CreateProductXInvoice",
+        url: "/api/ProductXInvoicesData/CreateProductXInvoice",
+        contentType: "application/json",
         data: JSON.stringify( {
-            "productId": 1,
-            "invoiceId": 999
-            } ),
-        success: function ( data ) { alert( data ); },
-        accept: "application/json"
+            "productId": productId,
+            "invoiceId": invoiceId,
+            "quantity": quantity
+        } ),
+        success: success
     } )
-        .done( function ( data )
-        {
-            /* this callback gets used when successful */
-            console.log( "response: " + data );
-        } ).fail( function ( jqxhr, status, error )
-        {
-            /* for debugging: this callback gets used in case of errors */
-            console.log( "error :" + error );
-        } ).always( function ()
-        {
-            /* for debugging: this callback always gets called at the end either way*/
-            console.log( "complete" );
-        } );
+        // If successful, add the products to the invoice.
+        .done( done )
+        // If unsuccessful, do something else.
+        .fail( fail )
+        // Do this whether or not the call was successful.
+        .always( always );
+}
+
+// Call this function after the invoice has been created and has an ID.
+function addProductsToInvoice( invoiceId )
+{
+    for( const productId in selectedProducts ) {
+        let productData = selectedProducts[ productId ];
+        addProductsToInvoiceAjax( productId, invoiceId, productData.quantity, outputProductAddSuccess );
+    }
+    $( document ).ajaxStop( function ()
+    {
+        window.location.href = "/Invoices/Details/" + invoiceId;
+    } );
+}
+
+// Call this function when the form to create the invoice is submitted.
+function createInvoice( created, userId )
+{
+    // Create the invoice and get the ID back.
+    $.ajax( {
+        type: "POST",
+        url: "/api/InvoicesData/CreateInvoice",
+        contentType: "application/json",
+        data: JSON.stringify( {
+            "userId": userId,
+            "created": created,
+            "products": []
+        } ),
+        success: function ( data ) { addProductsToInvoice( data.invoiceId ) },
+    } )
+    // If successful, add the products to the invoice.
+    .done( function ( data ) {
+        console.log( "response: " + data.invoiceId );
+    } )
+    // If unsuccessful, do something else.
+    .fail( function ( jqxhr, status, error ) {
+        console.log( "error :" + error );
+    } )
+    // Do this whether or not the call was successful.
+    .always( function () {
+        console.log( "complete" );
+    } );
 }
 
 // Store product information in ProductData objects
@@ -282,10 +325,34 @@ window.onload = function ()
 {
     // For invoices Create view.
     productsTable = document.getElementById( "productsTable" );
-    let tBody = $( "#productsTable > TBODY" )[ 0 ];
-    subTotalsRow = tBody.insertRow();
-    taxesRow = tBody.insertRow();
-    totalRow = tBody.insertRow();
-    productsSelect = document.getElementById( "productsSelect" );
-    productsSelect.onclick = productsSelectOnChange;
+    if( productsTable !== undefined ) {
+        let tBody = $( "#productsTable > TBODY" )[ 0 ];
+        subTotalsRow = tBody.insertRow();
+        taxesRow = tBody.insertRow();
+        totalRow = tBody.insertRow();
+        productsSelect = document.getElementById( "productsSelect" );
+        productsSelect.onclick = productsSelectOnChange;
+
+        let invoiceCreateForm = document.forms.invoiceCreateForm;
+        invoiceCreateForm.addEventListener( "submit", function ( e )
+        {
+            e.preventDefault();
+
+            if( !$( "#invoiceCreateForm" ).valid() ) {
+                return false;
+            }
+
+            const userId = invoiceCreateForm.userId.value;
+
+            if( userId == "" || userId == 0 ) {
+                let userIdError = document.getElementById( "userIdError" );
+                userIdError.classList.remove( "field-validation-valid" );
+                userIdError.innerHTML = "Please select a client.";
+                return false;
+            }
+
+            const created = invoiceCreateForm.created.value;
+            createInvoice( created, userId );
+        } );    
+    }
 }
