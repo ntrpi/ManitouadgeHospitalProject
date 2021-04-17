@@ -15,69 +15,75 @@
 }
 <table class="table">
     <tr>
-        <th>
-            Job Posting Id
-        </th>
-        <th>
-            Job Number
-        </th>
-        <th>
-            Job Title
-        </th>
-        <th>
-            Job Type
-        </th>
-        <th>
-            Job Description
-        </th>
-        <th>
-            Salary
-        </th>
-        <th>
-            Closing Date
-        </th>
-        <th>
-            Department
-        </th>
-        <th></th>
-    </tr>
+        @if (Model.isadmin)
+        {
+            <th>
+                Job Posting Id
+            </th>
+        }
+            <th>
+                Job Number
+            </th>
+            <th>
+                Job Title
+            </th>
+            <th>
+                Job Type
+            </th>
+            <th>
+                Job Description
+            </th>
+            <th>
+                Salary
+            </th>
+            <th>
+                Closing Date
+            </th>
+            <th>
+                Department
+            </th>
+            <th></th>
+        </tr>
 
     @foreach (var item in Model.jobpostings)
     {
-        <tr>
+<tr>
+    @if (Model.isadmin)
+    {
+        <td>
+            @Html.DisplayFor(modelItem => item.jobPostingId)
+        </td>
+    }
+        <td>
+            @Html.DisplayFor(modelItem => item.jobNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.jobTitle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.jobType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.jobDescription)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.salary)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.closingDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.departmentId) - @Html.DisplayFor(modelItem => item.departmentName)
+        </td>
+        @if (Model.isadmin)
+        {
             <td>
-                @Html.DisplayFor(modelItem => item.jobPostingId)
+                @Html.ActionLink("Edit", "Edit", new { id = item.jobPostingId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.jobPostingId }) |
+                @Html.ActionLink("Delete", "DeleteConfirm", new { id = item.jobPostingId })
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.jobNumber)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.jobTitle)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.jobType)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.jobDescription)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.salary)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.closingDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.departmentId) - @Html.DisplayFor(modelItem => item.departmentName)
-            </td>
-            @if (Model.isadmin)
-            {
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.jobPostingId }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.jobPostingId }) |
-                    @Html.ActionLink("Delete", "DeleteConfirm", new { id = item.jobPostingId })
-                </td>
-            }
-        </tr>
+        }
+    </tr>
     }
 
 </table>
