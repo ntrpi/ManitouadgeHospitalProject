@@ -68,7 +68,22 @@
 
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.jobposting.jobPostingId }) |
-    @Html.ActionLink("Back to List", "List")
-</p>
+
+@if (Model.isadmin)
+{
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.jobposting.jobPostingId }) |
+        @Html.ActionLink("Back to List", "List")
+    </p>
+}
+
+@if (!Model.isadmin)
+{
+    @* No one has not done apply for job function so this button goes not redirect to anywhere now*@
+    <button class="btn btn-info my-2 my-sm-0" type="submit">
+       Apply for this job
+    </button>
+    <p>
+        @Html.ActionLink("Back to List", "List")
+    </p>
+}
