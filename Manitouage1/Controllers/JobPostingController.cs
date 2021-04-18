@@ -76,6 +76,8 @@ namespace Manitouage1.Controllers
         public ActionResult Details(int id)
         {
             ShowJobPosting ViewModel = new ShowJobPosting();
+            ViewModel.isadmin = User.IsInRole("Admin");
+
             string url = "jobpostingdata/findjobposting/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
             //Can catch the status code (200 OK, 301 REDIRECT), etc.
