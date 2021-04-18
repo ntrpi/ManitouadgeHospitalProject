@@ -31,4 +31,26 @@ textarea {
   background-color: #edf5f9;
 }
 
+.border-bottom-1 {
+  border-bottom: 1px solid #546e7a !important;
+}
 
+.fill {
+  min-height: 100%;
+  height: 100%;
+}
+
+nav .navbar-nav li a {
+  color: black !important;
+}
+
+nav .footer-nav li a {
+  color: white !important;
+  padding: 2px 8px;
+}
+
+nav .nav-item {
+  margin-left: .1rem;
+  margin-right: .1rem;
+  text-align: left;
+}

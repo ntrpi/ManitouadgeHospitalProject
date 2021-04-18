@@ -208,6 +208,8 @@ All of the members have communicated well to solve the issues and helped each ot
 - Recovered the nav that disappeared after a bunch of NuGet packages were updated.
 - Added some stuff to the layout.
 - Home page content and styling.
+- Got the C part of CRUD working for invoices with AJAX.
+- Constructing main and footer navs, and home page content.
 
 ### Wafa
 Donations Feature
