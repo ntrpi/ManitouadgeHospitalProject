@@ -50,7 +50,7 @@ namespace Manitouage1.Controllers
                     email = Donation.email,
                     phoneNumber = Donation.phoneNumber,
                     amount = Donation.amount,
-                    //add event id 
+                    //add event id SANDRA HELPED
                     EventId = Donation.EventId == null ? 0 : (int)Donation.EventId
 
                 };
@@ -90,8 +90,8 @@ namespace Manitouage1.Controllers
                 email = Donation.email,
                 phoneNumber = Donation.phoneNumber,
                 amount = Donation.amount,
-                //add event id
-                EventId = (int)Donation.EventId
+                //add event id SANDRA HELPED
+                EventId = Donation.EventId == null ? 0 : (int)Donation.EventId
 
             };
 
