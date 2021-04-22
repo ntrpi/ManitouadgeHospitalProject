@@ -72,18 +72,20 @@ namespace Manitouage1.Controllers
             productXInvoicesUrl += "sForInvoice/" + id;
             IEnumerable<ProductXInvoiceDto> productXInvoiceDtos = helper.doGetAndGetFromResponse<List<ProductXInvoiceDto>>( productXInvoicesUrl );
 
-            // Get the products.
+            // Get the view products.
             string productsUrl = ControllersHelper.getUrl( "Product", "Get", 0 );
-            List<ProductDto> productDtos = new List<ProductDto>();
+            List<ViewInvoiceProduct> invoiceProducts = new List<ViewInvoiceProduct>();
             foreach( ProductXInvoiceDto productXInvoice in productXInvoiceDtos ) {
-                productDtos.Add( 
-                    helper.doGetAndGetFromResponse<ProductDto>( 
-                        productsUrl + "/" + productXInvoice.productId ) );
+                ProductDto productDto = helper.doGetAndGetFromResponse<ProductDto>(
+                        productsUrl + "/" + productXInvoice.productId );
+                invoiceProducts.Add( new ViewInvoiceProduct(
+                    productDto,
+                    productXInvoice.quantity
+                    ) );                    
             }
 
             // Get the user.
-            // TODO: find out the right way to do this.
-            HttpResponseMessage response = helper.doGetRequest( "InvoicesData/GetUser/1" );
+            HttpResponseMessage response = helper.doGetRequest( "InvoicesData/GetUser/" + invoiceDto.userId );
             if( !response.IsSuccessStatusCode ) {
                 ViewBag.errorMessage = "Unable to get invoice.";
                 return View();
@@ -92,8 +94,9 @@ namespace Manitouage1.Controllers
 
             ViewInvoice viewInvoice = new ViewInvoice {
                 invoiceDto = invoiceDto,
-                productDtos = productDtos,
-                totals = new ProductsTotals( productDtos )
+                invoiceProducts = invoiceProducts,
+                applicationUser = user,
+                totals = new ProductTotals( invoiceProducts )
             };
 
             return View( viewInvoice );
@@ -112,7 +115,7 @@ namespace Manitouage1.Controllers
             UpdateInvoice updateInvoice = new UpdateInvoice {
                 productDtos = productDtos,
                 applicationUsers = users,
-                totals = new ProductsTotals( productDtos )
+                totals = new ProductTotals( productDtos )
             };
 
             // If the id is not 0, then this invoice alread exists, so set the dto.

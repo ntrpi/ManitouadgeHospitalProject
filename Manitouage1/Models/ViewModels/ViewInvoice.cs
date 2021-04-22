@@ -17,11 +17,11 @@ namespace Manitouage1.Models.ViewModels
             get; set;
         }
 
-        public IEnumerable<ProductDto> productDtos {
+        public IEnumerable<ViewInvoiceProduct> invoiceProducts {
             get; set;
         }
 
-        public ProductsTotals totals {
+        public ProductTotals totals {
             get; set;
         }
     }

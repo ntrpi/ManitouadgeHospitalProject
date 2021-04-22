@@ -40,7 +40,7 @@ namespace Manitouage1.Models
             get; set;
         }
 
-        [Required(ErrorMessage = "Please select a client ")]
+        [Required(ErrorMessage = "Please select a client.")]
         [ForeignKey( "ApplicationUser" )]
         // ApplicationUser.Id
         public string userId {

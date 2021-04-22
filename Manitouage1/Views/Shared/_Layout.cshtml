@@ -14,7 +14,7 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-navy">
     <div>
       <div class="d-inline">
-        <img src="~/Content/img/Manitouwadge General Hospital_0.png" height="50" />
+        <img src="~/Content/img/Manitouwadge General Hospital_0.png" height="75" />
       </div>
       <h1 class="d-inline ml-2"><a class="navbar-brand my-lg-5" style="font-size: 1.9rem;" href="#">Manitouadge General Hospital</a></h1>
     </div>
@@ -70,7 +70,7 @@
     </div>
   </nav>
 
-  <div class="container-fluid body-content bg-light-blue">
+  <div class="container-fluid body-content bg-light-blue p-3">
     @RenderBody()
   </div>
   <footer>
@@ -93,6 +93,32 @@
               </li>
               <li class="nav-item">
                 @Html.ActionLink( "Departments", "Index", "Home", new {
+                  @class = "nav-link"
+                } )
+              </li>
+            </ul>
+            <h4 class="text-white">For Job Seekers</h4>
+            <ul class="footer-nav mr-auto" style="padding-inline-start: 0">
+              <li class="nav-item">
+                @Html.ActionLink( "Working at Manatouadge Hospital", "Index", "Home", new {
+                  @class = "nav-link"
+                } )
+              </li>
+              <li class="nav-item">
+                @Html.ActionLink( "Opportunities", "Index", "Home", new {
+                  @class = "nav-link"
+                } )
+              </li>
+              <li class="nav-item">
+                @Html.ActionLink( "Find out more", "Index", "Home", new {
+                  @class = "nav-link"
+                } )
+              </li>
+            </ul>
+            <h4 class="text-white">For Faculty and Staff</h4>
+            <ul class="footer-nav mr-auto" style="padding-inline-start: 0">
+              <li class="nav-item">
+                @Html.ActionLink( "Log in", "Index", "Home", new {
                   @class = "nav-link"
                 } )
               </li>
@@ -132,6 +158,9 @@
                 } )
               </li>
             </ul>
+            <h4 class="text-white">Free E-Newsletter</h4>
+            <p class="text-white pl-2">Sign up for our free e-newsletter and keep up to date on all the latest community health information.</p>
+            <a href="#" class="action-link">Click here to sign up!</a>
           </div>
           <div class="col">
             <h4 class="text-white">About This Site</h4>
@@ -147,7 +176,7 @@
                 } )
               </li>
             </ul>
-            <h4 class="text-white">Giving to the hospital</h4>
+            <h4 class="text-white">Giving to the Hospital</h4>
             <p class="text-white pl-2">Make a tax-deductable donation today, and be part of making a difference in the health of our community.</p>
             <form class="form-inline my-2 my-lg-0 ml-3">
               <button class="btn btn-info btn-outline-light my-sm-0" type="submit">Make a Donation</button>
@@ -156,10 +185,12 @@
         </div>
       </div>
     </nav>
-      <p class="bg-navy text-light p-4" style="font-size: .8rem;">&copy; @DateTime.Now.Year - Manitouadge General Hospital</p>
+      <p class="bg-navy text-light p-4" style="font-size: .8rem;">&copy; @DateTime.Now.Year - Manitouadge General Hospital
+    </p>
 </footer>
 
   @Scripts.Render( "~/bundles/jquery" )
+  @Scripts.Render( "~/bundles/jqueryval" )
   @Scripts.Render( "~/bundles/bootstrap" )
   @RenderSection( "scripts", required: false )
 </body>

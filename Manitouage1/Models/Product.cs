@@ -19,13 +19,13 @@ namespace Manitouage1.Models
         }
 
         [DisplayName( "Product Name" )]
-        [Required]
+        [Required(ErrorMessage = "Please enter the name of the product or service.")]
         public string productName {
             get; set;
         }
 
         [DisplayName( "Price" )]
-        [Required]
+        [Required(ErrorMessage = "Please enter the price of the product or service.")]
         public decimal price {
             get; set;
         }

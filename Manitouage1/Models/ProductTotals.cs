@@ -2,16 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using Manitouage1.Models.ViewModels;
 
 namespace Manitouage1.Models
 {
-    public class ProductsTotals
+    public class ProductTotals
     {
-        public ProductsTotals()
+        public ProductTotals()
         {
         }
 
-        public ProductsTotals( IEnumerable<ProductDto> products )
+        public ProductTotals( IEnumerable<ProductDto> products )
         {
             if( products == null ) {
                 return;
@@ -23,7 +26,7 @@ namespace Manitouage1.Models
             }
         }
 
-        public ProductsTotals( IEnumerable<Product> products )
+        public ProductTotals( IEnumerable<Product> products )
         {
             if( products == null ) {
                 return;
@@ -32,6 +35,18 @@ namespace Manitouage1.Models
             taxes = 0;
             foreach( Product product in products ) {
                 addProduct( product );
+            }
+        }
+
+        public ProductTotals( IEnumerable<ViewInvoiceProduct> products )
+        {
+            if( products == null ) {
+                return;
+            }
+            subTotal = 0;
+            taxes = 0;
+            foreach( ViewInvoiceProduct product in products ) {
+                addProduct( product.cost, product.taxRate );
             }
         }
 
@@ -72,14 +87,21 @@ namespace Manitouage1.Models
             total = subTotal + taxes;
         }
 
+        [DisplayName( "Subtotal:" )]
+        [DataType( DataType.Currency )]
+
         public decimal subTotal {
             get; set;
         }
 
+        [DisplayName( "Tax:" )]
+        [DataType( DataType.Currency )]
         public decimal taxes {
             get; set;
         }
 
+        [DisplayName( "Total" )]
+        [DataType( DataType.Currency )]
         public decimal total {
             get; set;
         }
