@@ -21,82 +21,124 @@ class ProductData
         }
     }
 
+    // Syntactic sugar.
     addOneToQuantity()
     {
         this.quantity++;
     }
 
+    // Syntactic sugar.
     getRowId()
     {
         return "trId" + this.productId;
     }
 
+    // Syntactic sugar.
     getName()
     {
         return this.productName;
     }
 
+    // Syntactic sugar.
     getQuantity()
     {
         return this.quantity;
     }
 
+    // Syntactic sugar.
     getCost()
     {
         return this.quantity * this.price;
     }
 
+    // Syntactic sugar.
     getTaxes()
     {
         return this.getCost() * this.taxRate;
     }
 }
 
+// Create a formatter that will display currency properly.
 var currencyFormatter = new Intl.NumberFormat( 'en-US', {
     style: 'currency',
     currency: 'USD',
 } );
 
-
+// Use the above formatter to create a currency string for the given amount.
 function getCurrencyString( amount )
 {
     let currencyString = currencyFormatter.format( amount );
     return currencyString;
 }
 
+// Add or update a row in the table that displays the products
+// with the information for the product with the given ID.
 function addProductToTable( productId )
 {
+    // Get the product data that was stored after the GET call.
     let productData = selectedProducts[ productId ];
+
+    // Increase the quantity of the product for the invoice.
     productData.quantity++;
 
+    // Check if the product has already been added or not.
     if( productData.quantity == 1 ) {
+
+        // If it's new, add a new row to the table.
         addProductRow( productData );
     } else {
+
+        // Update the existing row.
         updateProductRow( productData );
     }
+
+    // Update the rows of totals and taxes at the bottom of the table.
     updateTotalsRows( true, productData );
 }
 
+// Reduce the quantity and possibly
+// remove the product with the given ID from the table.
 function removeProductFromTable( productId )
 {
+    // Get the product data that was stored after the GET call.
     let productData = selectedProducts[ productId ];
+
+    // Decrease the quantity.
     productData.quantity--;
+
+    // Check if there are any left.
     if( productData.quantity == 0 ) {
+
+        // If the quantity is 0, remove the product from the table.
         removeProductRow( productData );
+
+        // Delete the product data.
         delete selectedProducts[ productId ];
+
     } else {
+        // Update the quantity.
         updateProductRow( productData );
     }
+
+    // Update the totals and taxes at the bottom of the table.
     updateTotalsRows( false, productData );
 }
 
+// Use these constants for consistency and code completion
+// when entering data in the products table.
 const nameCellIndex = 0;
 const quantCellIndex = 1;
 const costCellIndex = 2;
 const removeCellIndex = 3;
 
+// Generate the content of the cell with the product
+// data for the cell with the given index. If the index
+// does not correspond to the ones that display data,
+// return an empty string.
 function getCellInnerHtml( productData, index )
 { 
+    // Determine which cell the request is for
+    // and construct the content.
     innerHtml = "";
     switch( index ) {
         case nameCellIndex:
@@ -109,17 +151,29 @@ function getCellInnerHtml( productData, index )
             innerHtml += `<td>${getCurrencyString( productData.getCost() )}</td>`;
             break;
     }
+    // Return the content.
     return innerHtml;
 }
 
+// Add a new row for the given product to the products table.
 function addProductRow( productData )
 {
+    // Get a handle for the table body.
     let tBody = $( `#${productsTableId} > TBODY` )[ 0 ];
+
+    // Get the number of rows already in the table.
     let numRows = productsTable.rows.length;
+
+    // Insert the new row after all the products already there but
+    // above the totals rows.
     let row = tBody.insertRow( numRows - numTotalsRows );
+
+    // Set the row ID to correspond with the product ID so
+    // we can find it later to adjust or remove it.
     let rowId = productData.getRowId();
     row.id = rowId;
 
+    // Create the product information cells and update the content.
     let nameCell = row.insertCell( nameCellIndex );
     nameCell.innerHTML = getCellInnerHtml( productData, nameCellIndex );
 
@@ -129,21 +183,28 @@ function addProductRow( productData )
     let costCell = row.insertCell( costCellIndex );
     costCell.innerHTML = getCellInnerHtml( productData, costCellIndex );
 
+    // Create a button that allows the user to reduce the quantity
+    // or remove the product row from the table.
     let removeButton = document.createElement( "button" );
     removeButton.classList.add( "btn" );
     removeButton.classList.add( "btn-light" );
     removeButton.innerHTML = "Remove";
 
+    // Set the event listener for the button.
     const productId = productData.productId;
     removeButton.addEventListener( "click", function ( e )
     {
+        // The button is in its own little form, so don't let it submit.
         e.preventDefault();
         removeProductFromTable( productId );
     } );
+
+    // Add the button to the cell.
     let removeCell = row.insertCell( removeCellIndex );
     removeCell.appendChild( removeButton );
 }
 
+// Update the quantity in the table for the given product.
 function updateProductRow( productData )
 {
     let rowId = productData.getRowId();
@@ -154,6 +215,7 @@ function updateProductRow( productData )
     costCell.innerHTML = getCellInnerHtml( productData, costCellIndex );
 }
 
+// Remove the row in the table for the given product.
 function removeProductRow( productData )
 {
     let rowId = productData.getRowId();
@@ -163,18 +225,29 @@ function removeProductRow( productData )
     table.deleteRow( rowIndex );
 }
 
+// Generate a string that contains the html for a row that shows
+// a total.
+// name: either subtotal, taxes, or total
+// value: the amount of the total for that row
 function getTotalsRow( name, value )
 {
     let row = `<td></td><td><strong>${name}</strong></td><td>${getCurrencyString( value )}</td><td></td>`;
     return row;
 }
 
+// If the products list or quantity of a product has changed,
+// update the totals rows accordingly.
+// isAdd: true if the quantity is increasing
+// productData: data for the product.
 function updateTotalsRows( isAdd, productData )
 {
+    // Calculate the change in the subtotal for the table.
     let multiplier = isAdd ? 1 : -1;
     let cost = productData.price * multiplier;
     tableSubTotal += cost;
 
+    // If the subtotal is 0, remove all the totals' contents
+    // rather than displaying 0.
     if( tableSubTotal == 0 ) {
         tableTaxes = 0;
         tableTotal = 0;
@@ -183,10 +256,13 @@ function updateTotalsRows( isAdd, productData )
         totalRow.innerHTML = "";
 
     } else {
+
+        // Calculate the taxes and the overall total.
         let taxes = cost * productData.taxRate * multiplier;
         tableTaxes += taxes;
         tableTotal += cost + taxes;
 
+        // Update the contents of the totals rows.
         subTotalsRow.innerHTML = getTotalsRow( "Subtotal:", tableSubTotal );
         taxesRow.innerHTML = getTotalsRow( "Tax:", tableTaxes );
         totalRow.innerHTML = getTotalsRow( "Total:", tableTotal );
@@ -224,16 +300,30 @@ var productsSelectOnChange = function ()
         // Call the function to add the product to the table.
         addProductToTable( value );
     }
+
+    // Reset the value to 0.
     productsSelect.value = 0;
     return 0;
 }
 
+// Output the success of the ajax call to add the product to the invoice.
+// Mostly for debugging.
 function outputProductAddSuccess( data )
 {
     let msg = "product " + data.productId + " added to invoice " + data.invoiceId;
     console.log( msg );
 }
 
+// This function performs an ajax call to add a product and its 
+// quanity to an invoice in the database.
+// productId: the primary key for the product
+// invoiceId: the primary key for the invoice
+// quantity: the number of this product included in the invoice
+// success: the function to call upon success of the ajax call
+// done: the function to call upon successful completion of the ajax call
+// fail: the function to call upon completion of a failed ajax call
+// always: the function to call upon completion of the ajax call 
+//          whether or not it was successful.
 function addProductsToInvoiceAjax( productId, invoiceId, quantity, success, done, fail, always )
 {
     // Create the invoice and get the ID back.
@@ -259,10 +349,18 @@ function addProductsToInvoiceAjax( productId, invoiceId, quantity, success, done
 // Call this function after the invoice has been created and has an ID.
 function addProductsToInvoice( invoiceId )
 {
+    // Iterate over the products that were added to the invoice.
     for( const productId in selectedProducts ) {
+
+        // For each product, retrieve its data and call the function
+        // to do the ajax call.
         let productData = selectedProducts[ productId ];
         addProductsToInvoiceAjax( productId, invoiceId, productData.quantity, outputProductAddSuccess );
     }
+
+    // This is intended to wait until all the ajax calls have 
+    // completed before redirecting to the details view of the
+    // invoice so that when the details load, they are complete.
     $( document ).ajaxStop( function ()
     {
         window.location.href = "/Invoices/Details/" + invoiceId;
@@ -270,9 +368,12 @@ function addProductsToInvoice( invoiceId )
 }
 
 // Call this function when the form to create the invoice is submitted.
+// TODO: refactor ajax calls.
 function createInvoice( created, userId )
 {
     // Create the invoice and get the ID back.
+    // If successful, add the products to the invoice in the
+    // bridging table.
     $.ajax( {
         type: "POST",
         url: "/api/InvoicesData/CreateInvoice",
@@ -314,7 +415,7 @@ var tableTotal = 0;
 var subTotalsRow;
 var taxesRow;
 var totalRow;
-var numTotalsRows = 3;
+const numTotalsRows = 3;
 
 
 // The dropdown for product selection.
@@ -324,33 +425,52 @@ var productsSelect;
 window.onload = function ()
 {
     // For invoices Create view.
+    // Get the handle for the table for the products.
     productsTable = document.getElementById( "productsTable" );
+
+    // Check that the table exists on this page.
     if( productsTable !== undefined ) {
+
+        // Get a handle for the body of the table.
         let tBody = $( "#productsTable > TBODY" )[ 0 ];
+
+        // Insert rows for the totals.
         subTotalsRow = tBody.insertRow();
         taxesRow = tBody.insertRow();
         totalRow = tBody.insertRow();
+
+        // Get a handle for the products dropdown and set an click
+        // event handler.
         productsSelect = document.getElementById( "productsSelect" );
         productsSelect.onclick = productsSelectOnChange;
 
+        // Get a handle for the invoice form and set a submit event
+        // handler.
         let invoiceCreateForm = document.forms.invoiceCreateForm;
         invoiceCreateForm.addEventListener( "submit", function ( e )
         {
+            // Prevent the submission by the browser, because
+            // we are going to handle it with ajax.
             e.preventDefault();
 
+            // This is a handy way of making sure the whole form is valid.
             if( !$( "#invoiceCreateForm" ).valid() ) {
                 return false;
             }
 
+            // Get and validate the user ID, as razor is not handling
+            // this the way I would like.
             const userId = invoiceCreateForm.userId.value;
-
             if( userId == "" || userId == 0 ) {
+
+                // If it is not valid, indicate the error and return false.
                 let userIdError = document.getElementById( "userIdError" );
                 userIdError.classList.remove( "field-validation-valid" );
                 userIdError.innerHTML = "Please select a client.";
                 return false;
             }
 
+            // Call the method to create the invoice.
             const created = invoiceCreateForm.created.value;
             createInvoice( created, userId );
         } );    

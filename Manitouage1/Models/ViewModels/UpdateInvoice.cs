@@ -13,15 +13,19 @@ namespace Manitouage1.Models.ViewModels
             get; set;
         }
 
-        public IEnumerable<ProductDto> productDtos {
-            get; set;
-        }
-
         public IEnumerable<ApplicationUser> applicationUsers {
             get; set;
         }
 
-        public ProductsTotals totals {
+        public IEnumerable<ProductDto> productDtos {
+            get; set;
+        }
+
+        public IEnumerable<ViewInvoiceProduct> invoiceProducts {
+            get; set;
+        }
+
+        public ProductTotals totals {
             get; set;
         }
     }
