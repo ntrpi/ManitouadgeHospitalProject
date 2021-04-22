@@ -48,7 +48,7 @@ namespace Manitouage1.Controllers
         public ActionResult List()
         {
             //using view model to view donations
-            ViewDonation ViewModel = new ViewDonation();
+            ListDonation ViewModel = new ListDonation();
 
             //debugging to see if this controller works
             Debug.WriteLine("Here");
@@ -66,7 +66,7 @@ namespace Manitouage1.Controllers
 
                 //return View(Donations);
 
-                ViewModel.donation = allDonations;
+                ViewModel.alldonations = allDonations;
                 return View(ViewModel);
 
             }
@@ -96,6 +96,14 @@ namespace Manitouage1.Controllers
             {
                 DonationDto SelectedDonation = response.Content.ReadAsAsync<DonationDto>().Result;
                 ViewModel.donation = SelectedDonation;
+
+                //add the get statement for events related to the donations (id is the donation id that we will use to get details)
+                //REF VIDEO for week 4 before passion project (git code was harder to understand)
+                url = "api/DonationData/FindEventForDonation" + id;
+                response = client.GetAsync(url).Result;
+                EventDto SelectedEvent = response.Content.ReadAsAsync<EventDto>().Result;
+                ViewModel.EventId = SelectedEvent;
+
                 return View(ViewModel);
             }
             else
@@ -111,13 +119,13 @@ namespace Manitouage1.Controllers
         {
             //using view model for add donation.
             //here we want to display a form and a drop down for all events if the user wished to donate to an event
-            AddDonation ViewModel = new AddDonation();
+            CreateDonation ViewModel = new CreateDonation();
             //Pulling from AMANDA's eventcontroller for get events
             string url = "EventData/GetEvents";
             HttpResponseMessage response = client.GetAsync(url).Result;
-            IEnumerable<EventDto> allEvents = response.Content.ReadAsAsync<IEnumerable<EventDto>>().Result;
+            IEnumerable<EventDto> allevents = response.Content.ReadAsAsync<IEnumerable<EventDto>>().Result;
 
-            ViewModel.Events = allEvents;
+            ViewModel.allevents = allevents;
 
             return View(ViewModel);
         }
@@ -126,7 +134,7 @@ namespace Manitouage1.Controllers
         [HttpPost]
         public ActionResult Create(Donation donation)
         {
-            Debug.WriteLine("Here");
+            Debug.WriteLine("THIS IS WORKING!!!");
             // url string we will use to send port request  
             string url = "DonationData/AddDonation";
             HttpContent content = new StringContent(jss.Serialize(donation));
@@ -147,10 +155,11 @@ namespace Manitouage1.Controllers
         }
 
         // GET: Donation/Edit/5
-
-        //get the donation as per id to edit first 
+        //UPDATED CODE to get the event id to edit although I dont think event id needs to be edited as anything with money should not be edit not sure how to lock that down
         public ActionResult Edit(int id)
         {
+            //add n the new view model and create a new instance of it 
+            UpdateDonation ViewModel = new UpdateDonation();
             //starting with the url string REFERENCES:varsity MVP for this code and inclass live example
             //this is where I had issues in my passion project!!!! (Mind blown)
             string url = "DonationData/FindDonation/" + id;
@@ -161,7 +170,18 @@ namespace Manitouage1.Controllers
             if (response.IsSuccessStatusCode)
             {
                 DonationDto Selecteddonation = response.Content.ReadAsAsync<DonationDto>().Result;
-                return View(Selecteddonation);
+                ViewModel.donation = Selecteddonation;
+
+                //adding in event id 
+                //REUSING CODE FROM create donation 
+                //url : from AMANDA's DATA CONTROLLER
+                url = "EventData/GetEvents";
+                response = client.GetAsync(url).Result;
+                IEnumerable<EventDto> allevents = response.Content.ReadAsAsync<IEnumerable<EventDto>>().Result;
+                ViewModel.allevents = allevents;
+
+                return View(ViewModel);
+
             }
             else
             {
@@ -222,7 +242,7 @@ namespace Manitouage1.Controllers
         {
             string url = "DonationData/DeleteDonation/" + id;
 
-            //no new Http content top be displayed here
+            //no new Http content to be displayed here
             HttpContent content = new StringContent("");
             //Sending reponse request 
             HttpResponseMessage response = client.PostAsync(url, content).Result;
