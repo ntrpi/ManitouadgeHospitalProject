@@ -134,7 +134,7 @@ namespace Manitouage1.Controllers
         [HttpPost]
         public ActionResult Create(Donation donation)
         {
-            Debug.WriteLine("THIS IS WORKING!!!");
+            //Debug.WriteLine("THIS IS WORKING!!!");
             // url string we will use to send port request  
             string url = "DonationData/AddDonation";
             HttpContent content = new StringContent(jss.Serialize(donation));

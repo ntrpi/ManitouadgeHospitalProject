@@ -35,7 +35,7 @@ namespace Manitouage1.Controllers
         public IHttpActionResult GetDonations()
         {
             //FOR MY UNDERSTANDING: go to donations dto and get the list 
-            List<Donation> Donations = db.donations.Include(e=>e.Event).ToList();
+            List<Donation> Donations = db.donations.ToList();
             //FOR MY UNDERSTANDING: show the list in the donation database 
             List<DonationDto> DonationDtos = new List<DonationDto> { };
 
@@ -51,7 +51,8 @@ namespace Manitouage1.Controllers
                     phoneNumber = Donation.phoneNumber,
                     amount = Donation.amount,
                     //add event id 
-                    EventId = Donation.EventId
+                    EventId = Donation.EventId == null ? 0 : (int)Donation.EventId
+
                 };
                 DonationDtos.Add(NewDonation);
             }
@@ -90,7 +91,7 @@ namespace Manitouage1.Controllers
                 phoneNumber = Donation.phoneNumber,
                 amount = Donation.amount,
                 //add event id
-                EventId = Donation.EventId
+                EventId = (int)Donation.EventId
 
             };
 
