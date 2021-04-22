@@ -178,6 +178,7 @@ All of the members have communicated well to solve the issues and helped each ot
 - Home page content and styling.
 - Got the C part of CRUD working for invoices with AJAX.
 - Constructing main and footer navs, and home page content.
+- Helped Wafa debug some db and build issues.
 
 ### Wafa
 Donations Feature
