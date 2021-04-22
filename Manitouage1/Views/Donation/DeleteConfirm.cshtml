@@ -12,14 +12,6 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Event.Title)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Event.Title)
-        </dd>
-
-        <dt>
             @Html.DisplayNameFor(model => model.firstName)
         </dt>
 
@@ -61,7 +53,8 @@
 
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">

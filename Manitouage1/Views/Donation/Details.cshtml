@@ -1,5 +1,5 @@
 ﻿@model Manitouage1.Models.ViewModels.ShowDonation
-
+<!--admin functionality wont need layout -->
 @{
     ViewBag.Title = "Details";
 }
@@ -11,56 +11,56 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Event.Title)
+            @Html.DisplayNameFor(model => model.EventId.EventId)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Event.Title)
+            @Html.DisplayFor(model => model.EventId.Title)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.firstName)
+            @Html.DisplayNameFor(model => model.donation.firstName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.firstName)
+            @Html.DisplayFor(model => model.donation.firstName)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.lastName)
+            @Html.DisplayNameFor(model => model.donation.lastName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.lastName)
+            @Html.DisplayFor(model => model.donation.lastName)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.email)
+            @Html.DisplayNameFor(model => model.donation.email)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.email)
+            @Html.DisplayFor(model => model.donation.email)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.phoneNumber)
+            @Html.DisplayNameFor(model => model.donation.phoneNumber)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.phoneNumber)
+            @Html.DisplayFor(model => model.donation.phoneNumber)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.amount)
+            @Html.DisplayNameFor(model => model.donation.amount)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.amount)
+            @Html.DisplayFor(model => model.donation.amount)
         </dd>
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.donationId }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.donation.donationId }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
