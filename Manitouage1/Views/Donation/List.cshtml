@@ -1,38 +1,43 @@
-﻿@model Manitouage1.Models.ViewModels.ViewDonation
+﻿@model Manitouage1.Models.ViewModels.ListDonation
 
 @{
     ViewBag.Title = "List";
+    //added in layout THIS WAS ALL SANDRA!!!! 
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>List</h2>
+<h2>All Donations</h2>
+<!--only for admin view-->
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
     <tr>
+        <!--add in if statment if it is admin-->
+        <!--help from miho-->
         <th>
             @Html.DisplayNameFor(model => model.EventId)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.firstName)
+           First Name
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.lastName)
+            Last Name
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.email)
+            Email
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.phoneNumber)
+            Phone Number
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.amount)
+            Donation Amount
         </th>
         <th></th>
     </tr>
-
-@foreach (var item in Model) {
+    <!--add the view model all donations-->
+@foreach (var item in Model.alldonations) {
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.EventId)

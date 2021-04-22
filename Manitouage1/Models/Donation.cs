@@ -29,7 +29,7 @@ namespace Manitouage1.Models
 
         //a donation can be made to one event
         [ForeignKey("Event")]
-        public int EventId { get; set; }
+        public int? EventId { get; set; }
         public virtual Event Event { get; set; }
 
 

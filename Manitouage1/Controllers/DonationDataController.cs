@@ -18,8 +18,7 @@ namespace Manitouage1.Controllers
     public class DonationDataController : ApiController
     {
         private ManitouageDbContext db = new ManitouageDbContext();
-        //hello world
-        //test123
+
 
         /// <summary>
         /// Gets a list of donations in the database with the status code (200 ok)
@@ -36,7 +35,7 @@ namespace Manitouage1.Controllers
         public IHttpActionResult GetDonations()
         {
             //FOR MY UNDERSTANDING: go to donations dto and get the list 
-            List<Donation> Donations = db.donations.Include(e=>e.Event).ToList();
+            List<Donation> Donations = db.donations.ToList();
             //FOR MY UNDERSTANDING: show the list in the donation database 
             List<DonationDto> DonationDtos = new List<DonationDto> { };
 
@@ -52,7 +51,8 @@ namespace Manitouage1.Controllers
                     phoneNumber = Donation.phoneNumber,
                     amount = Donation.amount,
                     //add event id 
-                    EventId = Donation.EventId
+                    EventId = Donation.EventId == null ? 0 : (int)Donation.EventId
+
                 };
                 DonationDtos.Add(NewDonation);
             }
@@ -91,7 +91,7 @@ namespace Manitouage1.Controllers
                 phoneNumber = Donation.phoneNumber,
                 amount = Donation.amount,
                 //add event id
-                EventId = Donation.EventId
+                EventId = (int)Donation.EventId
 
             };
 
@@ -100,11 +100,41 @@ namespace Manitouage1.Controllers
             return Ok(DonationDto);
         }
 
+        ///<summary>
+        ///finding the event id for a donations
+        ///</summary>
+        ///<result>
+        ///this will display details of made to particular events 
+        ///</result>
+        ///REFERENCE TO VARSITY PROJECT
+        //GET: api/DonationData/FindEventForDonation
+        [HttpGet]
+        [ResponseType(typeof(IEnumerable<EventDto>))]
+        public IHttpActionResult FindEventForDonation(int id)
+        {
+            Event Event = db.events
+                //in the events table donation id equals the donations donation id 
+                .Where(e => e.Donations.Any(d => d.donationId == id))
+                .FirstOrDefault();
 
+            if (Event == null)
+            {
+                return NotFound();
+            }
+
+            EventDto Events = new EventDto
+            {
+                EventId = Event.EventId,
+                Title = Event.Title
+
+            };
+
+            return Ok(Events);
+
+        }
 
 
         /// <summary>
-        /// ASK CHRISTINE HOW WOULD I DISPLAY A DROP DOWN FOR EVENTS
         /// Adds a donation to the database.
         /// </summary>
         /// <param name="donation">adds a donation object. POST request through form</param>
