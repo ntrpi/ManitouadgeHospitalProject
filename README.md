@@ -25,7 +25,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/ntrpi/Manitouage1">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+    <img src="Manitouage1/Content/img/homepage.png" alt="Home page." height="300">
   </a>
 
   <h3 align="center">HTTP5204 Hospital Project</h3>
@@ -49,9 +49,17 @@
   <summary><h2 style="display: inline-block">Table of Contents</h2></summary>
   <ol>
     <li>
-      <a href="#about-the-project">About The Project</a>
+      <a href="#about-the-project">About the Project</a>
       <ul>
         <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#software">Software</a></li>
+        <li><a href="#installation">Installation</a></li>
+        <li><a href="#running-the-application">Running the Application</a></li>
       </ul>
     </li>
     <li><a href="#features">Features</a>
@@ -69,7 +77,15 @@
         <li><a href="#farshan">Farshan</a></li>
         <li><a href="#kyle">Kyle</a></li>
         <li><a href="#miho">Miho</a></li>
-        <li><a href="#sandra">Sandra</a></li>
+        <li><a href="#sandra">Sandra</a>
+          <ul>
+            <li><a href="#project">Project</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#front-end">Front End</a></li>
+            <li><a href="#documentation">Documentation</a></li>
+            <li><a href="#teamwork">Team Work</a></li>
+          </ul>
+        </li>
         <li><a href="#wafa">Wafa</a></li>
       </ul>
     </li>
@@ -83,15 +99,53 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+This project is the culmination of the work we have put into several of our classes in the second semester of the Humber Web Development program. The goal is to showcase our ability to envision, plan, and implement a large-scale project with real-world application. Our team was tasked with evaluating the existing website for the Manitouadge General Hospital, taking inventory of the content, and reimagining it as a web application that could be used to enhance communication and health management for the Manitouadge community. This involved a thorough reconstruction of the information architecture, as well as exploring and evaluating new content and features that would be compatible with the goals of the hospital, as well as developing a completely new visual design.
 
-Here's a blank template to get started:
-
+What you will find in this repository are the first steps towards making our vision a reality. The duration of a single semester did not allow for us to fully complete the implementation of our design, but does showcase our general skills and abilities and allows the user to accurately imagine what the final result could be.
 
 ### Built With
 
 * [Visual Studio Community 2019](https://visualstudio.microsoft.com/vs/community/)
 
+<!-- GETTING STARTED -->
+## Getting Started
+
+To get a local copy up and running follow these simple steps.
+
+### Software
+
+Download and install [Visual Studio Community 2019](https://visualstudio.microsoft.com/vs/community/), and make sure you have a working browser. For full functionality, please ensure that JavaScript is enabled.
+
+### Installation
+
+Clone the repo:
+  ```sh
+  git clone https://github.com/ntrpi/Manitouage1.git
+  ```
+
+### Running the Application
+
+1. In a file explorer, navigate to the cloned repository and double-click on Manitouage1.sln. This will open Visual Studio.
+
+2. In the Visual Studio menu bar click Tools > NuGet Package Manger > Package Manger Console.
+
+3. In the Package Manger Console window, enter the following commands:
+  ```sh
+  enable-migrations
+  ```
+  ```sh
+  add-migration new_migration
+  ```
+  ```sh
+  update-database
+  ```
+
+4. In the menu bar click Project > Manitouage1 Properties. In the properties window that opens, click Web in the left side menu. Set the Project Url property to 
+  ```sh
+  https://localhost:44397/
+  ```
+
+5. In the menu bar click Debug > Start Without Debugging, or press Ctrl+F5. The application will open in a new browser window or tab. 
 
 ## Features
 
@@ -160,25 +214,41 @@ Department and Job Posting feature
 All of the members have communicated well to solve the issues and helped each others.
 
 ### Sandra
+
+#### Project
 - Created project and initialized repo.
 - Set up everything so Entity Framework would work.
 - Determined a strategy to prevent database conflicts while the models were in constant flux.
-- CRUD for Products and Invoices.
-- Created a ControllersHelper to reduce errors and create consistency in the interactions between view and data controllers without obscuring access to either of those endpoints.
-- Changes to the IdentityModel to be able to access the Users managed by the framework.
-- Created the many-to-many relationship between Products and Invoices.
 - Created a RolesController to help automate the addition of roles to the database.
 - Added some database seeding for Roles so that they will be consistent for everyone.
-- Created readme with sections for everyone to fill out.
+
+#### Features
+- Created a ControllersHelper to reduce errors and create consistency in the interactions between view and data controllers without obscuring access to either of those endpoints.
+- Changes to the IdentityModel to be able to access the Users managed by the framework.
+- Initial CRUD for Products and Invoices as separate entities.
 - Started adding views to manage the relationship between Users and Invoices.
+- Added the many-to-many relationship between Products and Invoices.
 - Successfully added client-side functionality to dynamically update the invoice view as products are added.
-- Added links in the readme to the features that have been added.
-- Recovered the nav that disappeared after a bunch of NuGet packages were updated.
-- Added some stuff to the layout.
-- Home page content and styling.
 - Got the C part of CRUD working for invoices with AJAX.
-- Constructing main and footer navs, and home page content.
+
+#### Front End
+- Recovered the auto-generated nav that disappeared after a bunch of NuGet packages were updated.
+- Added some structure and style to the layout.
+- Home page content and styling.
+- Constructed main and footer navs.
+
+#### Documentation
+- Ensured my code was well commented.
+- Created readme with sections for everyone to fill out.
+- Added links in the readme to the features that have been added.
+- Added an image, project description, and Getting Started section to the readme.
+
+#### Team Work
+- Helped Amanda with database issues
+- Helped Amanda with a strange VS/Windows system issue.
 - Helped Wafa debug some db and build issues.
+- Continual communication with the team about changes to models and front end.
+- Helped students from other teams debug their work.
 
 ### Wafa
 Donations Feature
