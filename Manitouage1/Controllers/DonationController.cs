@@ -40,7 +40,7 @@ namespace Manitouage1.Controllers
         //for views where it links back to list
         public ActionResult Index()
         {
-            return View();
+            return View("List");
         }
 
         //GET: Donation/List
@@ -123,23 +123,23 @@ namespace Manitouage1.Controllers
             //Pulling from AMANDA's eventcontroller for get events
             string url = "EventData/GetEvents";
             HttpResponseMessage response = client.GetAsync(url).Result;
-            IEnumerable<EventDto> allevents = response.Content.ReadAsAsync<IEnumerable<EventDto>>().Result;
+            IEnumerable<EventDto> PotentialEvents = response.Content.ReadAsAsync<IEnumerable<EventDto>>().Result;
 
-            ViewModel.allevents = allevents;
+            ViewModel.allevents = PotentialEvents;
 
             return View(ViewModel);
         }
 
         // POST: Donation/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(Donation donation)
+        [ValidateAntiForgeryToken()]
+        public ActionResult Create(Donation donationInfo)
         {
             //Debug.WriteLine("THIS IS WORKING!!!");
             // url string we will use to send port request  
             string url = "DonationData/AddDonation";
-            Debug.WriteLine(jss.Serialize(donation));
-            HttpContent content = new StringContent(jss.Serialize(donation));
+            //Debug.WriteLine(jss.Serialize(donationInfo));
+            HttpContent content = new StringContent(jss.Serialize(donationInfo));
             content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
             HttpResponseMessage response = client.PostAsync(url, content).Result;
 
@@ -179,8 +179,8 @@ namespace Manitouage1.Controllers
                 //url : from AMANDA's DATA CONTROLLER
                 url = "EventData/GetEvents";
                 response = client.GetAsync(url).Result;
-                IEnumerable<EventDto> allevents = response.Content.ReadAsAsync<IEnumerable<EventDto>>().Result;
-                ViewModel.allevents = allevents;
+                IEnumerable<EventDto> PotentialEvents = response.Content.ReadAsAsync<IEnumerable<EventDto>>().Result;
+                ViewModel.allevents = PotentialEvents;
 
                 return View(ViewModel);
 

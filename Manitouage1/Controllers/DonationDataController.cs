@@ -110,8 +110,9 @@ namespace Manitouage1.Controllers
         ///<summary>
         ///finding the event id for a donations
         ///</summary>
+        ///<prama name="id">Donation id</prama>
         ///<result>
-        ///this will display details of made to particular events 
+        ///This will display the event associated with the donation 
         ///</result>
         ///REFERENCE TO VARSITY PROJECT
         //GET: api/DonationData/FindEventForDonation
