@@ -56,7 +56,7 @@ namespace Manitouage1.Controllers
                     amount = Donation.amount,
                     //add event id 
                     EventId = Donation.EventId,
-                    Title = Donation.Title
+                    Title = Event.Title
 
 
                 };
@@ -98,7 +98,7 @@ namespace Manitouage1.Controllers
                 amount = Donation.amount,
                 //add event id
                 EventId = Donation.EventId,
-                Title = Donation.Title
+                //Title = Event.Title
 
             };
 

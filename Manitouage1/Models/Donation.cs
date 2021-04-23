@@ -31,7 +31,6 @@ namespace Manitouage1.Models
         [ForeignKey("Event")]
         //if it's null
         public int? EventId { get; set; }
-        public string Title { get; set; }
         public virtual Event Event { get; set; }
 
 
