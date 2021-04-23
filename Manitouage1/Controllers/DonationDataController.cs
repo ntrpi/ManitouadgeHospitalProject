@@ -42,9 +42,8 @@ namespace Manitouage1.Controllers
             //information to be displayed 
             foreach (var Donation in Donations)
             {
-                //updated to LINQ query
-                Event Event = db.events
-                .Where(a => a.Donations.Any(b => b.EventId == Donation.EventId))
+                 Event Event = db.events
+                .Where(e => e.Donations.Any(d => d.EventId == Donation.EventId))
                 .FirstOrDefault();
                 DonationDto NewDonation = new DonationDto
                 {
@@ -57,6 +56,7 @@ namespace Manitouage1.Controllers
                     //add event id SANDRA HELPED
                     EventId = Donation.EventId == null ? 0 : (int)Donation.EventId,
                     Title = Donation.Title
+
 
                 };
                 DonationDtos.Add(NewDonation);
@@ -217,7 +217,7 @@ namespace Manitouage1.Controllers
 
 
         // DELETE: api/DonationsData/DeleteDonation/5
-        [ResponseType(typeof(Donation))]
+        [HttpPost]
         public IHttpActionResult DeleteDonation(int id)
         {
             Donation donation = db.donations.Find(id);
