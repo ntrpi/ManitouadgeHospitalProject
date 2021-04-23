@@ -68,7 +68,7 @@
                     @foreach (var Event in Model.allevents)
                     {
                         <option value="@Event.EventId" 
-                                @if (Event.EventId == Model.donation.donationId) { <text> selected</text>}>
+                                @if (Event.EventId == Model.donation.EventId) { <text> selected</text>}>
                             @Event.Title
                         </option>
                     }
@@ -85,7 +85,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "List")
 </div>
 
 @section Scripts {

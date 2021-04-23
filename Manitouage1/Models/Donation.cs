@@ -30,6 +30,7 @@ namespace Manitouage1.Models
         //a donation can be made to one event
         [ForeignKey("Event")]
         public int? EventId { get; set; }
+        public string Title { get; set; }
         public virtual Event Event { get; set; }
 
 
@@ -55,7 +56,12 @@ namespace Manitouage1.Models
         [DisplayName("Amount")]
         public decimal amount { get; set; }
 
-        public int EventId { get; set; }
+        [DisplayName("Event Id")]
+        public int? EventId { get; set; }
+
+        [DisplayName("Event Name")]
+        public string Title { get; set; }
+
 
     }
 }

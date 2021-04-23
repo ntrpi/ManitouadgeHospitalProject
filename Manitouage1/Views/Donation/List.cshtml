@@ -17,7 +17,7 @@
         <!--add in if statment if it is admin-->
         <!--help from miho-->
         <th>
-            @Html.DisplayNameFor(model => model.EventId.Title)
+            @Html.DisplayNameFor(model => model.Event.Title)
         </th>
         <th>
            First Name
@@ -40,7 +40,7 @@
 @foreach (var item in Model.alldonations) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.EventId)
+            @Html.DisplayFor(modelItem => item.Title)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.firstName)

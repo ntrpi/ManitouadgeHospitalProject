@@ -238,6 +238,14 @@
     <Compile Include="Migrations\202104222214000_WafaM_20210422_1813.Designer.cs">
       <DependentUpon>202104222214000_WafaM_20210422_1813.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202104222302224_WafaM_20210422_1902.cs" />
+    <Compile Include="Migrations\202104222302224_WafaM_20210422_1902.Designer.cs">
+      <DependentUpon>202104222302224_WafaM_20210422_1902.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202104222319067_WafaM_20210422_1918.cs" />
+    <Compile Include="Migrations\202104222319067_WafaM_20210422_1918.Designer.cs">
+      <DependentUpon>202104222319067_WafaM_20210422_1918.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Alert.cs" />
@@ -534,6 +542,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202104222214000_WafaM_20210422_1813.resx">
       <DependentUpon>202104222214000_WafaM_20210422_1813.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104222302224_WafaM_20210422_1902.resx">
+      <DependentUpon>202104222302224_WafaM_20210422_1902.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104222319067_WafaM_20210422_1918.resx">
+      <DependentUpon>202104222319067_WafaM_20210422_1918.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

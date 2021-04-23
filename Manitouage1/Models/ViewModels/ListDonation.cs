@@ -10,7 +10,7 @@ namespace Manitouage1.Models.ViewModels
 
         public IEnumerable<DonationDto> alldonations { get; set; }
 
-        public EventDto EventId { get; set; }
+        public EventDto Event { get; set; }
 
     }
 }
