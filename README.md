@@ -42,8 +42,6 @@
   </p>
 </p>
 
-
-
 <!-- TABLE OF CONTENTS -->
 <details open="open">
   <summary><h2 style="display: inline-block">Table of Contents</h2></summary>
@@ -94,12 +92,10 @@
   </ol>
 </details>
 
-
-
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-This project is the culmination of the work we have put into several of our classes in the second semester of the Humber Web Development program. The goal is to showcase our ability to envision, plan, and implement a large-scale project with real-world application. Our team was tasked with evaluating the existing website for the Manitouadge General Hospital, taking inventory of the content, and reimagining it as a web application that could be used to enhance communication and health management for the Manitouadge community. This involved a thorough reconstruction of the information architecture, as well as exploring and evaluating new content and features that would be compatible with the goals of the hospital, as well as developing a completely new visual design.
+This project is the culmination of the work we have put into several of our classes in the second semester of the Humber Web Development program. The goal is to showcase our ability to envision, plan, and implement a large-scale project with real-world application. Our team was tasked with evaluating the existing website for the Manitouadge General Hospital, taking inventory of the content, and reimagining it as a web application that could be used to enhance communication and health management for the Manitouadge community. This involved a thorough reconstruction of the information architecture, as well as exploring and evaluating new content and features that would be compatible with the goals of the hospital, in addition to developing a completely new visual design.
 
 What you will find in this repository are the first steps towards making our vision a reality. The duration of a single semester did not allow for us to fully complete the implementation of our design, but does showcase our general skills and abilities and allows the user to accurately imagine what the final result could be.
 
@@ -193,7 +189,6 @@ Regardless of the type of expense, it makes sense to have a list of the services
 - contact us controller
 - Almost deleted wafa's work for good
 
-
 ### Kyle
 - Testimonial Model
 - Volunteer Model
@@ -201,7 +196,6 @@ Regardless of the type of expense, it makes sense to have a list of the services
 - Volunteer Controller
 - Moral Support
 - Positivity
-
 
 ### Miho
 Department and Job Posting feature
