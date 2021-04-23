@@ -31,7 +31,8 @@ namespace Manitouage1.Controllers
         // GET: api/DonationData/getdonations
         /// </example>
         [HttpGet]
-        [ResponseType(typeof(IEnumerable<DonationDto>))]
+        //changed to EventDto
+        [ResponseType(typeof(IEnumerable<EventDto>))]
         public IHttpActionResult GetDonations()
         {
             //FOR MY UNDERSTANDING: go to donations dto and get the list 
@@ -54,7 +55,7 @@ namespace Manitouage1.Controllers
                     phoneNumber = Donation.phoneNumber,
                     amount = Donation.amount,
                     //add event id SANDRA HELPED
-                    EventId = Donation.EventId == null ? 0 : (int)Donation.EventId,
+                    EventId = Donation.EventId,
                     Title = Donation.Title
 
 
@@ -73,7 +74,7 @@ namespace Manitouage1.Controllers
         /// <param name="id">The donation id</param>
         /// <returns>information about the donation: donation made by, amount and if it was made to an event</returns>
         // <example>
-        // GET: api/DonationsData/FindDonation/5
+        // GET: api/DonationData/FindDonation/5
         // </example>
         [HttpGet]
         [ResponseType(typeof(DonationDto))]
@@ -95,8 +96,8 @@ namespace Manitouage1.Controllers
                 email = Donation.email,
                 phoneNumber = Donation.phoneNumber,
                 amount = Donation.amount,
-                //add event id SANDRA HELPED
-                EventId = Donation.EventId == null ? 0 : (int)Donation.EventId,
+                //add event id
+                EventId = Donation.EventId,
                 Title = Donation.Title
 
             };
@@ -229,7 +230,7 @@ namespace Manitouage1.Controllers
             db.donations.Remove(donation);
             db.SaveChanges();
 
-            return Ok(donation);
+            return Ok();
         }
 
         protected override void Dispose(bool disposing)

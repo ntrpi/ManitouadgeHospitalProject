@@ -99,7 +99,7 @@ namespace Manitouage1.Controllers
 
                 //add the get statement for events related to the donations (id is the donation id that we will use to get details)
                 //REF VIDEO for week 4 before passion project (git code was harder to understand)
-                url = "api/DonationData/FindEventForDonation" + id;
+                url = "DonationData/FindEventForDonation" + id;
                 response = client.GetAsync(url).Result;
                 EventDto SelectedEvent = response.Content.ReadAsAsync<EventDto>().Result;
                 ViewModel.EventId = SelectedEvent;
@@ -132,11 +132,13 @@ namespace Manitouage1.Controllers
 
         // POST: Donation/Create
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(Donation donation)
         {
             //Debug.WriteLine("THIS IS WORKING!!!");
             // url string we will use to send port request  
             string url = "DonationData/AddDonation";
+            Debug.WriteLine(jss.Serialize(donation));
             HttpContent content = new StringContent(jss.Serialize(donation));
             content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
             HttpResponseMessage response = client.PostAsync(url, content).Result;
@@ -145,7 +147,7 @@ namespace Manitouage1.Controllers
             {
                 int donationId = response.Content.ReadAsAsync<int>().Result;
                 //in this case we would redirect to list page for user to review the donation posted 
-                return RedirectToAction("List", new { id = donationId });
+                return RedirectToAction("Details", new { id = donationId });
             }
             else
             {
