@@ -99,10 +99,10 @@ namespace Manitouage1.Controllers
 
                 //add the get statement for events related to the donations (id is the donation id that we will use to get details)
                 //REF VIDEO for week 4 before passion project (git code was harder to understand)
-                url = "DonationData/FindEventForDonation" + id;
+                url = "DonationData/FindEventForDonation" + id;//donation id FYI
                 response = client.GetAsync(url).Result;
                 EventDto SelectedEvent = response.Content.ReadAsAsync<EventDto>().Result;
-                ViewModel.EventId = SelectedEvent;
+                ViewModel.events = SelectedEvent;
 
                 return View(ViewModel);
             }

@@ -54,7 +54,7 @@ namespace Manitouage1.Controllers
                     email = Donation.email,
                     phoneNumber = Donation.phoneNumber,
                     amount = Donation.amount,
-                    //add event id SANDRA HELPED
+                    //add event id 
                     EventId = Donation.EventId,
                     Title = Donation.Title
 
@@ -117,7 +117,7 @@ namespace Manitouage1.Controllers
         //GET: api/DonationData/FindEventForDonation
         [HttpGet]
         [ResponseType(typeof(IEnumerable<EventDto>))]
-        public IHttpActionResult FindEventForDonation(int id)
+        public IHttpActionResult FindEventForDonation(int id)//this is donation id 
         {
             Event Event = db.events
                 //in the events table donation id equals the donations donation id 
