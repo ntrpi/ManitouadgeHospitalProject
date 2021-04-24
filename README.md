@@ -225,6 +225,7 @@ Department and Job Posting feature
 - Added the many-to-many relationship between Products and Invoices.
 - Successfully added client-side functionality to dynamically update the invoice view as products are added.
 - Got the C part of CRUD working for invoices with AJAX.
+- Got the CRD part of CRUD working for invoices with products. Working on U. 
 
 #### Front End
 - Recovered the auto-generated nav that disappeared after a bunch of NuGet packages were updated.
@@ -239,11 +240,12 @@ Department and Job Posting feature
 - Added an image, project description, and Getting Started section to the readme.
 
 #### Team Work
-- Helped Amanda with database issues
+- Helped Amanda with database issues.
 - Helped Amanda with a strange VS/Windows system issue.
 - Helped Wafa debug some db and build issues.
 - Continual communication with the team about changes to models and front end.
 - Helped students from other teams debug their work.
+- Helped Amanda correctly structure and show the 1-1 relationship between Alerts and 2 other models.
 
 ### Wafa
 Donations Feature
