@@ -9,7 +9,8 @@
   var totals = Model.totals;
 }
 
-<div class="ml-3">
+<h3>Are you sure you want to delete this?</h3>
+<div>
   <h4>Invoice</h4>
   <hr />
   <dl class="dl-horizontal">
@@ -63,49 +64,15 @@
       }
     }
   </dl>
-</div>
-<hr />
-<h4 class="ml-3">Items</h4>
-<table class="table mx-3">
-  <tr>
-    <th>Name</th>
-    <th>Quantity</th>
-    <th>Cost</th>
-  </tr>
 
-  @foreach( var item in products ) {
-    <tr>
-      <td>
-        @Html.DisplayFor( modelItem => item.productName )
-      </td>
-      <td>
-        @Html.DisplayFor( modelItem => item.quantity )
-      </td>
-      <td>
-        @Html.DisplayFor( modelItem => item.cost )
-      </td>
-    </tr>
-  }
-  <tr>
-    <td></td>
-    <td class="text-right font-weight-bold">@Html.DisplayNameFor( model => totals.subTotal )</td>
-    <td>@Html.DisplayFor( model => totals.subTotal )</td>
-  </tr>
-  <tr>
-    <td></td>
-    <td class="text-right font-weight-bold">@Html.DisplayNameFor( model => totals.taxes )</td>
-    <td>@Html.DisplayFor( model => totals.taxes )</td>
-  </tr>
-  <tr>
-    <td></td>
-    <td class="text-right font-weight-bold">@Html.DisplayNameFor( model => totals.total )</td>
-    <td>@Html.DisplayFor( model => totals.total )</td>
-  </tr>
-</table>
-
-<p>
-  @Html.ActionLink( "Edit", "Edit", new {
+  @using( Html.BeginForm( "Delete", "Invoices", new {
     id = invoice.invoiceId
-  } ) |
-  @Html.ActionLink( "Back to List", "Index" )
-</p>
+  } ) ) {
+    @Html.AntiForgeryToken()
+
+    <div class="form-actions no-color">
+      <input type="submit" value="Delete" class="btn btn-default" /> |
+      @Html.ActionLink( "Back to List", "Index" )
+    </div>
+  }
+</div>
