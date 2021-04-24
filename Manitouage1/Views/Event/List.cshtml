@@ -31,9 +31,9 @@
         <th>
             ContactPerson
         </th>
-        <th>
-            Number of Donations
-        </th>
+        <!--<th>
+        Number of Donations
+        </th>-->
         <th>
             Options
         </th>
@@ -62,11 +62,9 @@
         @Html.DisplayFor(modelItem => events.ContactPerson)
     </td>
     <td>
-        @Html.DisplayFor(modelItem => events.NumDonations)
-    </td>
-    <td>
         <span style="margin-right:5px;">@Html.ActionLink("Edit", "Edit", new { id = events.EventId })</span>
         @Html.ActionLink("Details", "Details", new { id = events.EventId })
+        @Html.ActionLink("Delete", "DeleteConfirm", new { id = events.EventId })
 
     </td>
 </tr>
