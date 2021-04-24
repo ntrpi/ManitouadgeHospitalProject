@@ -246,6 +246,10 @@
     <Compile Include="Migrations\202104222319067_WafaM_20210422_1918.Designer.cs">
       <DependentUpon>202104222319067_WafaM_20210422_1918.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202104232352135_WafaM_20210423_1951.cs" />
+    <Compile Include="Migrations\202104232352135_WafaM_20210423_1951.Designer.cs">
+      <DependentUpon>202104232352135_WafaM_20210423_1951.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Alert.cs" />
@@ -263,6 +267,7 @@
     <Compile Include="Models\Testimonial.cs" />
     <Compile Include="Models\ViewModels\CreateDonation.cs" />
     <Compile Include="Models\ViewModels\ListDepartments.cs" />
+    <Compile Include="Models\ViewModels\ListEventxDonation.cs" />
     <Compile Include="Models\ViewModels\ListJobPostings.cs" />
     <Compile Include="Models\ViewModels\ShowDepartment.cs" />
     <Compile Include="Models\ViewModels\ShowDonation.cs" />
@@ -548,6 +553,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202104222319067_WafaM_20210422_1918.resx">
       <DependentUpon>202104222319067_WafaM_20210422_1918.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104232352135_WafaM_20210423_1951.resx">
+      <DependentUpon>202104232352135_WafaM_20210423_1951.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

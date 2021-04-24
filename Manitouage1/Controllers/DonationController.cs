@@ -40,7 +40,7 @@ namespace Manitouage1.Controllers
         //for views where it links back to list
         public ActionResult Index()
         {
-            return View();
+            return View("List");
         }
 
         //GET: Donation/List
@@ -99,10 +99,10 @@ namespace Manitouage1.Controllers
 
                 //add the get statement for events related to the donations (id is the donation id that we will use to get details)
                 //REF VIDEO for week 4 before passion project (git code was harder to understand)
-                url = "api/DonationData/FindEventForDonation" + id;
+                url = "DonationData/FindEventForDonation" + id;//donation id FYI
                 response = client.GetAsync(url).Result;
                 EventDto SelectedEvent = response.Content.ReadAsAsync<EventDto>().Result;
-                ViewModel.EventId = SelectedEvent;
+                ViewModel.events = SelectedEvent;
 
                 return View(ViewModel);
             }
@@ -123,21 +123,23 @@ namespace Manitouage1.Controllers
             //Pulling from AMANDA's eventcontroller for get events
             string url = "EventData/GetEvents";
             HttpResponseMessage response = client.GetAsync(url).Result;
-            IEnumerable<EventDto> allevents = response.Content.ReadAsAsync<IEnumerable<EventDto>>().Result;
+            IEnumerable<EventDto> PotentialEvents = response.Content.ReadAsAsync<IEnumerable<EventDto>>().Result;
 
-            ViewModel.allevents = allevents;
+            ViewModel.allevents = PotentialEvents;
 
             return View(ViewModel);
         }
 
         // POST: Donation/Create
         [HttpPost]
-        public ActionResult Create(Donation donation)
+        [ValidateAntiForgeryToken()]
+        public ActionResult Create(Donation donationInfo)
         {
             //Debug.WriteLine("THIS IS WORKING!!!");
             // url string we will use to send port request  
             string url = "DonationData/AddDonation";
-            HttpContent content = new StringContent(jss.Serialize(donation));
+            //Debug.WriteLine(jss.Serialize(donationInfo));
+            HttpContent content = new StringContent(jss.Serialize(donationInfo));
             content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
             HttpResponseMessage response = client.PostAsync(url, content).Result;
 
@@ -145,7 +147,7 @@ namespace Manitouage1.Controllers
             {
                 int donationId = response.Content.ReadAsAsync<int>().Result;
                 //in this case we would redirect to list page for user to review the donation posted 
-                return RedirectToAction("List", new { id = donationId });
+                return RedirectToAction("Details", new { id = donationId });
             }
             else
             {
@@ -177,8 +179,8 @@ namespace Manitouage1.Controllers
                 //url : from AMANDA's DATA CONTROLLER
                 url = "EventData/GetEvents";
                 response = client.GetAsync(url).Result;
-                IEnumerable<EventDto> allevents = response.Content.ReadAsAsync<IEnumerable<EventDto>>().Result;
-                ViewModel.allevents = allevents;
+                IEnumerable<EventDto> PotentialEvents = response.Content.ReadAsAsync<IEnumerable<EventDto>>().Result;
+                ViewModel.allevents = PotentialEvents;
 
                 return View(ViewModel);
 

@@ -2,7 +2,6 @@
 
 @{
     ViewBag.Title = "Create";
-    //added in layout THIS WAS ALL SANDRA!!!! 
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -58,11 +57,11 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.donation.EventId, "Events", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.donation.EventId, "Events", htmlAttributes: new { @class = "control-label col-md-2",})
             <div class="col-md-10">
                 <!--REFERENCE CODE:: varsity with auth player create view-->
                 <!--in create view-->
-                <select name="EventId">
+                <select name="donation.EventId">
                     @foreach (var Event in Model.allevents)
                     {
                         <option value="@Event.EventId">
@@ -82,7 +81,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "List")
 </div>
 
 @section Scripts {

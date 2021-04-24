@@ -44,7 +44,7 @@ namespace Manitouage1.Controllers
         [HttpGet]
         public ActionResult List()
         {
-            Debug.WriteLine("Here");
+            ListEventxDonation ViewModel = new ListEventxDonation();
             // Create the string just as you would if you were typing it in the browser.
             string url = "EventData/GetEvents";
 
@@ -55,7 +55,8 @@ namespace Manitouage1.Controllers
             if (response.IsSuccessStatusCode)
             {
                 IEnumerable<EventDto> EventDtos = response.Content.ReadAsAsync<IEnumerable<EventDto>>().Result;
-                return View(EventDtos);
+                ViewModel.events = EventDtos;
+                return View(ViewModel);
 
             }
             else

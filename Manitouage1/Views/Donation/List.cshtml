@@ -40,7 +40,7 @@
 @foreach (var item in Model.alldonations) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Title)
+            @Html.DisplayFor(modelItem => item.EventId)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.firstName)
@@ -60,7 +60,7 @@
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.donationId }) |
             @Html.ActionLink("Details", "Details", new { id=item.donationId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.donationId })
+            @Html.ActionLink("Delete", "DeleteConfirm", new { id=item.donationId })
         </td>
     </tr>
 }

@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace Manitouage1.Models
 {
@@ -22,6 +23,7 @@ namespace Manitouage1.Models
         [Required]
         public string jobType { get; set; }
 
+        [AllowHtml]
         [Required]
         public string jobDescription { get; set; }
 
@@ -56,21 +58,27 @@ namespace Manitouage1.Models
         public int jobPostingId { get; set; }
 
         [DisplayName("Job Number")]
+        [Required(ErrorMessage = "Please Enter Job Number")]
         public string jobNumber { get; set; }
 
         [DisplayName("Job Title")]
+        [Required(ErrorMessage = "Please Enter Job Title")]
         public string jobTitle { get; set; }
 
         [DisplayName("Job Type")]
+        [Required(ErrorMessage = "Please Enter Job Type")]
         public string jobType { get; set; }
 
         [DisplayName("Job Description")]
+        [Required(ErrorMessage = "Please Enter Job Description")]
         public string jobDescription { get; set; }
 
         [DisplayName("Salary")]
+        [Required(ErrorMessage = "Please Enter Salary")]
         public string salary { get; set; }
 
-        [DisplayName("Closing Date")]
+        [DisplayName("Closing Date and Time")]
+        [Required(ErrorMessage = "Please Enter Closing Date and Time")]
         public DateTime closingDate { get; set; }
 
         [DisplayName("Department ID")]
