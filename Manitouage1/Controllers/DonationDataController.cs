@@ -11,6 +11,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Manitouage1.Models;
+using Manitouage1.Models.ViewModels;
 using System.Diagnostics;
 
 namespace Manitouage1.Controllers
@@ -31,7 +32,8 @@ namespace Manitouage1.Controllers
         // GET: api/DonationData/getdonations
         /// </example>
         [HttpGet]
-        [ResponseType(typeof(IEnumerable<DonationDto>))]
+        //changed to EventDto
+        [ResponseType(typeof(IEnumerable<EventDto>))]
         public IHttpActionResult GetDonations()
         {
             //FOR MY UNDERSTANDING: go to donations dto and get the list 
@@ -53,9 +55,8 @@ namespace Manitouage1.Controllers
                     email = Donation.email,
                     phoneNumber = Donation.phoneNumber,
                     amount = Donation.amount,
-                    //add event id SANDRA HELPED
-                    EventId = Donation.EventId == null ? 0 : (int)Donation.EventId,
-                    Title = Donation.Title
+                    //add event id 
+                    EventId = Donation.EventId,
 
 
                 };
@@ -67,13 +68,80 @@ namespace Manitouage1.Controllers
         }
 
 
+
+        /// <summary>
+        /// CHRISTINE IT's NOT WORKING!!!!!!!!!!!!!!!
+        /// Gets a list of donations in the database with the status code (200 ok)
+        /// this is in direct reference to playersdatacontroller(varsity_w_auth)
+        /// </summary>
+        /// <returns>
+        /// returns a list of all the donations and the events linked to them
+        /// </returns>
+        /// <example>
+        // GET: api/DonationData/GetAllDonations
+        /// </example>
+        //changed to EventDto
+        [ResponseType(typeof(IEnumerable<ListDonation>))]
+        public IHttpActionResult GetAllDonations()
+        {
+            //List of donations
+            List<Donation> Donations = db.donations.ToList();
+            //using view model :: show donation 
+            List<ListDonation> DonationDtos = new List<ListDonation> { };
+
+            //information to be displayed 
+            foreach (var Donation in Donations)
+            {
+                ListDonation donation = new ListDonation();
+
+                //getting events from the events table and linking it to the donations table 
+                Event Event = db.events
+               .Where(e => e.Donations.Any(d => d.EventId == Donation.EventId))
+               .FirstOrDefault();
+
+                //now calling the events dto to fetch the information to list
+                EventDto NewEvent = new EventDto
+                {
+                    EventId = Event.EventId,
+                    Title = Event.Title
+
+                };
+
+                //now calling the donations dto to fetch the data
+                DonationDto NewDonation = new DonationDto
+                {
+                    donationId = Donation.donationId,
+                    firstName = Donation.firstName,
+                    lastName = Donation.lastName,
+                    email = Donation.email,
+                    phoneNumber = Donation.phoneNumber,
+                    amount = Donation.amount,
+                    //add event id 
+                    EventId = Donation.EventId,
+
+
+                };
+
+                donation.Event = NewEvent;
+                DonationDtos.Add(donation);
+
+            }
+
+            return Ok(DonationDtos);
+
+        }
+
+
+
+
+
         /// <summary> 
         /// Finds a specfic donation by id with an OK status code. if donation is not found displays status code 404
         /// </summary>
         /// <param name="id">The donation id</param>
         /// <returns>information about the donation: donation made by, amount and if it was made to an event</returns>
         // <example>
-        // GET: api/DonationsData/FindDonation/5
+        // GET: api/DonationData/FindDonation/5
         // </example>
         [HttpGet]
         [ResponseType(typeof(DonationDto))]
@@ -95,9 +163,9 @@ namespace Manitouage1.Controllers
                 email = Donation.email,
                 phoneNumber = Donation.phoneNumber,
                 amount = Donation.amount,
-                //add event id SANDRA HELPED
-                EventId = Donation.EventId == null ? 0 : (int)Donation.EventId,
-                Title = Donation.Title
+                //add event id
+                EventId = Donation.EventId,
+
 
             };
 
@@ -109,14 +177,15 @@ namespace Manitouage1.Controllers
         ///<summary>
         ///finding the event id for a donations
         ///</summary>
+        ///<prama name="id">Donation id</prama>
         ///<result>
-        ///this will display details of made to particular events 
+        ///This will display the event associated with the donation 
         ///</result>
         ///REFERENCE TO VARSITY PROJECT
         //GET: api/DonationData/FindEventForDonation
         [HttpGet]
         [ResponseType(typeof(IEnumerable<EventDto>))]
-        public IHttpActionResult FindEventForDonation(int id)
+        public IHttpActionResult FindEventForDonation(int id)//this is donation id 
         {
             Event Event = db.events
                 //in the events table donation id equals the donations donation id 
@@ -229,7 +298,7 @@ namespace Manitouage1.Controllers
             db.donations.Remove(donation);
             db.SaveChanges();
 
-            return Ok(donation);
+            return Ok();
         }
 
         protected override void Dispose(bool disposing)

@@ -7,10 +7,12 @@
 <h2>Edit</h2>
 
 
-@using (Html.BeginForm())
+<!--just added to see if this works-->
+@using (Html.BeginForm("Edit", "Donation", FormMethod.Post, new { id = Model.donation.donationId }))
+
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Donation</h4>
         <hr />
@@ -67,27 +69,30 @@
                 <select name="EventId">
                     @foreach (var Event in Model.allevents)
                     {
-                        <option value="@Event.EventId" 
+                        <option value="@Event.EventId"
                                 @if (Event.EventId == Model.donation.EventId) { <text> selected</text>}>
                             @Event.Title
                         </option>
                     }
-                </select> 
+                </select>
             </div>
         </div>
+
+
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Save" class="btn btn-default" />
             </div>
         </div>
+        }
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "List")
-</div>
+    <div>
+        @Html.ActionLink("Back to List", "List")
+    </div>
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
