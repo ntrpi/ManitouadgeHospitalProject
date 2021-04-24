@@ -81,6 +81,9 @@ namespace Manitouage1.Models
         [DisplayName("Contact Personnel")]
         public string ContactPerson { get; set; }
 
- 
+        [DisplayName("Donation")]
+        public int NumDonations { get; set; }
+
+
     }
 }

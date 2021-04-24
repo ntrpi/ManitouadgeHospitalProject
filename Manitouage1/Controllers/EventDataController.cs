@@ -33,11 +33,12 @@ namespace Manitouage1.Controllers
                 DateTime = myevent.DateTime,
                 Location = myevent.Location,
                 Duration = myevent.Duration,
-                ContactPerson = myevent.ContactPerson
+                ContactPerson = myevent.ContactPerson,
             };
             return Ok(eventDto);
         }
         // GET: api/GetEvents
+        [ResponseType(typeof(IEnumerable<EventDto>))]
         public IHttpActionResult GetEvents()
         {
             // Get the rows from the Event table and put them in a List object.
@@ -58,7 +59,50 @@ namespace Manitouage1.Controllers
                     DateTime = Event.DateTime,
                     Location = Event.Location,
                     Duration = Event.Duration,
-                    ContactPerson = Event.ContactPerson
+                    ContactPerson = Event.ContactPerson,
+                    NumDonations = Event.Donations.Count()
+                };
+
+                // Add the dto to the list.
+                EventDtos.Add(NewEvent);
+            }
+
+            // Return the Ok http action result containing the dto list.
+            return Ok(EventDtos);
+        }
+
+        [ResponseType(typeof(IEnumerable<EventDto>))]
+        public IHttpActionResult GetEventwithDonations()
+        {
+            // Get the rows from the Event table and put them in a List object.
+            List<Event> myevent = db.events.ToList();
+
+            // Create a List object to hold the dtos.
+            List<EventDto> EventDtos = new List<EventDto> { };
+
+            // Convert each Event into a EventDto and put it in the list.
+            foreach (var Event in myevent)
+            {
+                //Donation Donation = db.donations
+                 //.Where(e => e.Event.Any(d => d.donationId == Event.EventId))
+                 //.FirstOrDefault();
+                  //if not found, return 404 status code.
+                //if (Donation == null)
+                //{
+                    //return NotFound();
+                //}
+
+                EventDto NewEvent = new EventDto
+                {
+                    // Set the dto properties.
+                    EventId = Event.EventId,
+                    Title = Event.Title,
+                    Description = Event.Description,
+                    DateTime = Event.DateTime,
+                    Location = Event.Location,
+                    Duration = Event.Duration,
+                    ContactPerson = Event.ContactPerson,
+                    //NumDonations = Event.Donations.Count()
                 };
 
                 // Add the dto to the list.
