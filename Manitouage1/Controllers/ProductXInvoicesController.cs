@@ -12,6 +12,8 @@ namespace Manitouage1.Controllers
 {
     public class ProductXInvoicesController: Controller
     {
+        public const string helperName = "ProductXInvoice";
+
         private static readonly ControllersHelper helper;
 
         static ProductXInvoicesController()

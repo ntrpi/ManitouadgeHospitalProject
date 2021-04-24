@@ -3,87 +3,115 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
 
-<div>
-    <h4>JobPosting</h4>
-    <hr />
-    <dl class="dl-horizontal">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.jobposting.jobNumber)
-        </dt>
+<div class="col-12 pl-5 pr-5">
+    <div>
+        @Html.ActionLink("Back to List", "List")
+    </div>
+    @if (Model.isadmin)
+    {
+        <h2 class="mt-3 mb-5">Job Posting Details</h2>
+    }
 
-        <dd>
-            @Html.DisplayFor(model => model.jobposting.jobNumber)
-        </dd>
+    @if (!Model.isadmin)
+    {
+        <h2 class="mt-3 mb-5">Opportunities</h2>
+    }
+<div class="row">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.jobposting.jobTitle)
-        </dt>
+    <div class="col-md-12 my-3">
+        <div class="row">
+            <div class="col-md-3 font-weight-bold">
+                @Html.DisplayNameFor(model => model.jobposting.jobNumber)
+            </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.jobposting.jobTitle)
-        </dd>
+            <div class="col-md-9">
+                @Html.DisplayFor(model => model.jobposting.jobNumber)
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12 my-3">
+        <div class="row">
+            <div class="col-md-3 font-weight-bold">
+                @Html.DisplayNameFor(model => model.jobposting.jobTitle)
+            </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.jobposting.jobType)
-        </dt>
+            <div class="col-md-9">
+                @Html.DisplayFor(model => model.jobposting.jobTitle)
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12 my-3">
+        <div class="row">
+            <div class="col-md-3 font-weight-bold">
+                @Html.DisplayNameFor(model => model.jobposting.jobType)
+            </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.jobposting.jobType)
-        </dd>
+            <div class="col-md-9">
+                @Html.DisplayFor(model => model.jobposting.jobType)
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12 my-3">
+        <div class="row">
+            <div class="col-md-3 font-weight-bold">
+                @Html.DisplayNameFor(model => model.jobposting.jobDescription)
+            </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.jobposting.jobDescription)
-        </dt>
+            <div class="col-md-9">
+                @Html.Raw(Model.jobposting.jobDescription)
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12 my-3">
+        <div class="row">
+            <div class="col-md-3 font-weight-bold">
+                @Html.DisplayNameFor(model => model.jobposting.salary)
+            </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.jobposting.jobDescription)
-        </dd>
+            <div class="col-md-9">
+                @Html.DisplayFor(model => model.jobposting.salary)
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12 my-3">
+        <div class="row">
+            <div class="col-md-3 font-weight-bold">
+                @Html.DisplayNameFor(model => model.jobposting.closingDate)
+            </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.jobposting.salary)
-        </dt>
+            <div class="col-md-9">
+                @Html.DisplayFor(model => model.jobposting.closingDate)
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12 my-3">
+        <div class="row">
+            <div class="col-md-3 font-weight-bold">
+                @Html.DisplayNameFor(model => model.jobposting.departmentName)
+            </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.jobposting.salary)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.jobposting.closingDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.jobposting.closingDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.jobposting.departmentName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.department.departmentId) -  @Html.DisplayFor(model => model.department.departmentName)
-        </dd>
-
-    </dl>
+            <div class="col-md-9">
+                @Html.DisplayFor(model => model.department.departmentId) -  @Html.DisplayFor(model => model.department.departmentName)
+            </div>
+        </div>
+    </div>
 </div>
 
-@if (Model.isadmin)
-{
-    <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.jobposting.jobPostingId }) |
-        @Html.ActionLink("Back to List", "List")
-    </p>
-}
+    @if (Model.isadmin)
+    {
+        <div class="btn btn-info my-2 my-sm-0 a-white">
+            @Html.ActionLink("Edit", "Edit", new { id = Model.jobposting.jobPostingId })
 
-@if (!Model.isadmin)
-{
-    @* No one has not done apply for job function so this button goes not redirect to anywhere now*@
-    <button class="btn btn-info my-2 my-sm-0" type="submit">
-       Apply for this job
-    </button>
-    <p>
-        @Html.ActionLink("Back to List", "List")
-    </p>
-}
+        </div>
+    }
+
+    @if (!Model.isadmin)
+    {
+        @* No one has not done apply for job function so this button goes not redirect to anywhere now*@
+        <button class="btn btn-info my-2 my-sm-0" type="submit">
+            Apply for this job
+        </button>
+    }
+</div>

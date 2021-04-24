@@ -65,22 +65,22 @@
         <td>
             @Html.DisplayFor(modelItem => item.jobPostingId)
         </td>
-
-        <td>
-            @Html.DisplayFor(modelItem => item.jobNumber)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.jobTitle)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.jobType)
-        </td>
     }
     <td>
-        @Html.DisplayFor(modelItem => item.jobDescription)
+        @Html.DisplayFor(modelItem => item.jobNumber)
     </td>
-        @if (Model.isadmin)
-        {
+    <td>
+        @Html.DisplayFor(modelItem => item.jobTitle)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.jobType)
+    </td>
+    @if (Model.isadmin)
+    {
+        <td>
+            @Html.Raw(item.jobDescription)
+        </td>
+
         <td>
             @Html.DisplayFor(modelItem => item.salary)
         </td>
@@ -90,21 +90,22 @@
         <td>
             @Html.DisplayFor(modelItem => item.departmentId) - @Html.DisplayFor(modelItem => item.departmentName)
         </td>
-      
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.jobPostingId }) |
-                @Html.ActionLink("Details", "Details", new { id = item.jobPostingId }) |
-                @Html.ActionLink("Delete", "DeleteConfirm", new { id = item.jobPostingId })
-            </td>
-        }
-        @if (!Model.isadmin) { 
-            <td>
-              
-                @Html.ActionLink("Details", "Details", new { id = item.jobPostingId }) 
-              
-            </td>
-        }
-    </tr>
+
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.jobPostingId }) |
+            @Html.ActionLink("Details", "Details", new { id = item.jobPostingId }) |
+            @Html.ActionLink("Delete", "DeleteConfirm", new { id = item.jobPostingId })
+        </td>
+    }
+    @if (!Model.isadmin)
+    {
+        <td>
+
+            @Html.ActionLink("Details", "Details", new { id = item.jobPostingId })
+
+        </td>
+    }
+</tr>
     }
 
 </table>

@@ -4,70 +4,97 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<div class="col-12 pl-5 pr-5">
+    <div>
+        @Html.ActionLink("Back to List", "List")
+    </div>
 
-<div>
-    <h4>Department</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.department.departmentId)
-        </dt>
+    <h2 class="mt-3 mb-5">Department Details</h2>
 
-        <dd>
-            @Html.DisplayFor(model => model.department.departmentId)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.department.departmentName)
-        </dt>
+    <div class="row">
+        <div class="col-md-12 my-3">
+            <div class="row">
+                <div class="col-md-3 font-weight-bold">
 
-        <dd>
-            @Html.DisplayFor(model => model.department.departmentName)
-        </dd>
+                    @Html.DisplayNameFor(model => model.department.departmentId)
+                </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.department.email)
-        </dt>
+                <div class="col-md-9">
+                    @Html.DisplayFor(model => model.department.departmentId)
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 my-3">
+            <div class="row">
+                <div class="col-md-3 font-weight-bold">
+                    @Html.DisplayNameFor(model => model.department.departmentName)
+                </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.department.email)
-        </dd>
+                <div class="col-md-9">
+                    @Html.DisplayFor(model => model.department.departmentName)
+                </div>
+            </div>
+        </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.department.phone)
-        </dt>
+        <div class="col-md-12 my-3">
+            <div class="row">
+                <div class="col-md-3 font-weight-bold">
+                    @Html.DisplayNameFor(model => model.department.email)
+                </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.department.phone)
-        </dd>
+                <div class="col-md-9">
+                    @Html.DisplayFor(model => model.department.email)
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 my-3">
+            <div class="row">
+                <div class="col-md-3 font-weight-bold">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.department.fax)
-        </dt>
+                    @Html.DisplayNameFor(model => model.department.phone)
+                </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.department.fax)
-        </dd>
+                <div class="col-md-9">
+                    @Html.DisplayFor(model => model.department.phone)
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 my-3">
+            <div class="row">
+                <div class="col-md-3 font-weight-bold">
+                    @Html.DisplayNameFor(model => model.department.fax)
+                </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.department.extension)
-        </dt>
+                <div class="col-md-9">
+                    @Html.DisplayFor(model => model.department.fax)
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 my-3">
+            <div class="row">
+                <div class="col-md-3 font-weight-bold">
+                    @Html.DisplayNameFor(model => model.department.extension)
+                </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.department.extension)
-        </dd>
+                <div class="col-md-9">
+                    @Html.DisplayFor(model => model.department.extension)
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 my-3">
+            <div class="row">
+                <div class="col-md-3 font-weight-bold">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.department.category)
-        </dt>
+                    @Html.DisplayNameFor(model => model.department.category)
+                </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.department.category)
-        </dd>
+                <div class="col-md-9">
+                    @Html.DisplayFor(model => model.department.category)
+                </div>
+            </div>
+        </div>
+        <div class="btn btn-info my-2 my-sm-3 a-white">
+            @Html.ActionLink("Edit", "Edit", new { id = Model.department.departmentId })
 
-    </dl>
+        </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.department.departmentId }) |
-    @Html.ActionLink("Back to List", "List")
-</p>

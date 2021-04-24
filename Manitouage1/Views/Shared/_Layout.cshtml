@@ -6,192 +6,221 @@
   <title>@ViewBag.Title - Manitouadge Hospital</title>
   @Styles.Render( "~/Content/css" )
   @Scripts.Render( "~/bundles/modernizr" )
+
+<script src="https://cdn.tiny.cloud/1/bpkfg1pflkm3tj34rurjjs8lmu4b85v8wg0onygoodqqgmgw/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
   <script src="/Scripts/js/main.js"></script>
 
 </head>
 <body>
 
-  <nav class="navbar navbar-expand-lg navbar-dark bg-navy">
-    <div>
-      <div class="d-inline">
-        <img src="~/Content/img/Manitouwadge General Hospital_0.png" height="75" />
-      </div>
-      <h1 class="d-inline ml-2"><a class="navbar-brand my-lg-5" style="font-size: 1.9rem;" href="#">Manitouadge General Hospital</a></h1>
-    </div>
-    <div class="collapse navbar-collapse d-flex justify-content-end mb-lg-5" id="navbarSupportedContent">
-      <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-info my-2 my-sm-0" type="submit">Search</button>
-      </form>
-      <form class="form-inline my-2 my-lg-0 ml-3">
-        <button class="btn btn-info btn-outline-light my-sm-0" type="submit">Donate</button>
-      </form>
-    </div>
-  </nav>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-navy pb-1">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto nav-fill w-100">
-        <li class="nav-item bg-light rounded">
-          @Html.ActionLink( "Patients", "Index", "Home", new {
-            @class = "nav-link"
-          } )
-        </li>
-        <li class="nav-item bg-light rounded">
-          @Html.ActionLink( "Visitors", "Index", "Home", new {
-            @class = "nav-link"
-          } )
-        </li>
-        <li class="nav-item bg-light rounded">
-          @Html.ActionLink( "Recruitment", "Index", "Home", new {
-            @class = "nav-link"
-          } )
-        </li>
-        <li class="nav-item bg-light rounded">
-          @Html.ActionLink( "Education", "Index", "Home", new {
-            @class = "nav-link"
-          } )
-        </li>
-        <li class="nav-item bg-light rounded">
-          @Html.ActionLink( "Fundraising", "Index", "Home", new {
-            @class = "nav-link"
-          } )
-        </li>
-        <li class="nav-item bg-light rounded">
-          @Html.ActionLink( "About", "Index", "Home", new {
-            @class = "nav-link"
-          } )
-        </li>
-        @Html.Partial( "_LoginPartial" )
-      </ul>
-    </div>
-  </nav>
-
-  <div class="container-fluid body-content bg-light-blue p-3">
-    @RenderBody()
-  </div>
-  <footer>
-
     <nav class="navbar navbar-expand-lg navbar-dark bg-navy">
-      <div class="container">
-        <div class="row w-100 flex-fill">
-          <div class="col">
-            <h4 class="text-white">For Medical Professionals</h4>
-            <ul class="footer-nav mr-auto" style="padding-inline-start: 0">
-              <li class="nav-item">
-                @Html.ActionLink( "Research", "Index", "Home", new {
-                  @class = "nav-link"
-                } )
-              </li>
-              <li class="nav-item">
-                @Html.ActionLink( "Library", "Index", "Home", new {
-                  @class = "nav-link"
-                } )
-              </li>
-              <li class="nav-item">
-                @Html.ActionLink( "Departments", "Index", "Home", new {
-                  @class = "nav-link"
-                } )
-              </li>
-            </ul>
-            <h4 class="text-white">For Job Seekers</h4>
-            <ul class="footer-nav mr-auto" style="padding-inline-start: 0">
-              <li class="nav-item">
-                @Html.ActionLink( "Working at Manatouadge Hospital", "Index", "Home", new {
-                  @class = "nav-link"
-                } )
-              </li>
-              <li class="nav-item">
-                @Html.ActionLink( "Opportunities", "Index", "Home", new {
-                  @class = "nav-link"
-                } )
-              </li>
-              <li class="nav-item">
-                @Html.ActionLink( "Find out more", "Index", "Home", new {
-                  @class = "nav-link"
-                } )
-              </li>
-            </ul>
-            <h4 class="text-white">For Faculty and Staff</h4>
-            <ul class="footer-nav mr-auto" style="padding-inline-start: 0">
-              <li class="nav-item">
-                @Html.ActionLink( "Log in", "Index", "Home", new {
-                  @class = "nav-link"
-                } )
-              </li>
-            </ul>
-          </div>
-          <div class="col">
-            <h4 class="text-white">Community Links</h4>
-            <ul class="footer-nav mr-auto" style="padding-inline-start: 0">
-              <li class="nav-item">
-                @Html.ActionLink( "Clinics", "Index", "Home", new {
-                  @class = "nav-link"
-                } )
-              </li>
-              <li class="nav-item">
-                @Html.ActionLink( "Regional Locations", "Index", "Home", new {
-                  @class = "nav-link"
-                } )
-              </li>
-              <li class="nav-item">
-                @Html.ActionLink( "Hospice Care", "Index", "Home", new {
-                  @class = "nav-link"
-                } )
-              </li>
-              <li class="nav-item">
-                @Html.ActionLink( "Paliative Care", "Index", "Home", new {
-                  @class = "nav-link"
-                } )
-              </li>
-              <li class="nav-item">
-                @Html.ActionLink( "Caregiver Resouces", "Index", "Home", new {
-                  @class = "nav-link"
-                } )
-              </li>
-              <li class="nav-item">
-                @Html.ActionLink( "TeleHealth", "Index", "Home", new {
-                  @class = "nav-link"
-                } )
-              </li>
-            </ul>
-            <h4 class="text-white">Free E-Newsletter</h4>
-            <p class="text-white pl-2">Sign up for our free e-newsletter and keep up to date on all the latest community health information.</p>
-            <a href="#" class="action-link">Click here to sign up!</a>
-          </div>
-          <div class="col">
-            <h4 class="text-white">About This Site</h4>
-            <ul class="footer-nav mr-auto" style="padding-inline-start: 0">
-              <li class="nav-item">
-                @Html.ActionLink( "Privacy", "Index", "Home", new {
-                  @class = "nav-link"
-                } )
-              </li>
-              <li class="nav-item">
-                @Html.ActionLink( "Terms and Conditions", "Index", "Home", new {
-                  @class = "nav-link"
-                } )
-              </li>
-            </ul>
-            <h4 class="text-white">Giving to the Hospital</h4>
-            <p class="text-white pl-2">Make a tax-deductable donation today, and be part of making a difference in the health of our community.</p>
-            <form class="form-inline my-2 my-lg-0 ml-3">
-              <button class="btn btn-info btn-outline-light my-sm-0" type="submit">Make a Donation</button>
-            </form>
-          </div>
+        <div>
+            <div class="d-inline">
+                <img src="~/Content/img/Manitouwadge General Hospital_0.png" height="75" />
+            </div>
+            <h1 class="d-inline ml-2"><a class="navbar-brand my-lg-5" style="font-size: 1.9rem;" href="#">Manitouadge General Hospital</a></h1>
         </div>
-      </div>
+        <div class="collapse navbar-collapse d-flex justify-content-end mb-lg-5" id="navbarSupportedContent">
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-info my-2 my-sm-0" type="submit">Search</button>
+            </form>
+            <form class="form-inline my-2 my-lg-0 ml-3">
+                <button class="btn btn-info btn-outline-light my-sm-0" type="submit">Donate</button>
+            </form>
+        </div>
     </nav>
-      <p class="bg-navy text-light p-4" style="font-size: .8rem;">&copy; @DateTime.Now.Year - Manitouadge General Hospital
-    </p>
-</footer>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-navy pb-1">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-  @Scripts.Render( "~/bundles/jquery" )
-  @Scripts.Render( "~/bundles/jqueryval" )
-  @Scripts.Render( "~/bundles/bootstrap" )
-  @RenderSection( "scripts", required: false )
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto nav-fill w-100">
+                <li class="nav-item bg-light rounded">
+                    @Html.ActionLink("Patients", "Index", "Home", new
+                    {
+                      @class = "nav-link"
+                    })
+                </li>
+                <li class="nav-item bg-light rounded">
+                    @Html.ActionLink("Visitors", "Index", "Home", new
+                    {
+                      @class = "nav-link"
+                    })
+                </li>
+                <li class="nav-item bg-light rounded">
+                    @Html.ActionLink("Recruitment", "Index", "Home", new
+                    {
+                      @class = "nav-link"
+                    })
+                </li>
+                <li class="nav-item bg-light rounded">
+                    @Html.ActionLink("Education", "Index", "Home", new
+                    {
+                      @class = "nav-link"
+                    })
+                </li>
+                <li class="nav-item bg-light rounded">
+                    @Html.ActionLink("Fundraising", "Index", "Home", new
+                    {
+                      @class = "nav-link"
+                    })
+                </li>
+                <li class="nav-item bg-light rounded">
+                    @Html.ActionLink("About", "Index", "Home", new
+                    {
+                      @class = "nav-link"
+                    })
+                </li>
+                @Html.Partial("_LoginPartial")
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container-fluid body-content bg-light-blue p-3">
+        @RenderBody()
+    </div>
+    <footer>
+
+        <nav class="navbar navbar-expand-lg navbar-dark bg-navy">
+            <div class="container">
+                <div class="row w-100 flex-fill">
+                    <div class="col">
+                        <h4 class="text-white">For Medical Professionals</h4>
+                        <ul class="footer-nav mr-auto" style="padding-inline-start: 0">
+                            <li class="nav-item">
+                                @Html.ActionLink("Research", "Index", "Home", new
+                                {
+                                  @class = "nav-link"
+                                })
+                            </li>
+                            <li class="nav-item">
+                                @Html.ActionLink("Library", "Index", "Home", new
+                                {
+                                  @class = "nav-link"
+                                })
+                            </li>
+                            <li class="nav-item">
+                                @Html.ActionLink("Departments", "Index", "Home", new
+                                {
+                                  @class = "nav-link"
+                                })
+                            </li>
+                        </ul>
+                        <h4 class="text-white">For Job Seekers</h4>
+                        <ul class="footer-nav mr-auto" style="padding-inline-start: 0">
+                            <li class="nav-item">
+                                @Html.ActionLink("Working at Manatouadge Hospital", "Index", "Home", new
+                                {
+                                  @class = "nav-link"
+                                })
+                            </li>
+                            <li class="nav-item">
+                                @Html.ActionLink("Opportunities", "Index", "Home", new
+                                {
+                                  @class = "nav-link"
+                                })
+                            </li>
+                            <li class="nav-item">
+                                @Html.ActionLink("Find out more", "Index", "Home", new
+                                {
+                                  @class = "nav-link"
+                                })
+                            </li>
+                        </ul>
+                        <h4 class="text-white">For Faculty and Staff</h4>
+                        <ul class="footer-nav mr-auto" style="padding-inline-start: 0">
+                            <li class="nav-item">
+                                @Html.ActionLink("Log in", "Index", "Home", new
+                                {
+                                  @class = "nav-link"
+                                })
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col">
+                        <h4 class="text-white">Community Links</h4>
+                        <ul class="footer-nav mr-auto" style="padding-inline-start: 0">
+                            <li class="nav-item">
+                                @Html.ActionLink("Clinics", "Index", "Home", new
+                                {
+                                  @class = "nav-link"
+                                })
+                            </li>
+                            <li class="nav-item">
+                                @Html.ActionLink("Regional Locations", "Index", "Home", new
+                                {
+                                  @class = "nav-link"
+                                })
+                            </li>
+                            <li class="nav-item">
+                                @Html.ActionLink("Hospice Care", "Index", "Home", new
+                                {
+                                  @class = "nav-link"
+                                })
+                            </li>
+                            <li class="nav-item">
+                                @Html.ActionLink("Paliative Care", "Index", "Home", new
+                                {
+                                  @class = "nav-link"
+                                })
+                            </li>
+                            <li class="nav-item">
+                                @Html.ActionLink("Caregiver Resouces", "Index", "Home", new
+                                {
+                                  @class = "nav-link"
+                                })
+                            </li>
+                            <li class="nav-item">
+                                @Html.ActionLink("TeleHealth", "Index", "Home", new
+                                {
+                                  @class = "nav-link"
+                                })
+                            </li>
+                        </ul>
+                        <h4 class="text-white">Free E-Newsletter</h4>
+                        <p class="text-white pl-2">Sign up for our free e-newsletter and keep up to date on all the latest community health information.</p>
+                        <a href="#" class="action-link">Click here to sign up!</a>
+                    </div>
+                    <div class="col">
+                        <h4 class="text-white">About This Site</h4>
+                        <ul class="footer-nav mr-auto" style="padding-inline-start: 0">
+                            <li class="nav-item">
+                                @Html.ActionLink("Privacy", "Index", "Home", new
+                                {
+                                  @class = "nav-link"
+                                })
+                            </li>
+                            <li class="nav-item">
+                                @Html.ActionLink("Terms and Conditions", "Index", "Home", new
+                                {
+                                  @class = "nav-link"
+                                })
+                            </li>
+                        </ul>
+                        <h4 class="text-white">Giving to the Hospital</h4>
+                        <p class="text-white pl-2">Make a tax-deductable donation today, and be part of making a difference in the health of our community.</p>
+                        <form class="form-inline my-2 my-lg-0 ml-3">
+                            <button class="btn btn-info btn-outline-light my-sm-0" type="submit">Make a Donation</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <p class="bg-navy text-light p-4" style="font-size: .8rem;">
+            &copy; @DateTime.Now.Year - Manitouadge General Hospital
+        </p>
+    </footer>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    <script>
+        tinymce.init({
+            selector: 'textarea.admin',
+        });
+    </script>
 </body>
 </html>

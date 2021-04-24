@@ -15,11 +15,17 @@ namespace Manitouage1.Controllers
 {
     public class InvoicesController: Controller
     {
+        public const string helperName = "Invoice";
+
         private static readonly ControllersHelper helper;
+        private static readonly ControllersHelper productsHelper;
+        private static readonly ControllersHelper xInvoiceHelper;
 
         static InvoicesController()
         {
-            helper = new ControllersHelper( "Invoice" );
+            helper = new ControllersHelper( helperName );
+            productsHelper = new ControllersHelper( ProductsController.helperName );
+            xInvoiceHelper = new ControllersHelper( ProductXInvoicesController.helperName );
         }
 
         // A utility function to save a few characters when using the ControllersHelper to construct a url.
@@ -55,6 +61,61 @@ namespace Manitouage1.Controllers
             return helper.getFromResponse<InvoiceDto>( response );
         }
 
+        private ProductDto getProductDto( int productId )
+        {
+            return productsHelper.doGetAndGetFromResponse<ProductDto>( productsHelper.getUrl( "Get", productId ) );
+        }
+
+        private IEnumerable<ProductDto> getProductDtos()
+        {
+            return productsHelper.doGetAndGetFromResponse<IEnumerable<ProductDto>>( productsHelper.getUrl( "Get", 0 ) + "s" );
+        }
+
+        private IEnumerable<ViewInvoiceProduct> getViewInvoiceProducts( IEnumerable<ProductXInvoiceDto> xInvoices )
+        {
+            // Get the view products.
+            List<ViewInvoiceProduct> invoiceProducts = new List<ViewInvoiceProduct>();
+            foreach( ProductXInvoiceDto xInvoice in xInvoices ) {
+                ProductDto productDto = getProductDto( xInvoice.productId );
+                invoiceProducts.Add( new ViewInvoiceProduct(
+                    productDto,
+                    xInvoice.quantity
+                    ) );
+            }
+            return invoiceProducts;
+        }
+
+        private IEnumerable<ProductXInvoiceDto> getProductXInvoices( int invoiceId )
+        {
+            return xInvoiceHelper.doGetAndGetFromResponse<IEnumerable<ProductXInvoiceDto>>( xInvoiceHelper.getUrl( "Get", 0 ) + "s" );
+        }
+
+        // A utility function that constructs a ViewInvoice object.
+        private ViewInvoice getViewInvoice( int invoiceId, bool isGetProducts = false )
+        {
+            InvoiceDto invoiceDto = getInvoiceDto( invoiceId );
+            ViewInvoice viewInvoice = new ViewInvoice { 
+                invoiceDto = invoiceDto
+            };
+
+            // Get the user.
+            HttpResponseMessage response = helper.doGetRequest( "InvoicesData/GetUser/" + invoiceDto.userId );
+            if( response.IsSuccessStatusCode ) {
+                viewInvoice.applicationUser = helper.getFromResponse<ApplicationUser>( response );
+            }
+
+            if( isGetProducts ) {
+                // Get the ProductXInvoices for this invoice.
+                IEnumerable<ProductXInvoiceDto> xInvoices = getProductXInvoices( invoiceId );
+
+                // Get the ViewInvoiceProduct objects.
+                viewInvoice.invoiceProducts = getViewInvoiceProducts( xInvoices );
+                viewInvoice.totals = new ProductTotals( viewInvoice.invoiceProducts );
+            }
+
+            return viewInvoice;
+        }
+
         /// <summary>
         /// Get and display the information for the Invoice with the given ID.
         /// </summary>
@@ -65,41 +126,7 @@ namespace Manitouage1.Controllers
         /// </example>
         public ActionResult Details( int id )
         {
-            InvoiceDto invoiceDto = getInvoiceDto( id );
-
-            // Get the product IDs.
-            string productXInvoicesUrl = ControllersHelper.getUrl( "ProductXInvoice", "Get", 0 );
-            productXInvoicesUrl += "sForInvoice/" + id;
-            IEnumerable<ProductXInvoiceDto> productXInvoiceDtos = helper.doGetAndGetFromResponse<List<ProductXInvoiceDto>>( productXInvoicesUrl );
-
-            // Get the view products.
-            string productsUrl = ControllersHelper.getUrl( "Product", "Get", 0 );
-            List<ViewInvoiceProduct> invoiceProducts = new List<ViewInvoiceProduct>();
-            foreach( ProductXInvoiceDto productXInvoice in productXInvoiceDtos ) {
-                ProductDto productDto = helper.doGetAndGetFromResponse<ProductDto>(
-                        productsUrl + "/" + productXInvoice.productId );
-                invoiceProducts.Add( new ViewInvoiceProduct(
-                    productDto,
-                    productXInvoice.quantity
-                    ) );                    
-            }
-
-            // Get the user.
-            HttpResponseMessage response = helper.doGetRequest( "InvoicesData/GetUser/" + invoiceDto.userId );
-            if( !response.IsSuccessStatusCode ) {
-                ViewBag.errorMessage = "Unable to get invoice.";
-                return View();
-            }
-            ApplicationUser user = helper.getFromResponse<ApplicationUser>( response );
-
-            ViewInvoice viewInvoice = new ViewInvoice {
-                invoiceDto = invoiceDto,
-                invoiceProducts = invoiceProducts,
-                applicationUser = user,
-                totals = new ProductTotals( invoiceProducts )
-            };
-
-            return View( viewInvoice );
+            return View( getViewInvoice( id, true ) );
         }
 
         // Utility function to create an UpdateInvoice object.
@@ -113,7 +140,7 @@ namespace Manitouage1.Controllers
 
             // Create the UpdateInvoice object with the users, products, and product totals.
             UpdateInvoice updateInvoice = new UpdateInvoice {
-                productDtos = productDtos,
+                productDtos = getProductDtos(),
                 applicationUsers = users,
                 totals = new ProductTotals( productDtos )
             };
@@ -234,7 +261,7 @@ namespace Manitouage1.Controllers
         [HttpGet]
         public ActionResult DeleteConfirm( int id )
         {
-            return View( getInvoiceDto( id ) );
+            return View( getViewInvoice( id ) );
         }
 
         /// <summary>
@@ -251,6 +278,12 @@ namespace Manitouage1.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Delete( int id, FormCollection collection )
         {
+            // Get the product IDs.
+            IEnumerable<ProductXInvoiceDto> xInvoices = getProductXInvoices( id );             foreach( ProductXInvoiceDto product in xInvoices ) {
+                string url = ControllersHelper.getUrl( "ProductXInvoice", "Delete", product.id );
+                helper.doPostRequest( url, "" );
+            }
+
             // TODO: do something with the response.
             helper.doPostRequest( getUrl( "Delete", id ), "" );
             return RedirectToAction( "Index" );

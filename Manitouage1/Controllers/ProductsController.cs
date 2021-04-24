@@ -12,11 +12,13 @@ namespace Manitouage1.Controllers
 {
     public class ProductsController: Controller
     {
+        public const string helperName = "Product";
+
         private static readonly ControllersHelper helper;
 
         static ProductsController()
         {
-            helper = new ControllersHelper( "Product" );
+            helper = new ControllersHelper( helperName );
         }
 
         // A utility function to save a few characters when using the ControllersHelper to construct a url.
