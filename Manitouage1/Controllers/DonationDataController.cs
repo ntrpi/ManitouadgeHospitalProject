@@ -11,6 +11,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Manitouage1.Models;
+using Manitouage1.Models.ViewModels;
 using System.Diagnostics;
 
 namespace Manitouage1.Controllers
@@ -56,7 +57,6 @@ namespace Manitouage1.Controllers
                     amount = Donation.amount,
                     //add event id 
                     EventId = Donation.EventId,
-                    Title = Event.Title
 
 
                 };
@@ -66,6 +66,73 @@ namespace Manitouage1.Controllers
             //if status code 200 list donations
             return Ok(DonationDtos);
         }
+
+
+
+        /// <summary>
+        /// CHRISTINE IT's NOT WORKING!!!!!!!!!!!!!!!
+        /// Gets a list of donations in the database with the status code (200 ok)
+        /// this is in direct reference to playersdatacontroller(varsity_w_auth)
+        /// </summary>
+        /// <returns>
+        /// returns a list of all the donations and the events linked to them
+        /// </returns>
+        /// <example>
+        // GET: api/DonationData/GetAllDonations
+        /// </example>
+        //changed to EventDto
+        [ResponseType(typeof(IEnumerable<ListDonation>))]
+        public IHttpActionResult GetAllDonations()
+        {
+            //List of donations
+            List<Donation> Donations = db.donations.ToList();
+            //using view model :: show donation 
+            List<ListDonation> DonationDtos = new List<ListDonation> { };
+
+            //information to be displayed 
+            foreach (var Donation in Donations)
+            {
+                ListDonation donation = new ListDonation();
+
+                //getting events from the events table and linking it to the donations table 
+                Event Event = db.events
+               .Where(e => e.Donations.Any(d => d.EventId == Donation.EventId))
+               .FirstOrDefault();
+
+                //now calling the events dto to fetch the information to list
+                EventDto NewEvent = new EventDto
+                {
+                    EventId = Event.EventId,
+                    Title = Event.Title
+
+                };
+
+                //now calling the donations dto to fetch the data
+                DonationDto NewDonation = new DonationDto
+                {
+                    donationId = Donation.donationId,
+                    firstName = Donation.firstName,
+                    lastName = Donation.lastName,
+                    email = Donation.email,
+                    phoneNumber = Donation.phoneNumber,
+                    amount = Donation.amount,
+                    //add event id 
+                    EventId = Donation.EventId,
+
+
+                };
+
+                donation.Event = NewEvent;
+                DonationDtos.Add(donation);
+
+            }
+
+            return Ok(DonationDtos);
+
+        }
+
+
+
 
 
         /// <summary> 
@@ -98,7 +165,7 @@ namespace Manitouage1.Controllers
                 amount = Donation.amount,
                 //add event id
                 EventId = Donation.EventId,
-                //Title = Event.Title
+
 
             };
 
