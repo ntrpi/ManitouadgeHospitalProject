@@ -45,15 +45,6 @@ namespace Manitouage1.Models
         {
             get; set;
         }
-        [ForeignKey("Alert")]
-        public int? alertId
-        {
-            get; set;
-        }
-        public virtual Alert Alert
-        {
-            get; set;
-        }
   
         //Wafa: an event can have many donations
         public ICollection<Donation> Donations { get; set; }
@@ -81,9 +72,7 @@ namespace Manitouage1.Models
         [DisplayName("Contact Personnel")]
         public string ContactPerson { get; set; }
 
-        [DisplayName("Donation")]
         public int NumDonations { get; set; }
-
 
     }
 }

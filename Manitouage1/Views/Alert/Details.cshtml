@@ -1,37 +1,53 @@
-﻿@model Manitouage1.Models.AlertDto
+﻿@model Manitouage1.Models.ViewModels.ViewAlert
 
+@{
+    var alert = Model.alert;
+    var eventDto = Model.eventDto;
+}
 <div>
     <h4>Alert</h4>
     <hr />
     <dl class="dl-horizontal">
 
         <dt>
-            @Html.DisplayNameFor(model => model.title)
+            @Html.DisplayNameFor(model => alert.title)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.title)
+            @Html.DisplayFor(model => alert.title)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.dateTime)
+            @Html.DisplayNameFor(model => alert.dateTime)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.dateTime)
+            @Html.DisplayFor(model => alert.dateTime)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.description)
+            @Html.DisplayNameFor(model => alert.description)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.description)
+            @Html.DisplayFor(model => alert.description)
         </dd>
-
     </dl>
-</div>
+    @if (eventDto != null)
+    {
+        <h5>Event</h5>
+        <dl>
+            <dt>
+                @Html.DisplayNameFor(model => eventDto.Description)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => eventDto.Description)
+            </dd>
+        </dl>
+    }
+    </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.alertId }) |
+    @Html.ActionLink("Edit", "Edit", new { id = alert.alertId }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

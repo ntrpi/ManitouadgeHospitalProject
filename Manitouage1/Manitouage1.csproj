@@ -250,6 +250,10 @@
     <Compile Include="Migrations\202104232352135_WafaM_20210423_1951.Designer.cs">
       <DependentUpon>202104232352135_WafaM_20210423_1951.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202104242350251_AmandasAlertChangesViaSandra.cs" />
+    <Compile Include="Migrations\202104242350251_AmandasAlertChangesViaSandra.Designer.cs">
+      <DependentUpon>202104242350251_AmandasAlertChangesViaSandra.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Alert.cs" />
@@ -276,6 +280,7 @@
     <Compile Include="Models\ViewModels\UpdateDonation.cs" />
     <Compile Include="Models\ViewModels\UpdateJobPosting.cs" />
     <Compile Include="Models\ViewModels\UpdateInvoice.cs" />
+    <Compile Include="Models\ViewModels\ViewAlert.cs" />
     <Compile Include="Models\ViewModels\ViewInvoice.cs" />
     <Compile Include="Models\ViewModels\CreateJobPosting.cs" />
     <Compile Include="Models\ViewModels\ViewInvoiceProduct.cs" />
@@ -556,6 +561,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202104232352135_WafaM_20210423_1951.resx">
       <DependentUpon>202104232352135_WafaM_20210423_1951.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104242350251_AmandasAlertChangesViaSandra.resx">
+      <DependentUpon>202104242350251_AmandasAlertChangesViaSandra.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

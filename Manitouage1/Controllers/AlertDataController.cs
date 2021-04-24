@@ -30,6 +30,8 @@ namespace Manitouage1.Controllers
                 title = myalert.title,
                 dateTime = myalert.dateTime,
                 description = myalert.description,
+                EventId = myalert.eventId == null ? 0 : (int) myalert.eventId,
+                jobPostingId = myalert.jobPostingId == null ? 0 : (int) myalert.jobPostingId
             };
             return Ok(alertDto);
         }

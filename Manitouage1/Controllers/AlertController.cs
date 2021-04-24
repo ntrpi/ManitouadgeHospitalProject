@@ -38,6 +38,22 @@ namespace Manitouage1.Controllers
         {
             return RedirectToAction("List");
         }
+        public EventDto GetEventDto(int id)
+        {
+            // Create the string just as you would if you were typing it in the browser.
+            string url = "EventData/GetEvent/" + id;
+
+            // Send the http request and get an http action response.
+            HttpResponseMessage response = client.GetAsync(url).Result;
+
+            // The http call worked.
+            if (response.IsSuccessStatusCode)
+            {
+                EventDto eventDto = response.Content.ReadAsAsync<EventDto>().Result;
+                return eventDto;
+            }
+            return null;
+        }
 
         // GET: Alert/Details/5
         public ActionResult Details(int id)
@@ -51,8 +67,17 @@ namespace Manitouage1.Controllers
             // The http call worked.
             if (response.IsSuccessStatusCode)
             {
+                ViewAlert ViewAlert = new ViewAlert();
                 AlertDto alertDto = response.Content.ReadAsAsync<AlertDto>().Result;
-                return View(alertDto);
+                ViewAlert.alert = alertDto;
+
+                if(alertDto.EventId != 0)
+                {
+                    EventDto eventDto = GetEventDto(alertDto.EventId);
+                    ViewAlert.eventDto = eventDto;
+
+                }
+                return View(ViewAlert);
             }
             return RedirectToAction("Error");
         }

@@ -60,8 +60,9 @@ namespace Manitouage1.Controllers
                     Location = Event.Location,
                     Duration = Event.Duration,
                     ContactPerson = Event.ContactPerson,
-                };
-
+                   // NumDonations = Event.Donations.Count()
+            };
+                Debug.WriteLine(Event.Donations);
                 // Add the dto to the list.
                 EventDtos.Add(NewEvent);
             }

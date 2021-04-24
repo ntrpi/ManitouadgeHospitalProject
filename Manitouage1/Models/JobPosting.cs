@@ -37,17 +37,6 @@ namespace Manitouage1.Models
 
         public virtual Department Department { get; set; }
 
-
-        [ForeignKey("Alert")]
-        public int? alertId
-        {
-            get; set;
-        }
-         public virtual Alert Alert
-        {
-            get; set;
-        }
-
     }
 
     public class JobPostingDto
