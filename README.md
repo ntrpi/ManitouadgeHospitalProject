@@ -204,8 +204,9 @@ Department and Job Posting feature
 - Department Controller and Department Data Controller
 - Job Posting Controller and Job Posting Data Controller
 - Views and ViewModels for Department and Job Posting
-
-All of the members have communicated well to solve the issues and helped each others.
+- Added Tiny Editor plugin for Textarea for Job Posting Description 
+- Styled similar to wireframe
+- Communicate with team members for any changes 
 
 ### Sandra
 
