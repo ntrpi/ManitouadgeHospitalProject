@@ -23,6 +23,7 @@ namespace Manitouage1.Controllers
         // GET: api/AlertData/5
         public IHttpActionResult GetAlert(int id)
         {
+            //When I run my view, It is telling me myalert is null. Unsure why.
             Alert myalert = db.alerts.Find(id);
             AlertDto alertDto = new AlertDto
             {

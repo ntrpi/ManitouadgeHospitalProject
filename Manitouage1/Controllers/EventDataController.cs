@@ -60,6 +60,7 @@ namespace Manitouage1.Controllers
                     Location = Event.Location,
                     Duration = Event.Duration,
                     ContactPerson = Event.ContactPerson,
+                    //NumDonations is causing issues. When I run the view an error pops up that says NewEvent is null. Once I comment out donations, my code works fine. 
                    // NumDonations = Event.Donations.Count()
             };
                 Debug.WriteLine(Event.Donations);
