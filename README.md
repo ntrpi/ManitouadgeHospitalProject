@@ -73,6 +73,10 @@
     <li><a href="#contributing">Contributions</a>
           <ul>
         <li><a href="#amanda">Amanda</a></li>
+            <ul>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#teamwork">Team Work</a></li>
+            </ul>
         <li><a href="#farshan">Farshan</a></li>
         <li><a href="#kyle">Kyle</a></li>
         <li><a href="#miho">Miho</a></li>
