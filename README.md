@@ -246,15 +246,24 @@ Department and Job Posting feature
 - Helped students from other teams debug their work.
 
 ### Wafa
-Donations Feature
+
+#### Feature
 - Donation Model
+- Intial CRUD for donations model
+- Events Feature Intergration (Amanda's Model)
 - Added foreign key in the events table to create one to many relation between events and donations
-- Donation Data controller, Views and ViewModel connecting to Events 
+- Donations ApiController and Donation contorller 
+- Basic CRUD views
+- ViewModel connecting to Events
+- Code commments summarizing functionaily in regular and data controllers 
+
+#### Team Work
+
 - Worked with Amanda with pull and pushing issues
-- Constant communication with the team about any new migrations
+- Constant updates to team when migrations where added
 - Communicated with the team about code back ups in case any issues arise
 - Communicated with Amanda to create a database model that will hold FK's in Events and Donations model
-
+- Working on view models with Amanda to get combine functionality
 
 <!-- CONTACT -->
 ## Contact
