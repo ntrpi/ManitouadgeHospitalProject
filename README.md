@@ -62,7 +62,8 @@
     </li>
     <li><a href="#features">Features</a>
       <ul>
-        <li><a href="#feature-name-1">Feature Name 1</a></li>
+        <li><a href="#alerts"Alerts</a></li>
+        <li><a href="#events">Events</a></li>
         <li><a href="#donations-feature">Donations</a></li>
         <li><a href="#department-feature">Departments</a></li>
         <li><a href="#job-posting-feature">Job Postings</a></li>
@@ -72,6 +73,10 @@
     <li><a href="#contributing">Contributions</a>
           <ul>
         <li><a href="#amanda">Amanda</a></li>
+            <ul>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#teamwork">Team Work</a></li>
+            </ul>
         <li><a href="#farshan">Farshan</a></li>
         <li><a href="#kyle">Kyle</a></li>
         <li><a href="#miho">Miho</a></li>
@@ -146,8 +151,15 @@ Clone the repo:
 ## Features
 
 
-### Feature Name 1
-<description, usage, images, etc.>
+### Alerts
+The Alerts feature will allow users to see upcoming events, job postings and everything that users need to know in regards to health regulations, policies, vaccinations etc. The purpose of this feature is for users to get immediate access to new happenings within the community.
+
+My View model is currently not working and this is something I would like to fix in the next semester, as well as adding admin roles to my code.
+
+### Events
+Hospitals are underfunded, especially with the demand from them in this current time. The events feature is a means of fundraising for the hospital and also for donating to certain charities. One thing we noticed is how important community is to the northern Ontario communities. Having events would be a way for the community to come together while also helping the hospital and charities that are in need.
+
+My View model is currently not working and this is something I would like to fix in the next semester, as well as adding admin roles to my code.
 
 ### Donations Feature
 The donation feature will let users (visitors) send in a donation amount to the hospital. There will be a donation button present on the top right corner of the homepage. It will also be present on the bottom of the homepage to make it easier and quick for the user to navigate to the donations page. Once redirected, the user will be sent to the main donations page where the user will be asked to fill out their general information. This is also where users are able to donate to a an event or just donate towards the hospital. 
@@ -179,10 +191,25 @@ Regardless of the type of expense, it makes sense to have a list of the services
 ## Contributions
 
 ### Amanda
+
+#### Features
+- Event Model
+- Alert Model
+- ViewAlert Viewmodel
+- ListEventxDonation Viewmodel
+- Event Controller/Data Controller
+- Alert Controller/Data Controller
+- All views for Event
+- All views for Alert
+
+#### Team Work
 - I met with Christine to debug and work on git/migration issues and informed the team of what I learned so they can apply the same knowledge on 04/07/2021
 - Assisted Miho in debugging on 4/8/2021
 - Kyle, Miho and I communicated any changes that were made to models and worked together on 04/08/2021
 - I have contributed the Alerts and Events models, controllers and views
+- Helped Miho debug issues with git
+- Worked with Wafa on Event and Donation view model relationships
+- Constantly communicated any changes I made to models or in regards to pulling or pushing
 
 ### Farshan
 - Contact us model
