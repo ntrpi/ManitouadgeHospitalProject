@@ -1,7 +1,19 @@
-﻿
+﻿@model IEnumerable<Manitouage1.Models.EventDto>
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Events currently looking for volunteers</h2>
+
+@foreach (var e in Model)
+{
+<div>
+    <h3>Event: @e.Title</h3>
+    <p>Description: @e.Description</p>
+    <p>Date: @e.DateTime</p>
+    <p>Location: @e.Location</p>
+    <p>Main Contact: @e.ContactPerson</p>
+    <p>@Html.ActionLink("Volunteer Now", "Create", "Volunteer", new { id = e.EventId }, new { @class ="btn btn-primary"})</p>
+</div>
+}
 

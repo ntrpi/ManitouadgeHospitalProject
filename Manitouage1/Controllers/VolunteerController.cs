@@ -7,6 +7,7 @@ using Manitouage1.Models;
 using System.Web.Script.Serialization;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Diagnostics;
 
 namespace Manitouage1.Controllers
 {
@@ -35,13 +36,23 @@ namespace Manitouage1.Controllers
 
 
         // GET: Volunteer
-        // do stuff with this later, maybe admin dashboard?
+        // Lists all events that require volunteers
         public ActionResult Index()
         {
+            // get list of events
+            string url = "eventdata/getevents";
+            HttpResponseMessage res = client.GetAsync(url).Result;
+            if (res.IsSuccessStatusCode)
+            {
+                IEnumerable<EventDto> EventDtos = res.Content.ReadAsAsync<IEnumerable<EventDto>>().Result;
+                return View(EventDtos);
+            }
             return View();
         }
 
         // GET: List all volunteer applications
+        // only admin can see the list of volunteers
+        [Authorize(Roles = "Admin")]
         public ActionResult List()
         {
             //List<VolunteerDto> Volunteers = new List<VolunteerDto>();
@@ -65,8 +76,19 @@ namespace Manitouage1.Controllers
 
         // GET: View for volunteer application. 
         // TODO figure out how to handle policecheck (maybe file upload then admin update?)
-        public ActionResult Create()
+        public ActionResult Create(int? id)
         {
+            string url = "eventdata/getevent/" + id;
+            HttpResponseMessage res = client.GetAsync(url).Result;
+
+            // event exists
+            if (res.IsSuccessStatusCode)
+            {
+                ViewBag.eventId = id;
+                return View();
+            }
+
+            ViewBag.eventId = null;
             return View();
         }
 
@@ -85,7 +107,12 @@ namespace Manitouage1.Controllers
 
             if (res.IsSuccessStatusCode)
             {
-                return RedirectToAction("List");
+                // List is essentially admin dashboard
+                if (User.IsInRole("Admin")) {
+                    return RedirectToAction("List");
+                }
+
+                return RedirectToAction("ConfirmApplication");
             }
             else
             {
@@ -161,6 +188,11 @@ namespace Manitouage1.Controllers
                 return RedirectToAction("List");
             }
             return RedirectToAction("Error");
+        }
+
+        public ActionResult ConfirmApplication()
+        {
+            return View();
         }
 
         // GET: Volunteer/Error

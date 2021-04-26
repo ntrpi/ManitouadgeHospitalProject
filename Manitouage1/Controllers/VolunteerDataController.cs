@@ -132,6 +132,7 @@ namespace Manitouage1.Controllers
         /// POST: api/volunteerdata/approvevolunteer/2
         /// </example>
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public IHttpActionResult ApproveVolunteer(int id)
         {
             Volunteer volunteer = db.volunteers.Find(id);

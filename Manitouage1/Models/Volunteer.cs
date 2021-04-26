@@ -31,6 +31,13 @@ namespace Manitouage1.Models
         [Required]
         public bool approved { get; set; }
 
+        [Required]
+        public string survey { get; set; }
+
+        [ForeignKey("Event")]
+        public int? EventId { get; set; }
+        public Event Event { get; set; }
+
     }
 
     public class VolunteerDto
@@ -55,6 +62,9 @@ namespace Manitouage1.Models
 
         [DisplayName("Approved")]
         public bool approved { get; set; }
+
+        [DisplayName("EventId")]
+        public int? EventId { get; set; }
 
 
     }
