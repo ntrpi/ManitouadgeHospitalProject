@@ -148,6 +148,7 @@ namespace Manitouage1.Controllers
             return RedirectToAction("Error");
         }
 
+
         [HttpPost]
         public ActionResult Approve(int id)
         {
@@ -162,6 +163,7 @@ namespace Manitouage1.Controllers
             return RedirectToAction("Error");
         }
 
+        // GET: Volunteer/Error
         public ActionResult Error()
         {
             return View();

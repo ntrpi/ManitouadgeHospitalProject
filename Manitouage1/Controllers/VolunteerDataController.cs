@@ -12,7 +12,13 @@ namespace Manitouage1.Controllers
         private ManitouageDbContext db = new ManitouageDbContext();
 
 
-
+        /// <summary>
+        /// Get a list of volunteers in the database alongside a status code (200 OK).
+        /// </summary>
+        /// <returns>Returns a list of volunteers.</returns>
+        /// <example>
+        /// GET: api/volunteerdata/getvolunteers
+        /// </example>
         [ResponseType(typeof(IEnumerable<VolunteerDto>))]
         [System.Web.Http.Route("api/volunteerdata/getvolunteers")]
         public IHttpActionResult GetVolunteers()
@@ -38,6 +44,15 @@ namespace Manitouage1.Controllers
             return Ok(VolunteerDtos);
         }
 
+        /// <summary>
+        /// Adds a volunteer to the database.
+        /// </summary>
+        /// <param name="volunteer">A volunteer object sent as POST form data.</param>
+        /// <returns>returns status code 200 OK if successful, otherwise 400 if unsuccessful.</returns>
+        /// <example>
+        /// POST: api/volunteerdata/addvolunteer
+        /// FORM DATA: volunteer JSON Object
+        /// </example>
         [ResponseType(typeof(Volunteer))]
         [HttpPost]
         public IHttpActionResult AddVolunteer([FromBody] Volunteer volunteer)
@@ -52,6 +67,14 @@ namespace Manitouage1.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// Find specific volunteer based on volunteer id.
+        /// </summary>
+        /// <param name="id">The volunteer id.</param>
+        /// <returns>returns the volunteerdto along with a 200 status code if the volunteer is in the database. otherwise return 404.</returns>
+        /// <example>
+        /// GET: api/volunteerdata/findvolunteer/2
+        /// </example>
         [HttpGet]
         [ResponseType(typeof(VolunteerDto))]
         public IHttpActionResult FindVolunteer(int id)
@@ -77,7 +100,16 @@ namespace Manitouage1.Controllers
             return Ok(VolunteerDto);
         }
 
+        /// <summary>
+        /// deletes a volunteer from the database.
+        /// </summary>
+        /// <param name="id">the id of the volunteer.</param>
+        /// <returns>returns 200 if successful, otherwise return 404.</returns>
+        /// <example>
+        /// POST: api/volunteerdata/deletevolunteer/2
+        /// </example>
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public IHttpActionResult DeleteVolunteer(int id)
         {
             Volunteer volunteer = db.volunteers.Find(id);
@@ -91,6 +123,14 @@ namespace Manitouage1.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// set volunteer approval to true.
+        /// </summary>
+        /// <param name="id">the id of the volunteer.</param>
+        /// <returns>returns status 200 on success, or 404 if not successful.</returns>
+        /// <example>
+        /// POST: api/volunteerdata/approvevolunteer/2
+        /// </example>
         [HttpPost]
         public IHttpActionResult ApproveVolunteer(int id)
         {

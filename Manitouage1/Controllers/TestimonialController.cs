@@ -18,6 +18,9 @@ namespace Manitouage1.Controllers
         private JavaScriptSerializer jss = new JavaScriptSerializer();
         private static readonly HttpClient client;
 
+        /// <summary>
+        /// This allows us to access a pre-defined C# HttpClient 'client' variable for sending POST and GET requests to the data access layer.
+        /// </summary>
         static TestimonialController()
         {
             HttpClientHandler handler = new HttpClientHandler()
@@ -42,6 +45,7 @@ namespace Manitouage1.Controllers
             return View();
         }
 
+        // GET: Testimonial/List
         public ActionResult List()
         {
             string url = "testimonialdata/gettestimonials";
