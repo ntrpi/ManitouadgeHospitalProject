@@ -217,12 +217,19 @@ Regardless of the type of expense, it makes sense to have a list of the services
 - Almost deleted wafa's work for good
 
 ### Kyle
+
+#### Features
 - Testimonial Model
 - Volunteer Model
-- Testimonial Controller 
-- Volunteer Controller
-- Moral Support
-- Positivity
+- Testimonial Controllers
+- Volunteer Controllers
+- Views for all the above controller routes
+- Made changes to the AccountController.cs so that new users are automatically added to the "User" grou
+
+#### Team Work
+- helped Miho resolve migration issues
+- Miho helped me add TinyMCE to my feature
+
 
 ### Miho
 Department and Job Posting feature
