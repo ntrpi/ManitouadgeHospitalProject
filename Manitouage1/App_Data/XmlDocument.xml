@@ -1,0 +1,1123 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Manitouage1</name>
+    </assembly>
+    <members>
+        <member name="M:Manitouage1.Areas.HelpPage.ApiDescriptionExtensions.GetFriendlyId(System.Web.Http.Description.ApiDescription)">
+            <summary>
+            Generates an URI-friendly ID for the <see cref="T:System.Web.Http.Description.ApiDescription"/>. E.g. "Get-Values-id_name" instead of "GetValues/{id}?name={name}"
+            </summary>
+            <param name="description">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <returns>The ID as a string.</returns>
+        </member>
+        <member name="T:Manitouage1.Areas.HelpPage.HelpPageConfig">
+            <summary>
+            Use this class to customize the Help Page.
+            For example you can set a custom <see cref="T:System.Web.Http.Description.IDocumentationProvider"/> to supply the documentation
+            or you can provide the samples for the requests/responses.
+            </summary>
+        </member>
+        <member name="T:Manitouage1.Areas.HelpPage.Controllers.HelpController">
+            <summary>
+            The controller that will handle requests for the help page.
+            </summary>
+        </member>
+        <member name="M:Manitouage1.Areas.HelpPage.HelpPageConfigurationExtensions.SetDocumentationProvider(System.Web.Http.HttpConfiguration,System.Web.Http.Description.IDocumentationProvider)">
+            <summary>
+            Sets the documentation provider for help page.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="documentationProvider">The documentation provider.</param>
+        </member>
+        <member name="M:Manitouage1.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleObjects(System.Web.Http.HttpConfiguration,System.Collections.Generic.IDictionary{System.Type,System.Object})">
+            <summary>
+            Sets the objects that will be used by the formatters to produce sample requests/responses.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sampleObjects">The sample objects.</param>
+        </member>
+        <member name="M:Manitouage1.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleRequest(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.String,System.String)">
+            <summary>
+            Sets the sample request directly for the specified media type and action.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample request.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+        </member>
+        <member name="M:Manitouage1.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleRequest(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.String,System.String,System.String[])">
+            <summary>
+            Sets the sample request directly for the specified media type and action with parameters.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample request.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:Manitouage1.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleResponse(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.String,System.String)">
+            <summary>
+            Sets the sample request directly for the specified media type of the action.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample response.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+        </member>
+        <member name="M:Manitouage1.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleResponse(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.String,System.String,System.String[])">
+            <summary>
+            Sets the sample response directly for the specified media type of the action with specific parameters.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample response.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:Manitouage1.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleForMediaType(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue)">
+            <summary>
+            Sets the sample directly for all actions with the specified media type.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample.</param>
+            <param name="mediaType">The media type.</param>
+        </member>
+        <member name="M:Manitouage1.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleForType(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.Type)">
+            <summary>
+            Sets the sample directly for all actions with the specified type and media type.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="type">The parameter type or return type of an action.</param>
+        </member>
+        <member name="M:Manitouage1.Areas.HelpPage.HelpPageConfigurationExtensions.SetActualRequestType(System.Web.Http.HttpConfiguration,System.Type,System.String,System.String)">
+            <summary>
+            Specifies the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> passed to the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
+            The help page will use this information to produce more accurate request samples.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="type">The type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+        </member>
+        <member name="M:Manitouage1.Areas.HelpPage.HelpPageConfigurationExtensions.SetActualRequestType(System.Web.Http.HttpConfiguration,System.Type,System.String,System.String,System.String[])">
+            <summary>
+            Specifies the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> passed to the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
+            The help page will use this information to produce more accurate request samples.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="type">The type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:Manitouage1.Areas.HelpPage.HelpPageConfigurationExtensions.SetActualResponseType(System.Web.Http.HttpConfiguration,System.Type,System.String,System.String)">
+            <summary>
+            Specifies the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> returned as part of the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
+            The help page will use this information to produce more accurate response samples.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="type">The type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+        </member>
+        <member name="M:Manitouage1.Areas.HelpPage.HelpPageConfigurationExtensions.SetActualResponseType(System.Web.Http.HttpConfiguration,System.Type,System.String,System.String,System.String[])">
+            <summary>
+            Specifies the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> returned as part of the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
+            The help page will use this information to produce more accurate response samples.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="type">The type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:Manitouage1.Areas.HelpPage.HelpPageConfigurationExtensions.GetHelpPageSampleGenerator(System.Web.Http.HttpConfiguration)">
+            <summary>
+            Gets the help page sample generator.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <returns>The help page sample generator.</returns>
+        </member>
+        <member name="M:Manitouage1.Areas.HelpPage.HelpPageConfigurationExtensions.SetHelpPageSampleGenerator(System.Web.Http.HttpConfiguration,Manitouage1.Areas.HelpPage.HelpPageSampleGenerator)">
+            <summary>
+            Sets the help page sample generator.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sampleGenerator">The help page sample generator.</param>
+        </member>
+        <member name="M:Manitouage1.Areas.HelpPage.HelpPageConfigurationExtensions.GetModelDescriptionGenerator(System.Web.Http.HttpConfiguration)">
+            <summary>
+            Gets the model description generator.
+            </summary>
+            <param name="config">The configuration.</param>
+            <returns>The <see cref="T:Manitouage1.Areas.HelpPage.ModelDescriptions.ModelDescriptionGenerator"/></returns>
+        </member>
+        <member name="M:Manitouage1.Areas.HelpPage.HelpPageConfigurationExtensions.GetHelpPageApiModel(System.Web.Http.HttpConfiguration,System.String)">
+            <summary>
+            Gets the model that represents an API displayed on the help page. The model is initialized on the first call and cached for subsequent calls.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="apiDescriptionId">The <see cref="T:System.Web.Http.Description.ApiDescription"/> ID.</param>
+            <returns>
+            An <see cref="T:Manitouage1.Areas.HelpPage.Models.HelpPageApiModel"/>
+            </returns>
+        </member>
+        <member name="T:Manitouage1.Areas.HelpPage.ModelDescriptions.ModelDescription">
+            <summary>
+            Describes a type model.
+            </summary>
+        </member>
+        <member name="T:Manitouage1.Areas.HelpPage.ModelDescriptions.ModelDescriptionGenerator">
+            <summary>
+            Generates model descriptions for given types.
+            </summary>
+        </member>
+        <member name="T:Manitouage1.Areas.HelpPage.ModelDescriptions.ModelNameAttribute">
+            <summary>
+            Use this attribute to change the name of the <see cref="T:Manitouage1.Areas.HelpPage.ModelDescriptions.ModelDescription"/> generated for a type.
+            </summary>
+        </member>
+        <member name="T:Manitouage1.Areas.HelpPage.Models.HelpPageApiModel">
+            <summary>
+            The model that represents an API displayed on the help page.
+            </summary>
+        </member>
+        <member name="M:Manitouage1.Areas.HelpPage.Models.HelpPageApiModel.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Manitouage1.Areas.HelpPage.Models.HelpPageApiModel"/> class.
+            </summary>
+        </member>
+        <member name="P:Manitouage1.Areas.HelpPage.Models.HelpPageApiModel.ApiDescription">
+            <summary>
+            Gets or sets the <see cref="P:Manitouage1.Areas.HelpPage.Models.HelpPageApiModel.ApiDescription"/> that describes the API.
+            </summary>
+        </member>
+        <member name="P:Manitouage1.Areas.HelpPage.Models.HelpPageApiModel.UriParameters">
+            <summary>
+            Gets or sets the <see cref="T:Manitouage1.Areas.HelpPage.ModelDescriptions.ParameterDescription"/> collection that describes the URI parameters for the API.
+            </summary>
+        </member>
+        <member name="P:Manitouage1.Areas.HelpPage.Models.HelpPageApiModel.RequestDocumentation">
+            <summary>
+            Gets or sets the documentation for the request.
+            </summary>
+        </member>
+        <member name="P:Manitouage1.Areas.HelpPage.Models.HelpPageApiModel.RequestModelDescription">
+            <summary>
+            Gets or sets the <see cref="T:Manitouage1.Areas.HelpPage.ModelDescriptions.ModelDescription"/> that describes the request body.
+            </summary>
+        </member>
+        <member name="P:Manitouage1.Areas.HelpPage.Models.HelpPageApiModel.RequestBodyParameters">
+            <summary>
+            Gets the request body parameter descriptions.
+            </summary>
+        </member>
+        <member name="P:Manitouage1.Areas.HelpPage.Models.HelpPageApiModel.ResourceDescription">
+            <summary>
+            Gets or sets the <see cref="T:Manitouage1.Areas.HelpPage.ModelDescriptions.ModelDescription"/> that describes the resource.
+            </summary>
+        </member>
+        <member name="P:Manitouage1.Areas.HelpPage.Models.HelpPageApiModel.ResourceProperties">
+            <summary>
+            Gets the resource property descriptions.
+            </summary>
+        </member>
+        <member name="P:Manitouage1.Areas.HelpPage.Models.HelpPageApiModel.SampleRequests">
+            <summary>
+            Gets the sample requests associated with the API.
+            </summary>
+        </member>
+        <member name="P:Manitouage1.Areas.HelpPage.Models.HelpPageApiModel.SampleResponses">
+            <summary>
+            Gets the sample responses associated with the API.
+            </summary>
+        </member>
+        <member name="P:Manitouage1.Areas.HelpPage.Models.HelpPageApiModel.ErrorMessages">
+            <summary>
+            Gets the error messages associated with this model.
+            </summary>
+        </member>
+        <member name="T:Manitouage1.Areas.HelpPage.HelpPageSampleGenerator">
+            <summary>
+            This class will generate the samples for the help page.
+            </summary>
+        </member>
+        <member name="M:Manitouage1.Areas.HelpPage.HelpPageSampleGenerator.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Manitouage1.Areas.HelpPage.HelpPageSampleGenerator"/> class.
+            </summary>
+        </member>
+        <member name="P:Manitouage1.Areas.HelpPage.HelpPageSampleGenerator.ActualHttpMessageTypes">
+            <summary>
+            Gets CLR types that are used as the content of <see cref="T:System.Net.Http.HttpRequestMessage"/> or <see cref="T:System.Net.Http.HttpResponseMessage"/>.
+            </summary>
+        </member>
+        <member name="P:Manitouage1.Areas.HelpPage.HelpPageSampleGenerator.ActionSamples">
+            <summary>
+            Gets the objects that are used directly as samples for certain actions.
+            </summary>
+        </member>
+        <member name="P:Manitouage1.Areas.HelpPage.HelpPageSampleGenerator.SampleObjects">
+            <summary>
+            Gets the objects that are serialized as samples by the supported formatters.
+            </summary>
+        </member>
+        <member name="P:Manitouage1.Areas.HelpPage.HelpPageSampleGenerator.SampleObjectFactories">
+            <summary>
+            Gets factories for the objects that the supported formatters will serialize as samples. Processed in order,
+            stopping when the factory successfully returns a non-<see langref="null"/> object.
+            </summary>
+            <remarks>
+            Collection includes just <see cref="M:Manitouage1.Areas.HelpPage.ObjectGenerator.GenerateObject(System.Type)"/> initially. Use
+            <code>SampleObjectFactories.Insert(0, func)</code> to provide an override and
+            <code>SampleObjectFactories.Add(func)</code> to provide a fallback.</remarks>
+        </member>
+        <member name="M:Manitouage1.Areas.HelpPage.HelpPageSampleGenerator.GetSampleRequests(System.Web.Http.Description.ApiDescription)">
+            <summary>
+            Gets the request body samples for a given <see cref="T:System.Web.Http.Description.ApiDescription"/>.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <returns>The samples keyed by media type.</returns>
+        </member>
+        <member name="M:Manitouage1.Areas.HelpPage.HelpPageSampleGenerator.GetSampleResponses(System.Web.Http.Description.ApiDescription)">
+            <summary>
+            Gets the response body samples for a given <see cref="T:System.Web.Http.Description.ApiDescription"/>.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <returns>The samples keyed by media type.</returns>
+        </member>
+        <member name="M:Manitouage1.Areas.HelpPage.HelpPageSampleGenerator.GetSample(System.Web.Http.Description.ApiDescription,Manitouage1.Areas.HelpPage.SampleDirection)">
+            <summary>
+            Gets the request or response body samples.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <param name="sampleDirection">The value indicating whether the sample is for a request or for a response.</param>
+            <returns>The samples keyed by media type.</returns>
+        </member>
+        <member name="M:Manitouage1.Areas.HelpPage.HelpPageSampleGenerator.GetActionSample(System.String,System.String,System.Collections.Generic.IEnumerable{System.String},System.Type,System.Net.Http.Formatting.MediaTypeFormatter,System.Net.Http.Headers.MediaTypeHeaderValue,Manitouage1.Areas.HelpPage.SampleDirection)">
+            <summary>
+            Search for samples that are provided directly through <see cref="P:Manitouage1.Areas.HelpPage.HelpPageSampleGenerator.ActionSamples"/>.
+            </summary>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+            <param name="type">The CLR type.</param>
+            <param name="formatter">The formatter.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="sampleDirection">The value indicating whether the sample is for a request or for a response.</param>
+            <returns>The sample that matches the parameters.</returns>
+        </member>
+        <member name="M:Manitouage1.Areas.HelpPage.HelpPageSampleGenerator.GetSampleObject(System.Type)">
+            <summary>
+            Gets the sample object that will be serialized by the formatters. 
+            First, it will look at the <see cref="P:Manitouage1.Areas.HelpPage.HelpPageSampleGenerator.SampleObjects"/>. If no sample object is found, it will try to create
+            one using <see cref="M:Manitouage1.Areas.HelpPage.HelpPageSampleGenerator.DefaultSampleObjectFactory(Manitouage1.Areas.HelpPage.HelpPageSampleGenerator,System.Type)"/> (which wraps an <see cref="T:Manitouage1.Areas.HelpPage.ObjectGenerator"/>) and other
+            factories in <see cref="P:Manitouage1.Areas.HelpPage.HelpPageSampleGenerator.SampleObjectFactories"/>.
+            </summary>
+            <param name="type">The type.</param>
+            <returns>The sample object.</returns>
+        </member>
+        <member name="M:Manitouage1.Areas.HelpPage.HelpPageSampleGenerator.ResolveHttpRequestMessageType(System.Web.Http.Description.ApiDescription)">
+            <summary>
+            Resolves the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> passed to the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <returns>The type.</returns>
+        </member>
+        <member name="M:Manitouage1.Areas.HelpPage.HelpPageSampleGenerator.ResolveType(System.Web.Http.Description.ApiDescription,System.String,System.String,System.Collections.Generic.IEnumerable{System.String},Manitouage1.Areas.HelpPage.SampleDirection,System.Collections.ObjectModel.Collection{System.Net.Http.Formatting.MediaTypeFormatter}@)">
+            <summary>
+            Resolves the type of the action parameter or return value when <see cref="T:System.Net.Http.HttpRequestMessage"/> or <see cref="T:System.Net.Http.HttpResponseMessage"/> is used.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+            <param name="sampleDirection">The value indicating whether the sample is for a request or a response.</param>
+            <param name="formatters">The formatters.</param>
+        </member>
+        <member name="M:Manitouage1.Areas.HelpPage.HelpPageSampleGenerator.WriteSampleObjectUsingFormatter(System.Net.Http.Formatting.MediaTypeFormatter,System.Object,System.Type,System.Net.Http.Headers.MediaTypeHeaderValue)">
+            <summary>
+            Writes the sample object using formatter.
+            </summary>
+            <param name="formatter">The formatter.</param>
+            <param name="value">The value.</param>
+            <param name="type">The type.</param>
+            <param name="mediaType">Type of the media.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Manitouage1.Areas.HelpPage.HelpPageSampleKey">
+            <summary>
+            This is used to identify the place where the sample should be applied.
+            </summary>
+        </member>
+        <member name="M:Manitouage1.Areas.HelpPage.HelpPageSampleKey.#ctor(System.Net.Http.Headers.MediaTypeHeaderValue)">
+            <summary>
+            Creates a new <see cref="T:Manitouage1.Areas.HelpPage.HelpPageSampleKey"/> based on media type.
+            </summary>
+            <param name="mediaType">The media type.</param>
+        </member>
+        <member name="M:Manitouage1.Areas.HelpPage.HelpPageSampleKey.#ctor(System.Net.Http.Headers.MediaTypeHeaderValue,System.Type)">
+            <summary>
+            Creates a new <see cref="T:Manitouage1.Areas.HelpPage.HelpPageSampleKey"/> based on media type and CLR type.
+            </summary>
+            <param name="mediaType">The media type.</param>
+            <param name="type">The CLR type.</param>
+        </member>
+        <member name="M:Manitouage1.Areas.HelpPage.HelpPageSampleKey.#ctor(Manitouage1.Areas.HelpPage.SampleDirection,System.String,System.String,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Creates a new <see cref="T:Manitouage1.Areas.HelpPage.HelpPageSampleKey"/> based on <see cref="P:Manitouage1.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>, controller name, action name and parameter names.
+            </summary>
+            <param name="sampleDirection">The <see cref="P:Manitouage1.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:Manitouage1.Areas.HelpPage.HelpPageSampleKey.#ctor(System.Net.Http.Headers.MediaTypeHeaderValue,Manitouage1.Areas.HelpPage.SampleDirection,System.String,System.String,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Creates a new <see cref="T:Manitouage1.Areas.HelpPage.HelpPageSampleKey"/> based on media type, <see cref="P:Manitouage1.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>, controller name, action name and parameter names.
+            </summary>
+            <param name="mediaType">The media type.</param>
+            <param name="sampleDirection">The <see cref="P:Manitouage1.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="P:Manitouage1.Areas.HelpPage.HelpPageSampleKey.ControllerName">
+            <summary>
+            Gets the name of the controller.
+            </summary>
+            <value>
+            The name of the controller.
+            </value>
+        </member>
+        <member name="P:Manitouage1.Areas.HelpPage.HelpPageSampleKey.ActionName">
+            <summary>
+            Gets the name of the action.
+            </summary>
+            <value>
+            The name of the action.
+            </value>
+        </member>
+        <member name="P:Manitouage1.Areas.HelpPage.HelpPageSampleKey.MediaType">
+            <summary>
+            Gets the media type.
+            </summary>
+            <value>
+            The media type.
+            </value>
+        </member>
+        <member name="P:Manitouage1.Areas.HelpPage.HelpPageSampleKey.ParameterNames">
+            <summary>
+            Gets the parameter names.
+            </summary>
+        </member>
+        <member name="P:Manitouage1.Areas.HelpPage.HelpPageSampleKey.SampleDirection">
+            <summary>
+            Gets the <see cref="P:Manitouage1.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>.
+            </summary>
+        </member>
+        <member name="T:Manitouage1.Areas.HelpPage.ImageSample">
+            <summary>
+            This represents an image sample on the help page. There's a display template named ImageSample associated with this class.
+            </summary>
+        </member>
+        <member name="M:Manitouage1.Areas.HelpPage.ImageSample.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Manitouage1.Areas.HelpPage.ImageSample"/> class.
+            </summary>
+            <param name="src">The URL of an image.</param>
+        </member>
+        <member name="T:Manitouage1.Areas.HelpPage.InvalidSample">
+            <summary>
+            This represents an invalid sample on the help page. There's a display template named InvalidSample associated with this class.
+            </summary>
+        </member>
+        <member name="T:Manitouage1.Areas.HelpPage.ObjectGenerator">
+            <summary>
+            This class will create an object of a given type and populate it with sample data.
+            </summary>
+        </member>
+        <member name="M:Manitouage1.Areas.HelpPage.ObjectGenerator.GenerateObject(System.Type)">
+            <summary>
+            Generates an object for a given type. The type needs to be public, have a public default constructor and settable public properties/fields. Currently it supports the following types:
+            Simple types: <see cref="T:System.Int32"/>, <see cref="T:System.String"/>, <see cref="T:System.Enum"/>, <see cref="T:System.DateTime"/>, <see cref="T:System.Uri"/>, etc.
+            Complex types: POCO types.
+            Nullables: <see cref="T:System.Nullable`1"/>.
+            Arrays: arrays of simple types or complex types.
+            Key value pairs: <see cref="T:System.Collections.Generic.KeyValuePair`2"/>
+            Tuples: <see cref="T:System.Tuple`1"/>, <see cref="T:System.Tuple`2"/>, etc
+            Dictionaries: <see cref="T:System.Collections.Generic.IDictionary`2"/> or anything deriving from <see cref="T:System.Collections.Generic.IDictionary`2"/>.
+            Collections: <see cref="T:System.Collections.Generic.IList`1"/>, <see cref="T:System.Collections.Generic.IEnumerable`1"/>, <see cref="T:System.Collections.Generic.ICollection`1"/>, <see cref="T:System.Collections.IList"/>, <see cref="T:System.Collections.IEnumerable"/>, <see cref="T:System.Collections.ICollection"/> or anything deriving from <see cref="T:System.Collections.Generic.ICollection`1"/> or <see cref="T:System.Collections.IList"/>.
+            Queryables: <see cref="T:System.Linq.IQueryable"/>, <see cref="T:System.Linq.IQueryable`1"/>.
+            </summary>
+            <param name="type">The type.</param>
+            <returns>An object of the given type.</returns>
+        </member>
+        <member name="T:Manitouage1.Areas.HelpPage.SampleDirection">
+            <summary>
+            Indicates whether the sample is used for request or response
+            </summary>
+        </member>
+        <member name="T:Manitouage1.Areas.HelpPage.TextSample">
+            <summary>
+            This represents a preformatted text sample on the help page. There's a display template named TextSample associated with this class.
+            </summary>
+        </member>
+        <member name="T:Manitouage1.Areas.HelpPage.XmlDocumentationProvider">
+            <summary>
+            A custom <see cref="T:System.Web.Http.Description.IDocumentationProvider"/> that reads the API documentation from an XML documentation file.
+            </summary>
+        </member>
+        <member name="M:Manitouage1.Areas.HelpPage.XmlDocumentationProvider.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Manitouage1.Areas.HelpPage.XmlDocumentationProvider"/> class.
+            </summary>
+            <param name="documentPath">The physical path to XML document.</param>
+        </member>
+        <member name="M:Manitouage1.Controllers.ControllersHelper.doGetRequest(System.String)">
+            <summary>
+            Use the client member to perform a GET request on a given url.
+            </summary>
+            <param name="url">A string of the url for the GET request.</param>
+            <returns>An HttpResponseMessage object containing the result of the request.</returns>
+            <example>
+            HttpResponseMessage response = doGetRequest( "ProductsData/GetProductDto/" + productId );
+            if( response.IsSuccessStatuscode ) { ...
+            </example>
+        </member>
+        <member name="M:Manitouage1.Controllers.ControllersHelper.doPostRequest(System.String,System.Object)">
+            <summary>
+            Use the client member to perform a POST request. Use the JSON 
+            serializer member to convert the obj parameter into JSON format
+            to standardize the processing by the controller receiving the request.
+            </summary>
+            <param name="url">A string of the url for the POST request.</param>
+            <param name="obj">An object to be put into JSON format to be processed by the receiving controller</param>
+            <returns>An HttpResponseMessage object containing the result of the request.</returns>
+            <example>
+            Product product = new Product { ... };
+            HttpResponseMessage response = doPostRequest( "ProductsData/UpdateProduct/" + productId, product );
+            if( response.IsSuccessStatuscode ) { ...
+            </example>
+        </member>
+        <member name="M:Manitouage1.Controllers.ControllersHelper.doMultiPartPostRequest(System.String,System.Net.Http.MultipartFormDataContent)">
+            <summary>
+            Use the client member to perform a multi-part POST request, like uploading an image. 
+            </summary>
+            <param name="url">A string of the url for the POST request.</param>
+            <param name="requestContent">A MultipartFormDataContent object, likely containing data from an uploaded file.</param>
+            <returns>An HttpResponseMessage object containing the result of the request.</returns>
+            <example>
+            MultipartFormDataContent requestContent = new MultipartFormDataContent();
+            requestContent.Add( imageContent, "newImage", imageData.FileName );
+            HttpResponseMessage response = doMultiPartPostRequest( url, requestContent );
+            if( response.IsSuccessStatusCode ) { ...
+            </example>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:Manitouage1.Controllers.ControllersHelper.getFromResponse``1(System.Net.Http.HttpResponseMessage)" -->
+        <!-- Badly formed XML comment ignored for member "M:Manitouage1.Controllers.ControllersHelper.getUrl(System.String,System.Int32)" -->
+        <!-- Badly formed XML comment ignored for member "M:Manitouage1.Controllers.ControllersHelper.getUrl(System.String,System.String,System.Int32)" -->
+        <!-- Badly formed XML comment ignored for member "M:Manitouage1.Controllers.DepartmentDataController.AddDepartment(Manitouage1.Models.Department)" -->
+        <!-- Badly formed XML comment ignored for member "M:Manitouage1.Controllers.DepartmentDataController.UpdateDepartment(System.Int32,Manitouage1.Models.Department)" -->
+        <!-- Badly formed XML comment ignored for member "M:Manitouage1.Controllers.DonationDataController.GetDonations" -->
+        <!-- Badly formed XML comment ignored for member "M:Manitouage1.Controllers.DonationDataController.GetAllDonations" -->
+        <member name="M:Manitouage1.Controllers.DonationDataController.FindDonation(System.Int32)">
+            <summary> 
+            Finds a specfic donation by id with an OK status code. if donation is not found displays status code 404
+            </summary>
+            <param name="id">The donation id</param>
+            <returns>information about the donation: donation made by, amount and if it was made to an event</returns>
+        </member>
+        <member name="M:Manitouage1.Controllers.DonationDataController.FindEventForDonation(System.Int32)">
+            <summary>
+            finding the event id for a donations
+            </summary>
+            <prama name="id">Donation id</prama>
+            <result>
+            This will display the event associated with the donation 
+            </result>
+            REFERENCE TO VARSITY PROJECT
+        </member>
+        <member name="M:Manitouage1.Controllers.DonationDataController.AddDonation(Manitouage1.Models.Donation)">
+            <summary>
+            Adds a donation to the database.
+            </summary>
+            <param name="donation">adds a donation object. POST request through form</param>
+            <returns>status code 200 if successful. 400 if unsuccessful</returns>
+            <example>
+            POST: api/DonationData/AddDonation
+            FORM DATA: Donation JSON Object
+            </example>
+        </member>
+        <member name="M:Manitouage1.Controllers.DonationDataController.UpdateDonation(System.Int32,Manitouage1.Models.Donation)">
+            <summary>
+            Updates a donation in the database
+            </summary>
+            <param name="id">donation id</param>
+            <param name="firstName">Received as POST data.</param>
+            <param name="lastName">Received as POST data.</param>
+            <param name="email">Received as POST data.</param>
+            <returns>redirect to list page with the updated donation information</returns>
+            <example>
+            POST: api/DonationData/UpdateDonation/5
+            FORM DATA: Donatrion JSON Object
+            </example>
+        </member>
+        <member name="M:Manitouage1.Controllers.InvoicesController.Index">
+            <summary>
+            Get and display a list of all the Invoices in the database.
+            </summary>
+            <returns>A View containing a List of InvoiceDto objects.</returns>
+            <example>
+            GET: Invoices
+            </example>
+        </member>
+        <member name="M:Manitouage1.Controllers.InvoicesController.Details(System.Int32)">
+            <summary>
+            Get and display the information for the Invoice with the given ID.
+            </summary>
+            <param name="id">The ID of the Invoice in the database to retrieve.</param>
+            <returns>A View containing a InvoiceDto object if it was successfully retrieved, otherwise it contains null.</returns>
+            <example>
+            GET: Invoices/Details/5
+            </example>
+        </member>
+        <member name="M:Manitouage1.Controllers.InvoicesController.Create">
+            <summary>
+            Display the form to create a new Invoice.
+            </summary>
+            <returns>A View with the relevant input fields to create a new Invoice.</returns>
+            <example>
+            GET: Invoices/Create
+            </example>
+        </member>
+        <member name="M:Manitouage1.Controllers.InvoicesController.Create(Manitouage1.Models.Invoice)">
+            <summary>
+            Create a new record in the database with the information contained in the Invoice object.
+            </summary>
+            <param name="invoice">A Invoice object, received as form data.</param>
+            <returns>If the new Invoice was created, a RedirectToAction pointing to Details and containing the new Invoice's ID is returned, otherwise, a View with an error message in the ViewBag.</returns>
+            <example>
+            POST: Invoices/Create
+            Form Data: Invoice
+            </example>
+        </member>
+        <member name="M:Manitouage1.Controllers.InvoicesController.Edit(System.Int32)">
+            <summary>
+            Display the form to make changes to a Invoice.
+            </summary>
+            <param name="id">The ID of the Invoice to update.</param>
+            <returns>A View with the relevant input fields to edit a Invoice.</returns>
+            <example>
+            GET: Invoices/Edit/5
+            </example>
+        </member>
+        <member name="M:Manitouage1.Controllers.InvoicesController.EditClient(System.Int32)">
+            <summary>
+            Display the form to update the client for an invoice.
+            </summary>
+            <param name="id">The ID of the Invoice to update.</param>
+            <returns>A View with the relevant input fields to edit a Invoice.</returns>
+            <example>
+            GET: Invoices/EditClient/5
+            </example>
+        </member>
+        <member name="M:Manitouage1.Controllers.InvoicesController.EditClient(System.Int32,Manitouage1.Models.Invoice)">
+            <summary>
+            Update the record in the database with the information contained in the Invoice object.
+            </summary>
+            <param name="id">The ID of the invoice to update.</param>
+            <param name="invoice">A Invoice object, received as form data.</param>
+            <returns>If the update was successful, a RedirectToAction pointing to Details is returned, otherwise, a View with an error message in the ViewBag.</returns>
+            <example>
+            POST: Invoices/EditClient
+            Form Data: Invoice
+            </example>
+        </member>
+        <member name="M:Manitouage1.Controllers.InvoicesController.EditStatus(System.Int32)">
+            <summary>
+            Display the form to update the status for an invoice.
+            </summary>
+            <param name="id">The ID of the Invoice to update.</param>
+            <returns>A View with the relevant input fields to edit a Invoice.</returns>
+            <example>
+            GET: Invoices/EditStatus/5
+            </example>
+        </member>
+        <member name="M:Manitouage1.Controllers.InvoicesController.EditStatus(System.Int32,Manitouage1.Models.Invoice)">
+            <summary>
+            Update the record in the database with the information contained in the Invoice object.
+            </summary>
+            <param name="id">The ID of the invoice to update.</param>
+            <param name="invoice">A Invoice object, received as form data.</param>
+            <returns>If the Invoice was updated, a RedirectToAction pointing to Details is returned, otherwise, a View with an error message in the ViewBag.</returns>
+            <example>
+            POST: Invoices/Edit
+            Form Data: Invoice
+            </example>
+        </member>
+        <member name="M:Manitouage1.Controllers.InvoicesController.EditProducts(System.Int32)">
+            <summary>
+            Display the form to update the client for an invoice.
+            </summary>
+            <param name="id">The ID of the Invoice to update.</param>
+            <returns>A View with the relevant input fields to edit a Invoice.</returns>
+            <example>
+            GET: Invoices/EditClient/5
+            </example>
+        </member>
+        <member name="M:Manitouage1.Controllers.InvoicesController.DeleteConfirm(System.Int32)">
+            <summary>
+            Display a view that shows the details of the Invoice and asks the user to confirm its deletion.
+            </summary>
+            <param name="id">The ID of the Invoice to delete.</param>
+            <returns>A View containing a InvoiceDto if retrieved successfully from the database, otherwise it is empty.</returns>
+            <example>
+            GET: Invoices/DeleteConfirm/5
+            </example>
+        </member>
+        <member name="M:Manitouage1.Controllers.InvoicesController.Delete(System.Int32,System.Web.Mvc.FormCollection)">
+            <summary>
+            Delete the record in the database with the given ID.
+            </summary>
+            <param name="id">The ID of the invoice to update.</param>
+            <param name="collection">A collection of properties passed in from the caller.</param>
+            <returns>An ActionResult that Redirects to Index.</returns>
+            <example>
+            POST: Invoices/Create
+            Form Data: Invoice
+            </example>
+        </member>
+        <member name="M:Manitouage1.Controllers.InvoicesDataController.GetInvoices">
+            <summary>
+            Get a List of InvoiceDto objects constructed from the database.
+            </summary>
+            <returns>A List of InvoiceDto objects.</returns>
+            <example>
+            GET: api/InvoicesData/GetInvoices
+            </example>
+        </member>
+        <member name="M:Manitouage1.Controllers.InvoicesDataController.GetInvoice(System.Int32)">
+            <summary>
+            Get a InvoiceDto object constructed from the record in the database with the given ID.
+            </summary>
+            <param name="id">The ID of the requested Invoice.</param>
+            <returns>An IHttpActionResult containing a InvoiceDto object, or a NotFound IHttpActionResult.</returns>
+            <example>
+            GET: api/InvoicesData/GetInvoice/5
+            </example>
+        </member>
+        <member name="M:Manitouage1.Controllers.InvoicesDataController.UpdateInvoice(System.Int32,Manitouage1.Models.Invoice)">
+            <summary>
+            Update the record in the database with the information contained in the Invoice object.
+            </summary>
+            <param name="id">The ID of the Invoice to update.</param>
+            <param name="invoice">A Invoice object, received as POST data.</param>
+            <returns>An IHttpActionResult with no content if the update was successful, a BadRequest IHttpActionResult if there is a problem with the ModelState or Invoice ID, or a NotFound IHttpActionResult if the update was not successful.</returns>
+            <example>
+            POST: api/InvoicesData/UpdateInvoice/5
+            FORM DATA: Invoice JSON Object
+            </example>
+        </member>
+        <member name="M:Manitouage1.Controllers.InvoicesDataController.CreateInvoice(Manitouage1.Models.Invoice)">
+            <summary>
+            Create a new record in the database with the information contained in the Invoice object.
+            </summary>
+            <param name="invoice">A Invoice object, received as POST data.</param>
+            <returns>If the record was added a CreatedAtRoute IHttpActionResult containing the new record's ID is returned, otherwise, if the ModelState is invalid, a BadRequest IHttpActionResult is returned. 
+            Otherwise, a NotFound ActionResult is returned.</returns>
+            <example>
+            POST: api/InvoicesData/CreateInvoice
+            FORM DATA: Invoice JSON Object
+            </example>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:Manitouage1.Controllers.InvoicesDataController.DeleteInvoice(System.Int32)" -->
+        <!-- Badly formed XML comment ignored for member "M:Manitouage1.Controllers.JobPostingDataController.AddJobPosting(Manitouage1.Models.JobPosting)" -->
+        <!-- Badly formed XML comment ignored for member "M:Manitouage1.Controllers.JobPostingDataController.UpdateJobPosting(System.Int32,Manitouage1.Models.JobPosting)" -->
+        <member name="M:Manitouage1.Controllers.ProductsController.Index">
+            <summary>
+            Get and display a list of all the Products in the database.
+            </summary>
+            <returns>A View containing a List of ProductDto objects.</returns>
+            <example>
+            GET: Products
+            </example>
+        </member>
+        <member name="M:Manitouage1.Controllers.ProductsController.Details(System.Int32)">
+            <summary>
+            Get and display the information for the Product with the given ID.
+            </summary>
+            <param name="id">The ID of the Product in the database to retrieve.</param>
+            <returns>A View containing a ProductDto object if it was successfully retrieved, otherwise it contains null.</returns>
+            <example>
+            GET: Products/Details/5
+            </example>
+        </member>
+        <member name="M:Manitouage1.Controllers.ProductsController.Create">
+            <summary>
+            Display the form to create a new Product.
+            </summary>
+            <returns>A View with the relevant input fields to create a new Product.</returns>
+            <example>
+            GET: Products/Create
+            </example>
+        </member>
+        <member name="M:Manitouage1.Controllers.ProductsController.Create(Manitouage1.Models.Product)">
+            <summary>
+            Create a new record in the database with the information contained in the Product object.
+            </summary>
+            <param name="product">A Product object, received as form data.</param>
+            <returns>If the new Product was created, a RedirectToAction pointing to Details and containing the new Product's ID is returned, otherwise, a View with an error message in the ViewBag.</returns>
+            <example>
+            POST: Products/Create
+            Form Data: Product
+            </example>
+        </member>
+        <member name="M:Manitouage1.Controllers.ProductsController.Edit(System.Int32)">
+            <summary>
+            Display the form to make changes to a Product.
+            </summary>
+            <param name="id">The ID of the Product to update.</param>
+            <returns>A View with the relevant input fields to edit a Product.</returns>
+            <example>
+            GET: Products/Edit/5
+            </example>
+        </member>
+        <member name="M:Manitouage1.Controllers.ProductsController.Edit(System.Int32,Manitouage1.Models.Product)">
+            <summary>
+            Update the record in the database with the information contained in the Product object.
+            </summary>
+            <param name="id">The ID of the product to update.</param>
+            <param name="product">A Product object, received as form data.</param>
+            <returns>If the new Product was created, a RedirectToAction pointing to Details and containing the new Product's ID is returned, otherwise, a View with an error message in the ViewBag.</returns>
+            <example>
+            POST: Products/Create
+            Form Data: Product
+            </example>
+        </member>
+        <member name="M:Manitouage1.Controllers.ProductsController.DeleteConfirm(System.Int32)">
+            <summary>
+            Display a view that shows the details of the Product and asks the user to confirm its deletion.
+            </summary>
+            <param name="id">The ID of the Product to delete.</param>
+            <returns>A View containing a ProductDto if retrieved successfully from the database, otherwise it is empty.</returns>
+            <example>
+            GET: Products/DeleteConfirm/5
+            </example>
+        </member>
+        <member name="M:Manitouage1.Controllers.ProductsController.Delete(System.Int32,System.Web.Mvc.FormCollection)">
+            <summary>
+            Delete the record in the database with the given ID.
+            </summary>
+            <param name="id">The ID of the product to update.</param>
+            <param name="collection">A collection of properties passed in from the caller.</param>
+            <returns>An ActionResult that Redirects to Index.</returns>
+            <example>
+            POST: Products/Create
+            Form Data: Product
+            </example>
+        </member>
+        <member name="M:Manitouage1.Controllers.ProductsDataController.GetProducts">
+            <summary>
+            Get a List of ProductDto objects constructed from the database.
+            </summary>
+            <returns>A List of ProductDto objects.</returns>
+            <example>
+            GET: api/ProductsData/GetProducts
+            </example>
+        </member>
+        <member name="M:Manitouage1.Controllers.ProductsDataController.GetProduct(System.Int32)">
+            <summary>
+            Get a ProductDto object constructed from the record in the database with the given ID.
+            </summary>
+            <param name="id">The ID of the requested Product.</param>
+            <returns>An IHttpActionResult containing a ProductDto object, or a NotFound IHttpActionResult.</returns>
+            <example>
+            GET: api/ProductsData/GetProduct/5
+            </example>
+        </member>
+        <member name="M:Manitouage1.Controllers.ProductsDataController.UpdateProduct(System.Int32,Manitouage1.Models.Product)">
+            <summary>
+            Update the record in the database with the information contained in the Product object.
+            </summary>
+            <param name="id">The ID of the Product to update.</param>
+            <param name="product">A Product object, received as POST data.</param>
+            <returns>An IHttpActionResult with no content if the update was successful, a BadRequest IHttpActionResult if there is a problem with the ModelState or Product ID, or a NotFound IHttpActionResult if the update was not successful.</returns>
+            <example>
+            POST: api/ProductsData/UpdateProduct/5
+            FORM DATA: Product JSON Object
+            </example>
+        </member>
+        <member name="M:Manitouage1.Controllers.ProductsDataController.CreateProduct(Manitouage1.Models.Product)">
+            <summary>
+            Create a new record in the database with the information contained in the Product object.
+            </summary>
+            <param name="product">A Product object, received as POST data.</param>
+            <returns>If the record was added a CreatedAtRoute IHttpActionResult containing the new record's ID is returned, otherwise, if the ModelState is invalid, a BadRequest IHttpActionResult is returned. 
+            Otherwise, a NotFound ActionResult is returned.</returns>
+            <example>
+            POST: api/ProductsData/CreateProduct
+            FORM DATA: Product JSON Object
+            </example>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:Manitouage1.Controllers.ProductsDataController.DeleteProduct(System.Int32)" -->
+        <member name="M:Manitouage1.Controllers.ProductXInvoicesController.Index">
+            <summary>
+            Get and display a list of all the ProductXInvoices in the database.
+            </summary>
+            <returns>A View containing a List of ProductXInvoiceDto objects.</returns>
+            <example>
+            GET: ProductXInvoices
+            </example>
+        </member>
+        <member name="M:Manitouage1.Controllers.ProductXInvoicesController.Details(System.Int32)">
+            <summary>
+            Get and display the information for the ProductXInvoice with the given ID.
+            </summary>
+            <param name="id">The ID of the ProductXInvoice in the database to retrieve.</param>
+            <returns>A View containing a ProductXInvoiceDto object if it was successfully retrieved, otherwise it contains null.</returns>
+            <example>
+            GET: ProductXInvoices/Details/5
+            </example>
+        </member>
+        <member name="M:Manitouage1.Controllers.ProductXInvoicesController.Create">
+            <summary>
+            Display the form to create a new ProductXInvoice.
+            </summary>
+            <returns>A View with the relevant input fields to create a new ProductXInvoice.</returns>
+            <example>
+            GET: ProductXInvoices/Create
+            </example>
+        </member>
+        <member name="M:Manitouage1.Controllers.ProductXInvoicesController.Create(Manitouage1.Models.ProductXInvoice)">
+            <summary>
+            Create a new record in the database with the information contained in the ProductXInvoice object.
+            </summary>
+            <param name="productXInvoice">A ProductXInvoice object, received as form data.</param>
+            <returns>If the new ProductXInvoice was created, a RedirectToAction pointing to Details and containing the new ProductXInvoice's ID is returned, otherwise, a View with an error message in the ViewBag.</returns>
+            <example>
+            POST: ProductXInvoices/Create
+            Form Data: ProductXInvoice
+            </example>
+        </member>
+        <member name="M:Manitouage1.Controllers.ProductXInvoicesController.Edit(System.Int32)">
+            <summary>
+            Display the form to make changes to a ProductXInvoice.
+            </summary>
+            <param name="id">The ID of the ProductXInvoice to update.</param>
+            <returns>A View with the relevant input fields to edit a ProductXInvoice.</returns>
+            <example>
+            GET: ProductXInvoices/Edit/5
+            </example>
+        </member>
+        <member name="M:Manitouage1.Controllers.ProductXInvoicesController.Edit(System.Int32,Manitouage1.Models.ProductXInvoice)">
+            <summary>
+            Update the record in the database with the information contained in the ProductXInvoice object.
+            </summary>
+            <param name="id">The ID of the productXInvoice to update.</param>
+            <param name="productXInvoice">A ProductXInvoice object, received as form data.</param>
+            <returns>If the new ProductXInvoice was created, a RedirectToAction pointing to Details and containing the new ProductXInvoice's ID is returned, otherwise, a View with an error message in the ViewBag.</returns>
+            <example>
+            POST: ProductXInvoices/Create
+            Form Data: ProductXInvoice
+            </example>
+        </member>
+        <member name="M:Manitouage1.Controllers.ProductXInvoicesController.DeleteConfirm(System.Int32)">
+            <summary>
+            Display a view that shows the details of the ProductXInvoice and asks the user to confirm its deletion.
+            </summary>
+            <param name="id">The ID of the ProductXInvoice to delete.</param>
+            <returns>A View containing a ProductXInvoiceDto if retrieved successfully from the database, otherwise it is empty.</returns>
+            <example>
+            GET: ProductXInvoices/DeleteConfirm/5
+            </example>
+        </member>
+        <member name="M:Manitouage1.Controllers.ProductXInvoicesController.Delete(System.Int32,System.Web.Mvc.FormCollection)">
+            <summary>
+            Delete the record in the database with the given ID.
+            </summary>
+            <param name="id">The ID of the productXInvoice to update.</param>
+            <param name="collection">A collection of properties passed in from the caller.</param>
+            <returns>An ActionResult that Redirects to Index.</returns>
+            <example>
+            POST: ProductXInvoices/Create
+            Form Data: ProductXInvoice
+            </example>
+        </member>
+        <member name="M:Manitouage1.Controllers.ProductXInvoicesDataController.GetProductXInvoicesForInvoice(System.Int32)">
+            <summary>
+            Get a List of ProductXInvoiceDto objects constructed from the database for a given Invoice ID.
+            </summary>
+            <param name="id">The ID of the Invoice for which to return the ProductXInvoiceDto objects.</param>
+            <returns>A List of ProductXInvoiceDto objects.</returns>
+            <example>
+            GET: api/ProductXInvoicesData/GetProductXInvoicesForInvoice/5
+            </example>
+        </member>
+        <member name="M:Manitouage1.Controllers.ProductXInvoicesDataController.GetProductXInvoices(System.Int32)">
+            <summary>
+            Get a List of ProductXInvoiceDto objects constructed from the database for a given Invoice ID.
+            </summary>
+            <returns>A List of ProductXInvoiceDto objects.</returns>
+            <example>
+            GET: api/ProductXInvoicesData/GetProductXInvoices/5
+            </example>
+        </member>
+        <member name="M:Manitouage1.Controllers.ProductXInvoicesDataController.GetAllProductXInvoices">
+            <summary>
+            Get a List of ProductXInvoiceDto objects constructed from the database.
+            </summary>
+            <returns>A List of ProductXInvoiceDto objects.</returns>
+            <example>
+            GET: api/ProductXInvoicesData/GetAllProductXInvoices
+            </example>
+        </member>
+        <member name="M:Manitouage1.Controllers.ProductXInvoicesDataController.GetProductXInvoice(System.Int32)">
+            <summary>
+            Get a ProductXInvoiceDto object constructed from the record in the database with the given ID.
+            </summary>
+            <param name="id">The ID of the requested ProductXInvoice.</param>
+            <returns>An IHttpActionResult containing a ProductXInvoiceDto object, or a NotFound IHttpActionResult.</returns>
+            <example>
+            GET: api/ProductXInvoicesData/GetProductXInvoice/5
+            </example>
+        </member>
+        <member name="M:Manitouage1.Controllers.ProductXInvoicesDataController.UpdateProductXInvoice(System.Int32,Manitouage1.Models.ProductXInvoice)">
+            <summary>
+            Update the record in the database with the information contained in the ProductXInvoice object.
+            </summary>
+            <param name="id">The ID of the ProductXInvoice to update.</param>
+            <param name="productXInvoice">A ProductXInvoice object, received as POST data.</param>
+            <returns>An IHttpActionResult with no content if the update was successful, a BadRequest IHttpActionResult if there is a problem with the ModelState or ProductXInvoice ID, or a NotFound IHttpActionResult if the update was not successful.</returns>
+            <example>
+            POST: api/ProductXInvoicesData/UpdateProductXInvoice/5
+            FORM DATA: ProductXInvoice JSON Object
+            </example>
+        </member>
+        <member name="M:Manitouage1.Controllers.ProductXInvoicesDataController.CreateProductXInvoice(Manitouage1.Models.ProductXInvoice)">
+            <summary>
+            Create a new record in the database with the information contained in the ProductXInvoice object.
+            </summary>
+            <param name="productXInvoice">A ProductXInvoice object, received as POST data.</param>
+            <returns>If the record was added a CreatedAtRoute IHttpActionResult containing the new record's ID is returned, otherwise, if the ModelState is invalid, a BadRequest IHttpActionResult is returned. 
+            Otherwise, a NotFound ActionResult is returned.</returns>
+            <example>
+            POST: api/ProductXInvoicesData/CreateProductXInvoice
+            FORM DATA: ProductXInvoice JSON Object
+            </example>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:Manitouage1.Controllers.ProductXInvoicesDataController.DeleteProductXInvoice(System.Int32)" -->
+        <member name="M:Manitouage1.Controllers.TestimonialController.#cctor">
+            <summary>
+            This allows us to access a pre-defined C# HttpClient 'client' variable for sending POST and GET requests to the data access layer.
+            </summary>
+        </member>
+        <member name="M:Manitouage1.Controllers.TestimonialDataController.GetTestimonials">
+            <summary>
+            Get a list of testimonials in the database alongside a status code (200 OK).
+            </summary>
+            <returns>Returns a list of testimonials.</returns>
+            <example>
+            GET: api/testimonialdata/gettestimonials
+            </example>
+        </member>
+        <member name="M:Manitouage1.Controllers.TestimonialDataController.AddTestimonial(Manitouage1.Models.Testimonial)">
+            <summary>
+            Adds a Testimonial to the database.
+            </summary>
+            <param name="testimonial">A testimonial object sent as POST form data.</param>
+            <returns>returns status code 200 OK if successful, otherwise 400 if unsuccessful.</returns>
+            <example>
+            POST: api/testimonialdata/addtestimonial
+            FORM DATA: Testimonial JSON Object
+            </example>
+        </member>
+        <member name="M:Manitouage1.Controllers.TestimonialDataController.FindTestimonial(System.Int32)">
+            <summary>
+            Find specific testimonial based on testimonial id.
+            </summary>
+            <param name="id">The testimonial id.</param>
+            <returns>returns the testimonialdto along with a 200 status code if the testimonial is in the database. otherwise return 404.</returns>
+            <example>
+            GET: api/testimonialdata/findtestimonial/2
+            </example>
+        </member>
+        <member name="M:Manitouage1.Controllers.TestimonialDataController.DeleteTestimonial(System.Int32)">
+            <summary>
+            deletes a testimonial from the database.
+            </summary>
+            <param name="id">the id of the testimonial.</param>
+            <returns>returns 200 if successful, otherwise return 404.</returns>
+            <example>
+            POST: api/testimonialdata/deletetestimonial/2
+            </example>
+        </member>
+        <member name="M:Manitouage1.Controllers.TestimonialDataController.ApproveTestimonial(System.Int32)">
+            <summary>
+            set testimonial approval to true.
+            </summary>
+            <param name="id">the id of the testimonial.</param>
+            <returns>returns status 200 on success, or 404 if not successful.</returns>
+            <example>
+            POST: api/testimonialdata/approvetestimonial/2
+            </example>
+        </member>
+        <member name="M:Manitouage1.Controllers.VolunteerDataController.GetVolunteers">
+            <summary>
+            Get a list of volunteers in the database alongside a status code (200 OK).
+            </summary>
+            <returns>Returns a list of volunteers.</returns>
+            <example>
+            GET: api/volunteerdata/getvolunteers
+            </example>
+        </member>
+        <member name="M:Manitouage1.Controllers.VolunteerDataController.AddVolunteer(Manitouage1.Models.Volunteer)">
+            <summary>
+            Adds a volunteer to the database.
+            </summary>
+            <param name="volunteer">A volunteer object sent as POST form data.</param>
+            <returns>returns status code 200 OK if successful, otherwise 400 if unsuccessful.</returns>
+            <example>
+            POST: api/volunteerdata/addvolunteer
+            FORM DATA: volunteer JSON Object
+            </example>
+        </member>
+        <member name="M:Manitouage1.Controllers.VolunteerDataController.FindVolunteer(System.Int32)">
+            <summary>
+            Find specific volunteer based on volunteer id.
+            </summary>
+            <param name="id">The volunteer id.</param>
+            <returns>returns the volunteerdto along with a 200 status code if the volunteer is in the database. otherwise return 404.</returns>
+            <example>
+            GET: api/volunteerdata/findvolunteer/2
+            </example>
+        </member>
+        <member name="M:Manitouage1.Controllers.VolunteerDataController.DeleteVolunteer(System.Int32)">
+            <summary>
+            deletes a volunteer from the database.
+            </summary>
+            <param name="id">the id of the volunteer.</param>
+            <returns>returns 200 if successful, otherwise return 404.</returns>
+            <example>
+            POST: api/volunteerdata/deletevolunteer/2
+            </example>
+        </member>
+        <member name="M:Manitouage1.Controllers.VolunteerDataController.ApproveVolunteer(System.Int32)">
+            <summary>
+            set volunteer approval to true.
+            </summary>
+            <param name="id">the id of the volunteer.</param>
+            <returns>returns status 200 on success, or 404 if not successful.</returns>
+            <example>
+            POST: api/volunteerdata/approvevolunteer/2
+            </example>
+        </member>
+    </members>
+</doc>
