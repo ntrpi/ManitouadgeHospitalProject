@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace Manitouage1.Models
 {
@@ -31,6 +32,14 @@ namespace Manitouage1.Models
         [Required]
         public bool approved { get; set; }
 
+        [AllowHtml]
+        [Required]
+        public string survey { get; set; }
+
+        [ForeignKey("Event")]
+        public int? EventId { get; set; }
+        public Event Event { get; set; }
+
     }
 
     public class VolunteerDto
@@ -55,6 +64,9 @@ namespace Manitouage1.Models
 
         [DisplayName("Approved")]
         public bool approved { get; set; }
+
+        [DisplayName("EventId")]
+        public int? EventId { get; set; }
 
 
     }
