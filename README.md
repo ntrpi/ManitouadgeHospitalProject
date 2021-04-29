@@ -62,7 +62,7 @@
     </li>
     <li><a href="#features">Features</a>
       <ul>
-        <li><a href="#alerts"Alerts</a></li>
+        <li><a href="#alerts">Alerts</a></li>
         <li><a href="#events">Events</a></li>
         <li><a href="#donations-feature">Donations</a></li>
         <li><a href="#department-feature">Departments</a></li>
