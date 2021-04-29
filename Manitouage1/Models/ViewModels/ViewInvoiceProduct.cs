@@ -5,7 +5,7 @@ using System.Web;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace Manitouage1.Models.ViewModels
+namespace Manitouadge.Models.ViewModels
 {
     public class ViewInvoiceProduct
     {

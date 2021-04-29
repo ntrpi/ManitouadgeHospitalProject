@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
-namespace Manitouage1.Models
+namespace Manitouadge.Models
 {
     public class Donation
     {

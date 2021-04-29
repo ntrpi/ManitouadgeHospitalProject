@@ -4,9 +4,9 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using Manitouage1.Models.ViewModels;
+using Manitouadge.Models.ViewModels;
 
-namespace Manitouage1.Models
+namespace Manitouadge.Models
 {
     public class ProductTotals
     {

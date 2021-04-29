@@ -10,16 +10,16 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
-using Manitouage1.Models;
+using Manitouadge.Models;
 using System.Diagnostics;
 
 
-namespace Manitouage1.Controllers
+namespace Manitouadge.Controllers
 {
     public class EventDataController : ApiController
 
     {
-        private ManitouageDbContext db = new ManitouageDbContext();
+        private ManitouadgeDbContext db = new ManitouadgeDbContext();
 
         // GET: api/EventData/5
         public IHttpActionResult GetEvent(int id)

@@ -1,8 +1,8 @@
 ﻿using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartupAttribute(typeof(Manitouage1.Startup))]
-namespace Manitouage1
+[assembly: OwinStartupAttribute(typeof(Manitouadge.Startup))]
+namespace Manitouadge
 {
     public partial class Startup
     {

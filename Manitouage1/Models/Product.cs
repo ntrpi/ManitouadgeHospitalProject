@@ -9,7 +9,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
 
 
-namespace Manitouage1.Models
+namespace Manitouadge.Models
 {
     public class Product
     {

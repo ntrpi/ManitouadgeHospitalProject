@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 
-namespace Manitouage1.Models
+namespace Manitouadge.Models
 {
     public class IndexViewModel
     {

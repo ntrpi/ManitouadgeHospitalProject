@@ -8,10 +8,10 @@ using System.Web.Mvc;
 using System.Net.Http;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using Manitouage1.Models;
-using Manitouage1.Models.ViewModels;
+using Manitouadge.Models;
+using Manitouadge.Models.ViewModels;
 
-namespace Manitouage1.Controllers
+namespace Manitouadge.Controllers
 {
     public class InvoicesController: Controller
     {

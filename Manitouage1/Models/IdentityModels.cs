@@ -5,7 +5,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Collections.Generic;
 
-namespace Manitouage1.Models
+namespace Manitouadge.Models
 {
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit https://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
@@ -23,16 +23,16 @@ namespace Manitouage1.Models
         }
     }
 
-    public class ManitouageDbContext: IdentityDbContext<ApplicationUser>
+    public class ManitouadgeDbContext: IdentityDbContext<ApplicationUser>
     {
-        public ManitouageDbContext()
-            : base( "ManitouageDb", throwIfV1Schema: false)
+        public ManitouadgeDbContext()
+            : base( "ManitouadgeDb", throwIfV1Schema: false)
         {
         }
 
-        public static ManitouageDbContext Create()
+        public static ManitouadgeDbContext Create()
         {
-            return new ManitouageDbContext();
+            return new ManitouadgeDbContext();
         }
 
         public DbSet<Product> products {

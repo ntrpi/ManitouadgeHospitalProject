@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace Manitouage1
+namespace Manitouadge
 {
     public class BundleConfig
     {

@@ -7,7 +7,7 @@ using System.Linq;
 using System.Web;
 using Microsoft.AspNet.Identity;
 
-namespace Manitouage1.Models
+namespace Manitouadge.Models
 {
     public class Testimonial
     {

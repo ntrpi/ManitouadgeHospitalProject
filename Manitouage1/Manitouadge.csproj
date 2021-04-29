@@ -214,50 +214,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202104082015034_04082021amanda.cs" />
-    <Compile Include="Migrations\202104082015034_04082021amanda.Designer.cs">
-      <DependentUpon>202104082015034_04082021amanda.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202104090149279_20210804949amanda.cs" />
-    <Compile Include="Migrations\202104090149279_20210804949amanda.Designer.cs">
-      <DependentUpon>202104090149279_20210804949amanda.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202104120018385_testimonial.cs" />
-    <Compile Include="Migrations\202104120018385_testimonial.Designer.cs">
-      <DependentUpon>202104120018385_testimonial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202104120655235_contactus.cs" />
-    <Compile Include="Migrations\202104120655235_contactus.Designer.cs">
-      <DependentUpon>202104120655235_contactus.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202104181833067_newUpdate0418.cs" />
-    <Compile Include="Migrations\202104181833067_newUpdate0418.Designer.cs">
-      <DependentUpon>202104181833067_newUpdate0418.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202104222214000_WafaM_20210422_1813.cs" />
-    <Compile Include="Migrations\202104222214000_WafaM_20210422_1813.Designer.cs">
-      <DependentUpon>202104222214000_WafaM_20210422_1813.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202104222302224_WafaM_20210422_1902.cs" />
-    <Compile Include="Migrations\202104222302224_WafaM_20210422_1902.Designer.cs">
-      <DependentUpon>202104222302224_WafaM_20210422_1902.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202104222319067_WafaM_20210422_1918.cs" />
-    <Compile Include="Migrations\202104222319067_WafaM_20210422_1918.Designer.cs">
-      <DependentUpon>202104222319067_WafaM_20210422_1918.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202104232352135_WafaM_20210423_1951.cs" />
-    <Compile Include="Migrations\202104232352135_WafaM_20210423_1951.Designer.cs">
-      <DependentUpon>202104232352135_WafaM_20210423_1951.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202104242350251_AmandasAlertChangesViaSandra.cs" />
-    <Compile Include="Migrations\202104242350251_AmandasAlertChangesViaSandra.Designer.cs">
-      <DependentUpon>202104242350251_AmandasAlertChangesViaSandra.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202104260447011_volunteer-2021-04-26.cs" />
-    <Compile Include="Migrations\202104260447011_volunteer-2021-04-26.Designer.cs">
-      <DependentUpon>202104260447011_volunteer-2021-04-26.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Alert.cs" />
@@ -541,41 +497,6 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\202104082015034_04082021amanda.resx">
-      <DependentUpon>202104082015034_04082021amanda.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202104090149279_20210804949amanda.resx">
-      <DependentUpon>202104090149279_20210804949amanda.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202104120018385_testimonial.resx">
-      <DependentUpon>202104120018385_testimonial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202104120655235_contactus.resx">
-      <DependentUpon>202104120655235_contactus.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202104181833067_newUpdate0418.resx">
-      <DependentUpon>202104181833067_newUpdate0418.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202104222214000_WafaM_20210422_1813.resx">
-      <DependentUpon>202104222214000_WafaM_20210422_1813.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202104222302224_WafaM_20210422_1902.resx">
-      <DependentUpon>202104222302224_WafaM_20210422_1902.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202104222319067_WafaM_20210422_1918.resx">
-      <DependentUpon>202104222319067_WafaM_20210422_1918.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202104232352135_WafaM_20210423_1951.resx">
-      <DependentUpon>202104232352135_WafaM_20210423_1951.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202104242350251_AmandasAlertChangesViaSandra.resx">
-      <DependentUpon>202104242350251_AmandasAlertChangesViaSandra.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202104260447011_volunteer-2021-04-26.resx">
-      <DependentUpon>202104260447011_volunteer-2021-04-26.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

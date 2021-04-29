@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace Manitouage1.Models
+namespace Manitouadge.Models
 {
     public class ExternalLoginConfirmationViewModel
     {

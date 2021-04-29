@@ -12,13 +12,13 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using Manitouage1.Models;
+using Manitouadge.Models;
 
-namespace Manitouage1.Controllers
+namespace Manitouadge.Controllers
 {
     public class InvoicesDataController: ApiController
     {
-        private ManitouageDbContext db = new ManitouageDbContext();
+        private ManitouadgeDbContext db = new ManitouadgeDbContext();
 
         /// <summary>
         /// Get a List of InvoiceDto objects constructed from the database.

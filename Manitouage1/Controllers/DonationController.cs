@@ -4,14 +4,14 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.IO;
-using Manitouage1.Models;
-using Manitouage1.Models.ViewModels;
+using Manitouadge.Models;
+using Manitouadge.Models.ViewModels;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Diagnostics;
 using System.Web.Script.Serialization;
 
-namespace Manitouage1.Controllers
+namespace Manitouadge.Controllers
 {
 
     // Most of the controller code has been referenced from "VarsityMvp, Passion Project and inclass examples"

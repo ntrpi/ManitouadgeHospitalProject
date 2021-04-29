@@ -1,9 +1,9 @@
-﻿@model Manitouage1.Models.ViewModels.ViewInvoice
+﻿@model Manitouadge.Models.ViewModels.ViewInvoice
 
 @{
   var invoice = Model.invoiceDto;
-  var statusCreated = Manitouage1.Models.Invoice.Status.Created;
-  var statusPaid = Manitouage1.Models.Invoice.Status.Paid;
+  var statusCreated = Manitouadge.Models.Invoice.Status.Created;
+  var statusPaid = Manitouadge.Models.Invoice.Status.Paid;
   var products = Model.invoiceProducts;
   var user = Model.applicationUser;
   var totals = Model.totals;

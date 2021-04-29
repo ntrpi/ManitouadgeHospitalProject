@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 
 
-namespace Manitouage1.Models.ViewModels
+namespace Manitouadge.Models.ViewModels
 {
     public class ViewAlert
     {

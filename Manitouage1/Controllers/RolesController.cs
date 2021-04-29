@@ -9,9 +9,9 @@ using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using Manitouage1.Models;
+using Manitouadge.Models;
 
-namespace Manitouage1.Controllers
+namespace Manitouadge.Controllers
 {
     // https://www.yogihosting.com/aspnet-core-identity-roles/#all-roles
     // 2021/04/05
@@ -22,7 +22,7 @@ namespace Manitouage1.Controllers
         public RolesController( )
         {
             roleManager = new RoleManager<IdentityRole>( 
-                    new RoleStore<IdentityRole>( new ManitouageDbContext() )
+                    new RoleStore<IdentityRole>( new ManitouadgeDbContext() )
                 );
             string[] roleNames = { "Admin", "Staff", "Patient", "User" };
             foreach( string name in roleNames ) {

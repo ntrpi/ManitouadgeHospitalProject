@@ -1,11 +1,11 @@
-﻿@model Manitouage1.Models.ViewModels.UpdateInvoice
+﻿@model Manitouadge.Models.ViewModels.UpdateInvoice
 
 @{
     var invoice = Model.invoiceDto;
     var user = Model.user;
-    var statusCreated = Manitouage1.Models.Invoice.Status.Created;
-    var statusIssued = Manitouage1.Models.Invoice.Status.Issued;
-    var statusPaid = Manitouage1.Models.Invoice.Status.Paid;
+    var statusCreated = Manitouadge.Models.Invoice.Status.Created;
+    var statusIssued = Manitouadge.Models.Invoice.Status.Issued;
+    var statusPaid = Manitouadge.Models.Invoice.Status.Paid;
 }
 
 @using( Html.BeginForm() ) {

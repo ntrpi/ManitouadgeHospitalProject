@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 
-namespace Manitouage1
+namespace Manitouadge
 {
     public static class WebApiConfig
     {

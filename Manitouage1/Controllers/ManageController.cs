@@ -6,9 +6,9 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using Manitouage1.Models;
+using Manitouadge.Models;
 
-namespace Manitouage1.Controllers
+namespace Manitouadge.Controllers
 {
     [Authorize]
     public class ManageController : Controller

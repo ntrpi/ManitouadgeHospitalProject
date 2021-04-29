@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel;
 
-namespace Manitouage1.Models
+namespace Manitouadge.Models
 {
     public class VolunteerXEvent
     {

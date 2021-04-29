@@ -10,9 +10,9 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
-using Manitouage1.Models;
+using Manitouadge.Models;
 
-namespace Manitouage1
+namespace Manitouadge
 {
     public class EmailService : IIdentityMessageService
     {
@@ -42,7 +42,7 @@ namespace Manitouage1
 
         public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context) 
         {
-            var manager = new ApplicationUserManager(new UserStore<ApplicationUser>(context.Get<ManitouageDbContext>()));
+            var manager = new ApplicationUserManager(new UserStore<ApplicationUser>(context.Get<ManitouadgeDbContext>()));
             // Configure validation logic for usernames
             manager.UserValidator = new UserValidator<ApplicationUser>(manager)
             {

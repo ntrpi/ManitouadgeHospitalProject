@@ -5,9 +5,9 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
-using Manitouage1.Models;
+using Manitouadge.Models;
 
-namespace Manitouage1
+namespace Manitouadge
 {
     public partial class Startup
     {
@@ -15,7 +15,7 @@ namespace Manitouage1
         public void ConfigureAuth(IAppBuilder app)
         {
             // Configure the db context, user manager and signin manager to use a single instance per request
-            app.CreatePerOwinContext( ManitouageDbContext.Create);
+            app.CreatePerOwinContext( ManitouadgeDbContext.Create);
             app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
             app.CreatePerOwinContext<ApplicationSignInManager>(ApplicationSignInManager.Create);
 

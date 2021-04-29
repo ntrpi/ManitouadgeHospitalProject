@@ -24,7 +24,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <a href="https://github.com/ntrpi/Manitouage1">
+  <a href="https://github.com/ntrpi/ManitouadgeHospitalProject">
     <img src="Manitouage1/Content/img/homepage.png" alt="Home page." height="300">
   </a>
 
@@ -34,11 +34,11 @@
     A proposed redesign of the Manitouadge General Hospital website.
     <br />
     <br />
-    <a href="https://github.com/ntrpi/Manitouage1">View Demo</a>
+    <a href="https://github.com/ntrpi/ManitouadgeHospitalProject">View Demo</a>
     ·
-    <a href="https://github.com/ntrpi/Manitouage1/issues">Report Bug</a>
+    <a href="https://github.com/ntrpi/ManitouadgeHospitalProject/issues">Report Bug</a>
     ·
-    <a href="https://github.com/ntrpi/Manitouage1/issues">Request Feature</a>
+    <a href="https://github.com/ntrpi/ManitouadgeHospitalProject/issues">Request Feature</a>
   </p>
 </p>
 
@@ -62,7 +62,7 @@
     </li>
     <li><a href="#features">Features</a>
       <ul>
-        <li><a href="#alerts"Alerts</a></li>
+        <li><a href="#alerts">Alerts</a></li>
         <li><a href="#events">Events</a></li>
         <li><a href="#donations-feature">Donations</a></li>
         <li><a href="#department-feature">Departments</a></li>
@@ -121,7 +121,7 @@ Download and install [Visual Studio Community 2019](https://visualstudio.microso
 
 Clone the repo:
   ```sh
-  git clone https://github.com/ntrpi/Manitouage1.git
+  git clone https://github.com/ntrpi/ManitouadgeHospitalProject.git
   ```
 
 ### Running the Application
@@ -313,7 +313,7 @@ Department and Job Posting feature
 
 
 
-Project Link: [https://github.com/ntrpi/Manitouage1](https://github.com/ntrpi/Manitouage1)
+Project Link: [https://github.com/ntrpi/ManitouadgeHospitalProject](https://github.com/ntrpi/ManitouadgeHospitalProject)
 
 
 <!-- ACKNOWLEDGEMENTS -->

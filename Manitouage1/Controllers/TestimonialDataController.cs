@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 using System.Web.Http.Description;
-using Manitouage1.Models;
+using Manitouadge.Models;
 using System.Diagnostics;
 
-namespace Manitouage1.Controllers
+namespace Manitouadge.Controllers
 {
     public class TestimonialDataController : ApiController
     {
         // db context
-        private ManitouageDbContext db = new ManitouageDbContext();
+        private ManitouadgeDbContext db = new ManitouadgeDbContext();
 
 
         /// <summary>

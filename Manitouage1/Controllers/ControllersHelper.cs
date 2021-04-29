@@ -6,10 +6,10 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Diagnostics;
 using System.Web.Script.Serialization;
-using Manitouage1.Models;
-using Manitouage1.Models.ViewModels;
+using Manitouadge.Models;
+using Manitouadge.Models.ViewModels;
 
-namespace Manitouage1.Controllers
+namespace Manitouadge.Controllers
 {
     public class ControllersHelper
     {

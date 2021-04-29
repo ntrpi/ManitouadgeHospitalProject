@@ -6,9 +6,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Net.Http;
-using Manitouage1.Models;
+using Manitouadge.Models;
 
-namespace Manitouage1.Controllers
+namespace Manitouadge.Controllers
 {
     public class ProductsController: Controller
     {
