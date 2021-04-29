@@ -74,22 +74,38 @@
           <ul>
         <li><a href="#amanda">Amanda</a></li>
             <ul>
-            <li><a href="#features">Features</a></li>
-            <li><a href="#teamwork">Team Work</a></li>
+            <li><a href="#features-1">Features</a></li>
+            <li><a href="#team-work">Team Work</a></li>
             </ul>
         <li><a href="#farshan">Farshan</a></li>
+            <ul>
+            <li><a href="#features-2">Features</a></li>
+            <li><a href="#team-work-1">Team Work</a></li>
+            </ul>
         <li><a href="#kyle">Kyle</a></li>
+            <ul>
+            <li><a href="#features-3">Features</a></li>
+            <li><a href="#team-work-2">Team Work</a></li>
+            </ul>
         <li><a href="#miho">Miho</a></li>
+            <ul>
+            <li><a href="#features-4">Features</a></li>
+            <li><a href="#team-work-3">Team Work</a></li>
+            </ul>
         <li><a href="#sandra">Sandra</a>
           <ul>
             <li><a href="#project">Project</a></li>
-            <li><a href="#features">Features</a></li>
+            <li><a href="#features-5">Features</a></li>
             <li><a href="#front-end">Front End</a></li>
             <li><a href="#documentation">Documentation</a></li>
-            <li><a href="#teamwork">Team Work</a></li>
+            <li><a href="#team-work-4">Team Work</a></li>
           </ul>
         </li>
         <li><a href="#wafa">Wafa</a></li>
+            <ul>
+            <li><a href="#features-6">Features</a></li>
+            <li><a href="#team-work-5">Team Work</a></li>
+            </ul>
       </ul>
     </li>
     <li><a href="#contact">Contact</a></li>
@@ -212,8 +228,12 @@ Regardless of the type of expense, it makes sense to have a list of the services
 - Constantly communicated any changes I made to models or in regards to pulling or pushing
 
 ### Farshan
+
+#### Features
 - Contact us model
 - contact us controller
+
+#### Team Work
 - Almost deleted wafa's work for good
 
 ### Kyle
@@ -232,7 +252,9 @@ Regardless of the type of expense, it makes sense to have a list of the services
 
 
 ### Miho
-Department and Job Posting feature
+
+#### Features
+- Department and Job Posting feature
 - Department Model
 - Job Posting Model
 - Department Controller and Department Data Controller
@@ -240,6 +262,8 @@ Department and Job Posting feature
 - Views and ViewModels for Department and Job Posting
 - Added Tiny Editor plugin for Textarea for Job Posting Description 
 - Styled similar to wireframe
+
+#### Team Work
 - Communicate with team members for any changes 
 
 ### Sandra
@@ -272,6 +296,8 @@ Department and Job Posting feature
 - Created readme with sections for everyone to fill out.
 - Added links in the readme to the features that have been added.
 - Added an image, project description, and Getting Started section to the readme.
+- Fixed everyone's links in the readme.
+- Added auto-generated XML documentation.
 
 #### Team Work
 - Helped Amanda with database issues.
@@ -283,7 +309,7 @@ Department and Job Posting feature
 
 ### Wafa
 
-#### Feature
+#### Features
 - Donation Model
 - Intial CRUD for donations model
 - Events Feature Intergration (Amanda's Model)
