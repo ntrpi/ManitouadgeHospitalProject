@@ -34,24 +34,7 @@ namespace Manitouage1.Controllers
             return helper.getUrl( action, id );
         }
 
-        /// <summary>
-        /// Get and display a list of all the Invoices in the database.
-        /// </summary>
-        /// <returns>A View containing a List of InvoiceDto objects.</returns>
-        /// <example>
-        /// GET: Invoices
-        /// </example>
-        public ActionResult Index()
-        {
-            HttpResponseMessage response = helper.doGetRequest( getUrl( "Get" ) + "s" );
-            if( !response.IsSuccessStatusCode ) {
-                return View();
-            }
-
-            return View( helper.getFromResponse<IEnumerable<InvoiceDto>>( response ) );
-        }
-
-        // A utility function that facilitates the call to the helper to retrieve a Invoice from the database.
+        // A utility function that facilitates the call to the helper to retrieve an Invoice from the database.
         private InvoiceDto getInvoiceDto( int invoiceId )
         {
             HttpResponseMessage response = helper.doGetRequest( getUrl( "Get", invoiceId ) );
@@ -61,11 +44,38 @@ namespace Manitouage1.Controllers
             return helper.getFromResponse<InvoiceDto>( response );
         }
 
+        // A utility function that facilitates the call to the helper to update an Invoice in the database.
+        private bool updateInvoice( Invoice invoice )
+        {
+            // Send the post request.
+            HttpResponseMessage response = helper.doPostRequest( getUrl( "Update", invoice.invoiceId ), invoice );
+            return response.IsSuccessStatusCode;
+        }
+
+        // A utility function that facilitates the call to the helper to retrieve a User from the database.
+        private ApplicationUser getUser( string userId )
+        {
+            // Get the user.
+            HttpResponseMessage response = helper.doGetRequest( "InvoicesData/GetUser/" + userId );
+            if( response.IsSuccessStatusCode ) {
+               return helper.getFromResponse<ApplicationUser>( response );
+            }
+            return null;
+        }
+
+        // A utility function that facilitates the call to the helper to retrieve Users from the database.
+        private IEnumerable<ApplicationUser> getUsers()
+        {
+            return helper.doGetAndGetFromResponse<IEnumerable<ApplicationUser>>( "InvoicesData/GetUsers" );
+        }
+
+        // A utility function that facilitates the call to the helper to retrieve a Product from the database.
         private ProductDto getProductDto( int productId )
         {
             return productsHelper.doGetAndGetFromResponse<ProductDto>( productsHelper.getUrl( "Get", productId ) );
         }
 
+        // A utility function that facilitates the call to the helper to retrieve a list of Products from the database.
         private IEnumerable<ProductDto> getProductDtos()
         {
             return productsHelper.doGetAndGetFromResponse<IEnumerable<ProductDto>>( productsHelper.getUrl( "Get", 0 ) + "s" );
@@ -85,9 +95,10 @@ namespace Manitouage1.Controllers
             return invoiceProducts;
         }
 
+        // A utility function that facilitates the call to the helper to retrieve a list of ProductXInvoices from the database.
         private IEnumerable<ProductXInvoiceDto> getProductXInvoices( int invoiceId )
         {
-            return xInvoiceHelper.doGetAndGetFromResponse<IEnumerable<ProductXInvoiceDto>>( xInvoiceHelper.getUrl( "Get", 0 ) + "s" );
+            return xInvoiceHelper.doGetAndGetFromResponse<IEnumerable<ProductXInvoiceDto>>( xInvoiceHelper.getUrl( "Get", 0 ) + "s/" + invoiceId );
         }
 
         // A utility function that constructs a ViewInvoice object.
@@ -95,14 +106,9 @@ namespace Manitouage1.Controllers
         {
             InvoiceDto invoiceDto = getInvoiceDto( invoiceId );
             ViewInvoice viewInvoice = new ViewInvoice { 
-                invoiceDto = invoiceDto
+                invoiceDto = invoiceDto,
+                applicationUser = getUser( invoiceDto.userId )
             };
-
-            // Get the user.
-            HttpResponseMessage response = helper.doGetRequest( "InvoicesData/GetUser/" + invoiceDto.userId );
-            if( response.IsSuccessStatusCode ) {
-                viewInvoice.applicationUser = helper.getFromResponse<ApplicationUser>( response );
-            }
 
             if( isGetProducts ) {
                 // Get the ProductXInvoices for this invoice.
@@ -114,6 +120,48 @@ namespace Manitouage1.Controllers
             }
 
             return viewInvoice;
+        }
+
+        // Utility function to create an UpdateInvoice object.
+        private UpdateInvoice getUpdateInvoice( int invoiceId, InvoiceDto invoice = null )
+        {
+            // Get the list of products.
+            IEnumerable<ProductDto> productDtos = getProductDtos();
+
+            // Create the UpdateInvoice object with the users, products, and product totals.
+            UpdateInvoice updateInvoice = new UpdateInvoice {
+                productDtos = productDtos,
+                applicationUsers = getUsers(),
+                totals = new ProductTotals( productDtos )
+            };
+
+            // If the id is not 0, then this invoice alread exists, so set the dto and other properties.
+            if( invoiceId != 0 ) {
+                InvoiceDto invoiceDto = invoice == null ? getInvoiceDto( invoiceId ) : invoice;
+                updateInvoice.invoiceDto = invoiceDto;
+                if( invoiceDto.userId != null ) {
+                    updateInvoice.user = getUser( invoiceDto.userId );
+                }
+                updateInvoice.invoiceProducts = getViewInvoiceProducts( getProductXInvoices( invoiceId ) );
+            }
+            return updateInvoice;
+        }
+
+        /// <summary>
+        /// Get and display a list of all the Invoices in the database.
+        /// </summary>
+        /// <returns>A View containing a List of InvoiceDto objects.</returns>
+        /// <example>
+        /// GET: Invoices
+        /// </example>
+        public ActionResult Index()
+        {
+            HttpResponseMessage response = helper.doGetRequest( getUrl( "Get" ) + "s" );
+            if( !response.IsSuccessStatusCode ) {
+                return View();
+            }
+
+            return View( helper.getFromResponse<IEnumerable<InvoiceDto>>( response ) );
         }
 
         /// <summary>
@@ -129,29 +177,6 @@ namespace Manitouage1.Controllers
             return View( getViewInvoice( id, true ) );
         }
 
-        // Utility function to create an UpdateInvoice object.
-        private UpdateInvoice getUpdateInvoice( int id = 0 )
-        {
-            // Get the list of users.
-            IEnumerable<ApplicationUser> users = helper.doGetAndGetFromResponse<IEnumerable<ApplicationUser>>( "InvoicesData/GetUsers" );
-
-            // Get the list of products.
-            IEnumerable<ProductDto> productDtos = helper.doGetAndGetFromResponse<IEnumerable<ProductDto>>( "ProductsData/GetProducts" );
-
-            // Create the UpdateInvoice object with the users, products, and product totals.
-            UpdateInvoice updateInvoice = new UpdateInvoice {
-                productDtos = getProductDtos(),
-                applicationUsers = users,
-                totals = new ProductTotals( productDtos )
-            };
-
-            // If the id is not 0, then this invoice alread exists, so set the dto.
-            if( id != 0 ) {
-                updateInvoice.invoiceDto = helper.doGetAndGetFromResponse<InvoiceDto>( getUrl( "Get", id ) );
-            }
-            return updateInvoice;
-        }
-
         /// <summary>
         /// Display the form to create a new Invoice.
         /// </summary>
@@ -161,7 +186,7 @@ namespace Manitouage1.Controllers
         /// </example>
         public ActionResult Create()
         {
-            return View( getUpdateInvoice() );
+            return View( getUpdateInvoice( 0 ) );
         }
 
         /// <summary>
@@ -205,7 +230,33 @@ namespace Manitouage1.Controllers
         /// </example>
         public ActionResult Edit( int id )
         {
-            return View( getUpdateInvoice( id ) );
+            InvoiceDto invoiceDto = getInvoiceDto( id );
+            if( invoiceDto.status == Invoice.Status.Paid ) {
+                return RedirectToAction( "Details", new {
+                    id = invoiceDto.invoiceId
+                } );
+            }
+            return View( getUpdateInvoice( id, invoiceDto ) );
+        }
+
+        /// <summary>
+        /// Display the form to update the client for an invoice.
+        /// </summary>
+        /// <param name="id">The ID of the Invoice to update.</param>
+        /// <returns>A View with the relevant input fields to edit a Invoice.</returns>
+        /// <example>
+        /// GET: Invoices/EditClient/5
+        /// </example>
+        public ActionResult EditClient( int id )
+        {
+            // TODO: find a way to refactor this.
+            InvoiceDto invoiceDto = getInvoiceDto( id );
+            if( invoiceDto.status == Invoice.Status.Paid ) {
+                return RedirectToAction( "Details", new {
+                    id = invoiceDto.invoiceId
+                } );
+            }
+            return View( getUpdateInvoice( id, invoiceDto ) );
         }
 
         /// <summary>
@@ -213,34 +264,16 @@ namespace Manitouage1.Controllers
         /// </summary>
         /// <param name="id">The ID of the invoice to update.</param>
         /// <param name="invoice">A Invoice object, received as form data.</param>
-        /// <returns>If the new Invoice was created, a RedirectToAction pointing to Details and containing the new Invoice's ID is returned, otherwise, a View with an error message in the ViewBag.</returns>
+        /// <returns>If the update was successful, a RedirectToAction pointing to Details is returned, otherwise, a View with an error message in the ViewBag.</returns>
         /// <example>
-        /// POST: Invoices/Create
+        /// POST: Invoices/EditClient
         /// Form Data: Invoice
         /// </example>
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit( int id, Invoice invoice )
+        public ActionResult EditClient( int id, Invoice invoice )
         {
-            switch( invoice.status ) {
-                case Invoice.Status.Created: {
-                    invoice.issued = null;
-                    invoice.paid = null;
-                    break;
-                }
-                case Invoice.Status.Issued: {
-                    invoice.issued = DateTime.Now;
-                    invoice.paid = null;
-                    break;
-                }
-                case Invoice.Status.Paid: {
-                    invoice.paid = DateTime.Now;
-                    break;
-                }
-            }
-
-            HttpResponseMessage response = helper.doPostRequest( getUrl( "Update", id ), invoice );
-            if( !response.IsSuccessStatusCode ) {
+            if( !updateInvoice( invoice ) ) {
                 ViewBag.errorMessage = "Unable to update invoice.";
                 return View();
             }
@@ -249,6 +282,85 @@ namespace Manitouage1.Controllers
                 id = id
             } );
         }
+
+        /// <summary>
+        /// Display the form to update the status for an invoice.
+        /// </summary>
+        /// <param name="id">The ID of the Invoice to update.</param>
+        /// <returns>A View with the relevant input fields to edit a Invoice.</returns>
+        /// <example>
+        /// GET: Invoices/EditStatus/5
+        /// </example>
+        public ActionResult EditStatus( int id )
+        {
+            // TODO: find a way to refactor this.
+            InvoiceDto invoiceDto = getInvoiceDto( id );
+            if( invoiceDto.status == Invoice.Status.Paid ) {
+                return RedirectToAction( "Details", new {
+                    id = invoiceDto.invoiceId
+                } );
+            }
+            return View( getUpdateInvoice( id, invoiceDto ) );
+        }
+
+        /// <summary>
+        /// Update the record in the database with the information contained in the Invoice object.
+        /// </summary>
+        /// <param name="id">The ID of the invoice to update.</param>
+        /// <param name="invoice">A Invoice object, received as form data.</param>
+        /// <returns>If the Invoice was updated, a RedirectToAction pointing to Details is returned, otherwise, a View with an error message in the ViewBag.</returns>
+        /// <example>
+        /// POST: Invoices/Edit
+        /// Form Data: Invoice
+        /// </example>
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditStatus( int id, Invoice invoice )
+        {
+            switch( invoice.status ) {
+                case Invoice.Status.Created: {
+                    invoice.status = Invoice.Status.Issued;
+                    invoice.issued = DateTime.Now;
+                    break;
+                }
+                case Invoice.Status.Issued: {
+                    invoice.paid = DateTime.Now;
+                    invoice.status = Invoice.Status.Paid;
+                    break;
+                }
+            }
+
+            if( !updateInvoice( invoice ) ) {
+                ViewBag.errorMessage = "Unable to update invoice.";
+                return View();
+            }
+
+            return RedirectToAction( "Details", new {
+                id = id
+            } );
+        }
+
+        /// <summary>
+        /// Display the form to update the client for an invoice.
+        /// </summary>
+        /// <param name="id">The ID of the Invoice to update.</param>
+        /// <returns>A View with the relevant input fields to edit a Invoice.</returns>
+        /// <example>
+        /// GET: Invoices/EditClient/5
+        /// </example>
+        public ActionResult EditProducts( int id )
+        {
+            // TODO: find a way to refactor this.
+            InvoiceDto invoiceDto = getInvoiceDto( id );
+            if( invoiceDto.status == Invoice.Status.Paid ) {
+                return RedirectToAction( "Details", new {
+                    id = invoiceDto.invoiceId
+                } );
+            }
+            return View( getUpdateInvoice( id, invoiceDto ) );
+        }
+
+
 
         /// <summary>
         /// Display a view that shows the details of the Invoice and asks the user to confirm its deletion.

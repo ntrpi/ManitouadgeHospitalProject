@@ -44,14 +44,28 @@ namespace Manitouage1.Controllers
         }
 
         /// <summary>
+        /// Get a List of ProductXInvoiceDto objects constructed from the database for a given Invoice ID.
+        /// </summary>
+        /// <returns>A List of ProductXInvoiceDto objects.</returns>
+        /// <example>
+        /// GET: api/ProductXInvoicesData/GetProductXInvoices/5
+        /// </example>
+        [HttpGet]
+        public IEnumerable<ProductXInvoiceDto> GetProductXInvoices( int id )
+        {
+            List<ProductXInvoice> productXInvoices = db.productXInvoices.Where( p => p.invoiceId == id ).ToList<ProductXInvoice>();
+            return getDtos( productXInvoices );
+        }
+
+        /// <summary>
         /// Get a List of ProductXInvoiceDto objects constructed from the database.
         /// </summary>
         /// <returns>A List of ProductXInvoiceDto objects.</returns>
         /// <example>
-        /// GET: api/ProductXInvoicesData/GetProductXInvoices
+        /// GET: api/ProductXInvoicesData/GetAllProductXInvoices
         /// </example>
         [HttpGet]
-        public IEnumerable<ProductXInvoiceDto> GetProductXInvoices()
+        public IEnumerable<ProductXInvoiceDto> GetAllProductXInvoices()
         {
             List<ProductXInvoice> productXInvoices = db.productXInvoices.ToList<ProductXInvoice>();
             return getDtos( productXInvoices );

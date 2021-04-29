@@ -1,0 +1,67 @@
+﻿@model Manitouage1.Models.ViewModels.UpdateInvoice
+
+@{
+    var invoice = Model.invoiceDto;
+    var user = Model.user;
+    var userName = user.UserName == null || user.UserName == "" ? user.Email : user.UserName;
+    var products = Model.productDtos;
+    var users = Model.applicationUsers;
+    var totals = Model.totals;
+}
+
+
+
+@using( Html.BeginForm() ) {
+  @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+  <h4>Invoice</h4>
+  <hr />
+  @Html.ValidationSummary( true, "", new {
+    @class = "text-danger"
+  } )
+  @Html.HiddenFor( model => invoice.invoiceId )
+  @Html.HiddenFor( model => invoice.created )
+  @Html.HiddenFor( model => invoice.issued )
+  @Html.HiddenFor( model => invoice.paid )
+  @Html.HiddenFor( model => invoice.status )
+
+  <dl>
+    <dt>Client</dt>
+    <dd>
+      @Html.DisplayFor( model => userName )
+    </dd>
+  </dl>
+  <div class="form-group">
+    @Html.LabelFor( model => invoice.userId, "Change to Client", htmlAttributes: new {
+      @class = "control-label col-md-2"
+    } )
+    <div class="col-md-10">
+      @Html.DropDownListFor(
+        model => invoice.userId,
+        new SelectList( users.Select( i => new { Text = i.Id, Value = i.UserName } ), "Text", "Value" ),
+        htmlAttributes: new {
+          @class = "form-control",
+          name = "userId",
+          id = "userId"
+        }
+      )
+
+      @Html.ValidationMessageFor( model => invoice.userId, "", new {
+          @class = "text-danger",
+          name = "userIdError",
+          id = "userIdError"
+        } )
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+      <input type="submit" value="Save" class="btn btn-outline-dark" />
+    </div>
+  </div>
+</div>
+}
+
+<div>
+  @Html.ActionLink( "Back to List", "Index" )
+</div>

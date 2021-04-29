@@ -422,57 +422,105 @@ const numTotalsRows = 3;
 const productsSelectId = "productsSelect";
 var productsSelect;
 
+// The invoice ID if this is an update.
+var invoiceId;
+
 window.onload = function ()
 {
-    // For invoices Create view.
-    // Get the handle for the table for the products.
-    productsTable = document.getElementById( "productsTable" );
+    // For invoice products .
+    let invoiceForm = document.forms.invoiceForm;
+    if( invoiceForm ) {
 
-    // Check that the table exists on this page.
-    if( productsTable !== undefined ) {
+        // Get the handle for the table for the products.
+        productsTable = document.getElementById( "productsTable" );
 
         // Get a handle for the body of the table.
         let tBody = $( "#productsTable > TBODY" )[ 0 ];
 
-        // Insert rows for the totals.
-        subTotalsRow = tBody.insertRow();
-        taxesRow = tBody.insertRow();
-        totalRow = tBody.insertRow();
+        // If we have an invoice ID the products table will have already been initialized.
+        let invoiceId = document.getElementById( "invoiceId" );
+        if( !invoiceId ) {
+
+            // Insert rows for the totals.
+            subTotalsRow = tBody.insertRow();
+            taxesRow = tBody.insertRow();
+            totalRow = tBody.insertRow();
+
+        } else {
+            invoiceId = parseInt( invoiceId.innerHTML );
+
+            let numRows = tBody.rows.length - 3;
+            for( let i = 1; i < numRows; i++ ) {
+                let row = tBody.rows[ i ];
+                const productId = row.id.substring( 4 );
+                const quantity = parseInt( row.cells[ quantCellIndex ].innerHTML );
+                $.getJSON(
+                    "/api/ProductsData/GetProduct/" + productId,
+                    function ( data )
+                    {
+                        // Put the product information in the selectedProducts object
+                        // and call the function to add this to the table.
+                        let productData = new ProductData( data );
+                        productData.quantity = quantity;
+                        selectedProducts[ data.productId ] = productData;
+                    }
+                );
+
+                // Set the event listener for the remove button.
+                let removeButton = document.getElementById( "removeId" + productId );
+                removeButton.addEventListener( "click", function ( e )
+                {
+                    // The button is in its own little form, so don't let it submit.
+                    e.preventDefault();
+                    removeProductFromTable( productId );
+                } );
+
+            }
+            subTotalsRow = document.getElementById( "subtotal" );
+            tableSubTotal = subTotalsRow.cells[ costCellIndex ];
+            taxesRow = document.getElementById( "taxes" );
+            tableTaxes = taxesRow.cells[ costCellIndex ];
+            totalRow = document.getElementById( "total" );
+            tableTotal = totalRow.cells[ costCellIndex ];
+        }
 
         // Get a handle for the products dropdown and set an click
         // event handler.
         productsSelect = document.getElementById( "productsSelect" );
         productsSelect.onclick = productsSelectOnChange;
 
-        // Get a handle for the invoice form and set a submit event
-        // handler.
-        let invoiceCreateForm = document.forms.invoiceCreateForm;
-        invoiceCreateForm.addEventListener( "submit", function ( e )
+        // Set a submit event handler.
+        invoiceForm.addEventListener( "submit", function ( e )
         {
             // Prevent the submission by the browser, because
             // we are going to handle it with ajax.
             e.preventDefault();
 
             // This is a handy way of making sure the whole form is valid.
-            if( !$( "#invoiceCreateForm" ).valid() ) {
+            if( !$( "#invoiceForm" ).valid() ) {
                 return false;
             }
 
-            // Get and validate the user ID, as razor is not handling
-            // this the way I would like.
-            const userId = invoiceCreateForm.userId.value;
-            if( userId == "" || userId == 0 ) {
+            if( !invoiceId ) {
+                // Get and validate the user ID, as razor is not handling
+                // this the way I would like.
+                const userId = invoiceForm.userId.value;
+                if( userId == "" || userId == 0 ) {
 
-                // If it is not valid, indicate the error and return false.
-                let userIdError = document.getElementById( "userIdError" );
-                userIdError.classList.remove( "field-validation-valid" );
-                userIdError.innerHTML = "Please select a client.";
-                return false;
+                    // If it is not valid, indicate the error and return false.
+                    let userIdError = document.getElementById( "userIdError" );
+                    userIdError.classList.remove( "field-validation-valid" );
+                    userIdError.innerHTML = "Please select a client.";
+                    return false;
+                }
+
+                // Call the method to create the invoice.
+                const created = invoiceForm.created.value;
+                createInvoice( created, userId );
+                return true;
             }
 
-            // Call the method to create the invoice.
-            const created = invoiceCreateForm.created.value;
-            createInvoice( created, userId );
+            addProductsToInvoice( invoiceId.value );
         } );    
     }
 }

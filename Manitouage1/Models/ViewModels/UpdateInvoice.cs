@@ -13,6 +13,10 @@ namespace Manitouage1.Models.ViewModels
             get; set;
         }
 
+        public ApplicationUser user {
+            get; set;
+        }
+
         public IEnumerable<ApplicationUser> applicationUsers {
             get; set;
         }

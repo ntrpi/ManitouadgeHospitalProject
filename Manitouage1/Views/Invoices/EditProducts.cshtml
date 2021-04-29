@@ -1,0 +1,99 @@
+﻿@model Manitouage1.Models.ViewModels.UpdateInvoice
+
+@{
+  var invoice = Model.invoiceDto;
+  var products = Model.invoiceProducts;
+  var totals = Model.totals;
+}
+
+
+<div class="ml-3">
+  <h4>Invoice</h4>
+  <hr />
+  <dl class="dl-horizontal">
+    <dt>
+      @Html.DisplayNameFor( model => invoice.invoiceId )
+    </dt>
+    <dd id="invoiceId">
+      @Html.DisplayFor( model => invoice.invoiceId )
+    </dd>
+  </dl>
+
+  @using( Html.BeginForm( "EditProducts", "Invoices", FormMethod.Post, new {
+    name = "invoiceForm", id = "invoiceForm"
+  } ) ) {
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+      @Html.LabelFor( model => products, "Add Product", htmlAttributes: new {
+        @class = "control-label col-md-2"
+      } )
+      <div class="col-md-10">
+        @Html.DropDownListFor(
+          model => products,
+          new SelectList( products.Select( i => new { Text = i.productId, Value = i.productName } ), "Text", "Value" ),
+          "",
+          htmlAttributes: new {
+            @id = "productsSelect",
+            @class = "form-control"
+          }
+        )
+
+        @Html.ValidationMessageFor( model => products, "", new {
+          @class = "text-danger"
+        } )
+      </div>
+      <div>
+        <table class="table" id="productsTable" style="margin-top:1em">
+          <tr>
+            <th>Name</th>
+            <th>Quantity</th>
+            <th>Cost</th>
+            <th></th>
+          </tr>
+          @foreach( var item in products ) {
+            var rowId = "trId" + item.productId;
+            var removeId = "removeId" + item.productId;
+            <tr id="@rowId">
+              <td>
+                @Html.DisplayFor( modelItem => item.productName )
+              </td>
+              <td>
+                @Html.DisplayFor( modelItem => item.quantity )
+              </td>
+              <td>
+                @Html.DisplayFor( modelItem => item.cost )
+              </td>
+              <td>
+                <button class="btn btn-light" id="@removeId">Remove</button>
+              </td>
+            </tr>
+          }
+          <tr id="subtotal">
+            <td></td>
+            <td class="text-right font-weight-bold">@Html.DisplayNameFor( model => totals.subTotal )</td>
+            <td>@Html.DisplayFor( model => totals.subTotal )</td>
+          </tr>
+          <tr id="taxes">
+            <td></td>
+            <td class="text-right font-weight-bold">@Html.DisplayNameFor( model => totals.taxes )</td>
+            <td>@Html.DisplayFor( model => totals.taxes )</td>
+          </tr>
+          <tr id="total">
+            <td></td>
+            <td class="text-right font-weight-bold">@Html.DisplayNameFor( model => totals.total )</td>
+            <td>@Html.DisplayFor( model => totals.total )</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-md-offset-2 col-md-10">
+        <input type="submit" value="Save" class="btn btn-primary" name="invoiceSubmit" />
+      </div>
+    </div>
+  }
+</div>
+<div>
+  @Html.ActionLink( "Back to List", "Index" )
+</div>

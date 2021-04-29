@@ -61,6 +61,7 @@ namespace Manitouage1.Models
                 invoiceId = invoiceId,
                 created = created,
                 issued = issued,
+                paid = paid,
                 status = status,
                 userId = userId
             };

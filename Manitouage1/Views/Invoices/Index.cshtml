@@ -12,9 +12,6 @@
       @Html.DisplayNameFor( model => model.created )
     </th>
     <th>
-      @Html.DisplayNameFor( model => model.issued )
-    </th>
-    <th>
       @Html.DisplayNameFor( model => model.status )
     </th>
     <th>
@@ -32,18 +29,12 @@
     @Html.DisplayFor( modelItem => item.created )
   </td>
   <td>
-    @Html.DisplayFor( modelItem => item.issued )
-  </td>
-  <td>
     @Html.DisplayFor( modelItem => item.status )
   </td>
   <td>
     @Html.DisplayFor( modelItem => item.userId )
   </td>
   <td>
-    @Html.ActionLink( "Edit", "Edit", new {
-      id = item.invoiceId
-    } ) |
     @Html.ActionLink( "Details", "Details", new {
       id = item.invoiceId
     } ) |

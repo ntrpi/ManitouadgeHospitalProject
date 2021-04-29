@@ -20,6 +20,19 @@
       @Html.DisplayFor( model => invoice.invoiceId )
     </dd>
 
+    <dt>Client</dt>
+    <dd>
+      @Html.DisplayFor( model => user.Email )
+    </dd>
+    @if( invoice.status != statusPaid ) {
+      <dt></dt>
+      <dd>
+        @Html.ActionLink( "Update Client", "EditClient", new {
+          id = invoice.invoiceId
+        } )
+      </dd>
+    }
+
     <dt>
       @Html.DisplayNameFor( model => invoice.created )
     </dt>
@@ -27,33 +40,14 @@
       @Html.DisplayFor( model => invoice.created )
     </dd>
 
-    <dt>Client</dt>
-    <dd>
-      @Html.DisplayFor( model => user.Email )
-    </dd>
-
-    @if( invoice.status == statusCreated ) {
-      <dt>
-        @Html.DisplayNameFor( model => invoice.status )
-      </dt>
-      <dd>
-        Not Issued
-      </dd>
-    } else {
+    @if( invoice.status != statusCreated ) {
       <dt>
         @Html.DisplayNameFor( model => invoice.issued )
       </dt>
       <dd>
         @Html.DisplayFor( model => invoice.issued )
       </dd>
-      if( invoice.status != statusPaid ) {
-        <dt>
-          @Html.DisplayNameFor( model => invoice.status )
-        </dt>
-        <dd>
-          Not Paid
-        </dd>
-      } else {
+      if( invoice.status == statusPaid ) {
         <dt>
           @Html.DisplayNameFor( model => invoice.paid )
         </dt>
@@ -62,11 +56,19 @@
         </dd>
       }
     }
+    @if( invoice.status != statusPaid ) {
+      <dt></dt>
+      <dd>
+        @Html.ActionLink( "Update Status", "EditStatus", new {
+          id = invoice.invoiceId
+        } )
+      </dd>
+    }
   </dl>
 </div>
 <hr />
 <h4 class="ml-3">Items</h4>
-<table class="table mx-3">
+<table class="table mx-3" id="productsTable">
   <tr>
     <th>Name</th>
     <th>Quantity</th>
@@ -102,10 +104,18 @@
     <td>@Html.DisplayFor( model => totals.total )</td>
   </tr>
 </table>
-
-<p>
-  @Html.ActionLink( "Edit", "Edit", new {
+@if( invoice.status != statusPaid ) {
+  @Html.ActionLink( "Update Products", "EditProducts", new {
     id = invoice.invoiceId
-  } ) |
+  } )
+}
+<p class="mt-3">
+  @if( invoice.status != statusPaid ) {
+    <span>
+      @Html.ActionLink( "Edit", "Edit", new {
+        id = invoice.invoiceId
+      } ) |
+    </span>
+  }
   @Html.ActionLink( "Back to List", "Index" )
 </p>

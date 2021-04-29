@@ -1,15 +1,13 @@
 ﻿@model Manitouage1.Models.ViewModels.UpdateInvoice
 
 @{
-    // TODO: 
-    // - add Add Products button
     var invoice = Model.invoiceDto;
     var products = Model.productDtos;
     var users = Model.applicationUsers;
     var totals = Model.totals;
 }
 
-@using (Html.BeginForm( "Create", "Invoices", FormMethod.Post, new { name = "invoiceCreateForm", id = "invoiceCreateForm" } ))
+@using (Html.BeginForm( "Create", "Invoices", FormMethod.Post, new { name = "invoiceForm", id = "invoiceForm" } ))
 {
     @Html.AntiForgeryToken()
     
@@ -83,21 +81,14 @@
     <div>
       <table class="table" id="productsTable" style="margin-top:1em">
         <tr>
-          <th>
-            Name
-          </th>
-          <th>
-            Quantity
-          </th>
-          <th>
-            Cost
-          </th>
+          <th>Name</th>
+          <th>Quantity</th>
+          <th>Cost</th>
           <th></th>
         </tr>
       </table>
     </div>
   </div>
-
 
   <div class="form-group">
     <div class="col-md-offset-2 col-md-10">

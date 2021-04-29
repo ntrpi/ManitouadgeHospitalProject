@@ -1,0 +1,69 @@
+﻿@model Manitouage1.Models.ViewModels.UpdateInvoice
+
+@{
+    var invoice = Model.invoiceDto;
+    var user = Model.user;
+    var statusCreated = Manitouage1.Models.Invoice.Status.Created;
+    var statusIssued = Manitouage1.Models.Invoice.Status.Issued;
+    var statusPaid = Manitouage1.Models.Invoice.Status.Paid;
+}
+
+@using( Html.BeginForm() ) {
+  @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+  <h4>Invoice</h4>
+  <hr />
+  @Html.ValidationSummary( true, "", new {
+    @class = "text-danger"
+  } )
+  @Html.HiddenFor( model => invoice.invoiceId )
+  @Html.HiddenFor( model => invoice.userId )
+  @Html.HiddenFor( model => invoice.created )
+  @Html.HiddenFor( model => invoice.issued )
+  @Html.HiddenFor( model => invoice.paid )
+  @Html.HiddenFor( model => invoice.status )
+
+  <dl class="dl-horizontal">
+    <dt>
+      @Html.DisplayNameFor( model => invoice.invoiceId )
+    </dt>
+    <dd>
+      @Html.DisplayFor( model => invoice.invoiceId )
+    </dd>
+    <dt>Client</dt>
+    <dd>
+      @Html.DisplayFor( model => user.Email )
+    </dd>
+    <dt>
+      @Html.DisplayNameFor( model => invoice.created )
+    </dt>
+    <dd>
+      @Html.DisplayFor( model => invoice.created )
+    </dd>
+    @if( invoice.status == statusIssued ) {
+      <dt>
+        @Html.DisplayNameFor( model => invoice.issued )
+      </dt>
+      <dd>
+        @Html.DisplayFor( model => invoice.issued )
+      </dd>
+    }
+  </dl>
+  @{
+    var newStatus = invoice.status == statusCreated ? "Issued" : "Paid";
+  }
+
+  <div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+      <input type="submit" value="Set Status to @newStatus" class="btn btn-outline-dark" />
+    </div>
+  </div>
+</div>
+}
+
+<div>
+  @Html.ActionLink( "Back to Details", "Details", new {
+    id = invoice.invoiceId
+  } )
+</div>
