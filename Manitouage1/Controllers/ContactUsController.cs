@@ -20,19 +20,9 @@ namespace Manitouadge.Controllers
 
         static ContactUsController()
         {
-            HttpClientHandler handler = new HttpClientHandler()
-            {
-                AllowAutoRedirect = false
-            };
-            client = new HttpClient(handler);
-            //change this to match your own local port number
-            client.BaseAddress = new Uri("https://localhost:44397/api/");
-            client.DefaultRequestHeaders.Accept.Add(
-            new MediaTypeWithQualityHeaderValue("application/json"));
-
-
-            //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", ACCESS_TOKEN);
-
+            ControllersHelper helper = new ControllersHelper( "ContactUs" );
+            client = helper.client;
+            return;
         }
 
         public ActionResult Index()

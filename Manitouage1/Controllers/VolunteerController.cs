@@ -12,26 +12,15 @@ using System.Diagnostics;
 namespace Manitouadge.Controllers
 {
     public class VolunteerController : Controller
-
     {
-
         private JavaScriptSerializer jss = new JavaScriptSerializer();
         private static readonly HttpClient client;
 
         static VolunteerController()
         {
-            HttpClientHandler handler = new HttpClientHandler()
-            {
-                AllowAutoRedirect = false,
-                //cookies are manually set in RequestHeader
-                UseCookies = false
-            };
-
-            client = new HttpClient(handler);
-            //change this to match your own local port number
-            client.BaseAddress = new Uri("https://localhost:44397/api/");
-            client.DefaultRequestHeaders.Accept.Add(
-            new MediaTypeWithQualityHeaderValue("application/json"));
+            ControllersHelper helper = new ControllersHelper( "Volunteer" );
+            client = helper.client;
+            return;
         }
 
 

@@ -19,19 +19,9 @@ namespace Manitouadge.Controllers
 
         static DepartmentController()
         {
-            HttpClientHandler handler = new HttpClientHandler()
-            {
-                AllowAutoRedirect = false,
-                UseCookies = false
-            };
-            client = new HttpClient(handler);
-            client.BaseAddress = new Uri("https://localhost:44397/api/");
-            client.DefaultRequestHeaders.Accept.Add(
-            new MediaTypeWithQualityHeaderValue("application/json"));
-
-
-            //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", ACCESS_TOKEN);
-
+            ControllersHelper helper = new ControllersHelper( "Department" );
+            client = helper.client;
+            return;
         }
 
         private void GetApplicationCookie()

@@ -24,17 +24,9 @@ namespace Manitouadge.Controllers
 
         static DonationController()
         {
-            HttpClientHandler handler = new HttpClientHandler()
-            {
-                AllowAutoRedirect = false
-            };
-            client = new HttpClient(handler);
-            //Christine comment:: change this to match your own local port number
-            client.BaseAddress = new Uri("https://localhost:44397/api/");
-            client.DefaultRequestHeaders.Accept.Add(
-            new MediaTypeWithQualityHeaderValue("application/json"));
-
-
+            ControllersHelper helper = new ControllersHelper( "Donation" );
+            client = helper.client;
+            return;
         }
         // GET: Donation
         //for views where it links back to list

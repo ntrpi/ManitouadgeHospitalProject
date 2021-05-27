@@ -23,19 +23,11 @@ namespace Manitouadge.Controllers
         /// </summary>
         static TestimonialController()
         {
-            HttpClientHandler handler = new HttpClientHandler()
-            {
-                AllowAutoRedirect = false,
-                //cookies are manually set in RequestHeader
-                UseCookies = false
-            };
-
-            client = new HttpClient(handler);
-            //change this to match your own local port number
-            client.BaseAddress = new Uri("https://localhost:44397/api/");
-            client.DefaultRequestHeaders.Accept.Add(
-            new MediaTypeWithQualityHeaderValue("application/json"));
+            ControllersHelper helper = new ControllersHelper( "Testimonial" );
+            client = helper.client;
+            return;
         }
+
         // GET: Testimonial
         public ActionResult Index()
         {
