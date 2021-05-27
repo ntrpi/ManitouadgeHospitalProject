@@ -1,89 +1,90 @@
 ﻿@model Manitouadge.Models.ViewModels.ListDepartments
 
 @*
-    @{
-        ViewBag.Title = "View";
-    }
+  @{
+      ViewBag.Title = "View";
+  }
 *@
 
 @{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+  ViewBag.Title = "Index";
+  Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 
 <h2>Departments</h2>
-@if (Model.isadmin)
-{
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
+@if( Model.isadmin ) {
+  <div class="m-4 text-right">
+    <a class="btn btn-info btn-outline-light my-sm-0" href="/Department/Create">New Department</a>
+  </div>
 }
-    <table class="table">
-        <tr>
-            @if (Model.isadmin)
-            {
-                <th>
-                    Department Id
-                </th>
-            }
-                <th>
-                    Department Name
-                <th>
-                    Email
-                </th>
-                <th>
-                    Phone Number
-                </th>
-                <th>
-                    Fax
-                </th>
-                <th>
-                    Extension
-                </th>
-                <th>
-                    Category
-                </th>
-                <th></th>
-            </tr>
+<table class="table">
+  <tr>
+    @if( Model.isadmin ) {
+      <th>
+        Department Id
+      </th>
+    }
+    <th>
+      Department Name
+    <th>
+      Email
+    </th>
+    <th>
+      Phone Number
+    </th>
+    <th>
+      Fax
+    </th>
+    <th>
+      Extension
+    </th>
+    <th>
+      Category
+    </th>
+    <th></th>
+  </tr>
 
-        @foreach (var item in Model.departments)
-        {
-        <tr>
-            @if (Model.isadmin)
-            {
-            <td>
-                @Html.DisplayFor(modelItem => item.departmentId)
-            </td>
-            }   
-            <td>
-                @Html.DisplayFor(modelItem => item.departmentName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.phone)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.fax)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.extension)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.category)
-            </td>
-            @if (Model.isadmin)
-            {
-                <td>
+  @foreach( var item in Model.departments ) {
+    <tr>
+      @if( Model.isadmin ) {
+        <td>
+          @Html.DisplayFor( modelItem => item.departmentId )
+        </td>
+      }
+      <td>
+        @Html.DisplayFor( modelItem => item.departmentName )
+      </td>
+      <td>
+        @Html.DisplayFor( modelItem => item.email )
+      </td>
+      <td>
+        @Html.DisplayFor( modelItem => item.phone )
+      </td>
+      <td>
+        @Html.DisplayFor( modelItem => item.fax )
+      </td>
+      <td>
+        @Html.DisplayFor( modelItem => item.extension )
+      </td>
+      <td>
+        @Html.DisplayFor( modelItem => item.category )
+      </td>
+      @if( Model.isadmin ) {
+        <td>
 
-                    @Html.ActionLink("Edit", "Edit", new { id = item.departmentId }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.departmentId }) |
-                    @Html.ActionLink("Delete", "DeleteConfirm", new { id = item.departmentId })
-                </td>
-            }
-        </tr>
-        }
+          @Html.ActionLink( "Edit", "Edit", new {
+            id = item.departmentId
+          } ) |
+          @Html.ActionLink( "Details", "Details", new {
+            id = item.departmentId
+          } ) |
+          @Html.ActionLink( "Delete", "DeleteConfirm", new {
+            id = item.departmentId
+          } )
+        </td>
+      }
+    </tr>
+  }
 
-    </table>
+</table>

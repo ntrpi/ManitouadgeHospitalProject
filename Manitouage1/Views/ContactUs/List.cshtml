@@ -1,70 +1,80 @@
 ﻿@model IEnumerable<Manitouadge.Models.ContactUsDto>
 
 @{
-    ViewBag.Title = "List";
+  ViewBag.Title = "List";
 }
 
-<h2>List</h2>
+<h2>Contact Messages</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
+@if( Model.Count() == 0 ) {
+  <h3 class="mt-4">There are no messages to view.</h3>
+} else {
+  <table class="table">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.ContactUsId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LastName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Message)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Reply)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Status)
-        </th>
-        <th></th>
+      <th>
+        @Html.DisplayNameFor( model => model.ContactUsId )
+      </th>
+      <th>
+        @Html.DisplayNameFor( model => model.FirstName )
+      </th>
+      <th>
+        @Html.DisplayNameFor( model => model.LastName )
+      </th>
+      <th>
+        @Html.DisplayNameFor( model => model.Email )
+      </th>
+      <th>
+        @Html.DisplayNameFor( model => model.Message )
+      </th>
+      <th>
+        @Html.DisplayNameFor( model => model.Reply )
+      </th>
+      <th>
+        @Html.DisplayNameFor( model => model.Status )
+      </th>
+      <th></th>
     </tr>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.ContactUsId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FirstName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LastName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Message)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Reply)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Status)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.ContactUsId }) |
-                @Html.ActionLink("Details", "Details", new { id = item.ContactUsId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.ContactUsId })
-            </td>
-        </tr>
+    @foreach( var item in Model ) {
+      <tr>
+        <td>
+          @Html.DisplayFor( modelItem => item.ContactUsId )
+        </td>
+        <td>
+          @Html.DisplayFor( modelItem => item.FirstName )
+        </td>
+        <td>
+          @Html.DisplayFor( modelItem => item.LastName )
+        </td>
+        <td>
+          @Html.DisplayFor( modelItem => item.Email )
+        </td>
+        <td>
+          @Html.DisplayFor( modelItem => item.Message )
+        </td>
+        <td>
+          @Html.DisplayFor( modelItem => item.Reply )
+        </td>
+        <td>
+          @Html.DisplayFor( modelItem => item.Status )
+        </td>
+        <td>
+          @Html.ActionLink( "Edit", "Edit", new {
+            id = item.ContactUsId
+          } ) |
+          @Html.ActionLink( "Details", "Details", new {
+            id = item.ContactUsId
+          } ) |
+          @Html.ActionLink( "Delete", "Delete", new {
+            id = item.ContactUsId
+          } )
+        </td>
+      </tr>
     }
 
-</table>
+  </table>
+}
+
+<div class="m-4 text-right">
+  <a class="btn btn-info btn-outline-light my-sm-0" href="/ContactUs/Create">New Message</a>
+</div>

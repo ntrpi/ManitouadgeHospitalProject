@@ -1,39 +1,53 @@
 ﻿@model IEnumerable<Manitouadge.Models.AlertDto>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
+<h2>Hospital News</h2>
+
+@if( Model.Count() == 0 ) {
+  <h3>There are no alerts to view.</h3>
+} else {
+  <table class="table">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.dateTime)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.description)
-        </th>
-        <th></th>
+      <th>
+        @Html.DisplayNameFor( model => model.title )
+      </th>
+      <th>
+        @Html.DisplayNameFor( model => model.dateTime )
+      </th>
+      <th>
+        @Html.DisplayNameFor( model => model.description )
+      </th>
+      <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
+    @foreach( var item in Model ) {
+      <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.title)
+          @Html.DisplayFor( modelItem => item.title )
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.dateTime)
+          @Html.DisplayFor( modelItem => item.dateTime )
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.description)
+          @Html.DisplayFor( modelItem => item.description )
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.alertId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.alertId }) |
-            @Html.ActionLink("Delete", "DeleteConfirm", new { id=item.alertId })
+          @Html.ActionLink( "Edit", "Edit", new {
+            id = item.alertId
+          } ) |
+          @Html.ActionLink( "Details", "Details", new {
+            id = item.alertId
+          } ) |
+          @Html.ActionLink( "Delete", "DeleteConfirm", new {
+            id = item.alertId
+          } )
         </td>
-    </tr>
+      </tr>
+    }
+
+  </table>
 }
 
-</table>
+<div class="m-4 text-right">
+  <a class="btn btn-info btn-outline-light my-sm-0" href="/Alert/Create">New Alert</a>
+</div>
+

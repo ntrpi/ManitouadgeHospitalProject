@@ -52,6 +52,23 @@ namespace Manitouadge.Controllers
             return Ok( db.Users.Find( id ) );
         }
 
+        // A utility function to get a List of InvoiceDto objects from Invoices.
+        private IEnumerable<InvoiceDto> getDtos( IEnumerable<Invoice> invoices )
+        {
+            List<InvoiceDto> dtos = new List<InvoiceDto>();
+            foreach( Invoice invoice in invoices ) {
+                dtos.Add( invoice.getDto() );
+            }
+            return dtos;
+        }
+
+        [HttpGet]
+        public IEnumerable<InvoiceDto> GetInvoicesForUser( string id )
+        {
+            List<Invoice> invoices = db.invoices.Where( i => i.userId == id ).ToList();
+            return getDtos( invoices );
+        }
+
         /// <summary>
         /// Get a InvoiceDto object constructed from the record in the database with the given ID.
         /// </summary>

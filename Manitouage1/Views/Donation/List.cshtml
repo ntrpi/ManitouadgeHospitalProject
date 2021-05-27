@@ -1,68 +1,80 @@
 ﻿@model Manitouadge.Models.ViewModels.ListDonation
 
 @{
-    ViewBag.Title = "List";
-    //added in layout THIS WAS ALL SANDRA!!!! 
-    Layout = "~/Views/Shared/_Layout.cshtml";
+  ViewBag.Title = "List";
+  //added in layout THIS WAS ALL SANDRA!!!!
+  Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>All Donations</h2>
+<h2>Donations</h2>
 <!--only for admin view-->
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
+@if( Model.alldonations == null || Model.alldonations.Count() == 0 ) {
+  <h3>There are no donations to view.</h3>
+} else {
+
+  <table class="table">
     <tr>
-        <!--add in if statment if it is admin-->
-        <!--help from miho-->
-        <th>
-            @Html.DisplayNameFor(model => model.Event.Title)
-        </th>
-        <th>
-           First Name
-        </th>
-        <th>
-            Last Name
-        </th>
-        <th>
-            Email
-        </th>
-        <th>
-            Phone Number
-        </th>
-        <th>
-            Donation Amount
-        </th>
-        <th></th>
+      <!--add in if statment if it is admin-->
+      <!--help from miho-->
+      <th>
+        @Html.DisplayNameFor( model => model.Event.Title )
+      </th>
+      <th>
+        First Name
+      </th>
+      <th>
+        Last Name
+      </th>
+      <th>
+        Email
+      </th>
+      <th>
+        Phone Number
+      </th>
+      <th>
+        Donation Amount
+      </th>
+      <th></th>
     </tr>
     <!--add the view model all donations-->
-@foreach (var item in Model.alldonations) {
-    <tr>
+    @foreach( var item in Model.alldonations ) {
+      <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.EventId)
+          @Html.DisplayFor( modelItem => item.EventId )
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.firstName)
+          @Html.DisplayFor( modelItem => item.firstName )
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.lastName)
+          @Html.DisplayFor( modelItem => item.lastName )
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.email)
+          @Html.DisplayFor( modelItem => item.email )
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.phoneNumber)
+          @Html.DisplayFor( modelItem => item.phoneNumber )
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.amount)
+          @Html.DisplayFor( modelItem => item.amount )
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.donationId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.donationId }) |
-            @Html.ActionLink("Delete", "DeleteConfirm", new { id=item.donationId })
+          @Html.ActionLink( "Edit", "Edit", new {
+            id = item.donationId
+          } ) |
+          @Html.ActionLink( "Details", "Details", new {
+            id = item.donationId
+          } ) |
+          @Html.ActionLink( "Delete", "DeleteConfirm", new {
+            id = item.donationId
+          } )
         </td>
-    </tr>
-}
+      </tr>
+    }
 
-</table>
+  </table>
+
+}
+<div class="m-4 text-right">
+  <a class="btn btn-info btn-outline-light my-sm-0" href="/Donation/Create">New Donation</a>
+</div>

@@ -46,7 +46,7 @@ namespace Manitouadge.Controllers
         {
             Debug.WriteLine("Here");
             // browser url
-            string url = "ContactUsData/GetContactUs";
+            string url = "ContactUsData/GetContactUss";
 
             // send and recieve http request and action
             HttpResponseMessage response = client.GetAsync(url).Result;

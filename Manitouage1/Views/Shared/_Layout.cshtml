@@ -18,16 +18,16 @@
             <div class="d-inline">
                 <img src="~/Content/img/Manitouwadge General Hospital_0.png" height="75" />
             </div>
-            <h1 class="d-inline ml-2"><a class="navbar-brand my-lg-5" style="font-size: 1.9rem;" href="#">Manitouadge General Hospital</a></h1>
+            <h1 class="d-inline ml-2"><a class="navbar-brand my-lg-5" style="font-size: 1.9rem; margin-right: 0;" href="#">Manitouadge General</a><a class="navbar-brand my-lg-5 ml-2" style="font-size: 1.9rem;" href="#">Hospital</a></h1>
         </div>
-        <div class="collapse navbar-collapse d-flex justify-content-end mb-lg-5" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse d-flex justify-content-end mb-lg-5 ml-2" id="navbarSupportedContent">
             <form class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-info my-2 my-sm-0" type="submit">Search</button>
             </form>
-            <form class="form-inline my-2 my-lg-0 ml-3">
-                <button class="btn btn-info btn-outline-light my-sm-0" type="submit">Donate</button>
-            </form>
+            <div class="form-inline my-2 my-lg-0 ml-3">
+                <a class="btn btn-info btn-outline-light my-sm-0" href="/Donation/Create">Donate</a>
+            </div>
         </div>
     </nav>
     <nav class="navbar navbar-expand-lg navbar-dark bg-navy pb-1">
@@ -38,40 +38,75 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto nav-fill w-100">
                 <li class="nav-item bg-light rounded">
-                    @Html.ActionLink("Patients", "Index", "Home", new
-                    {
-                      @class = "nav-link"
-                    })
+                  <div class="dropdown show">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Patients</a>
+
+                    <div class="dropdown-menu bg-light" aria-labelledby="dropdownMenuLink">
+                      <a class="dropdown-item" href="#"><del>Clinics</del></a>
+                      <a class="dropdown-item" href="/Department">Departments</a>
+                      <a class="dropdown-item" href="">Pay a Bill</a>
+                    </div>
+                  </div>
                 </li>
                 <li class="nav-item bg-light rounded">
-                    @Html.ActionLink("Visitors", "Index", "Home", new
-                    {
-                      @class = "nav-link"
-                    })
+                  <div class="dropdown show">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Visitors</a>
+
+                    <div class="dropdown-menu bg-light" aria-labelledby="dropdownMenuLink">
+                      <a class="dropdown-item" href="#"><del>Map</del></a>
+                      <a class="dropdown-item" href="#"><del>Services</del></a>
+                      <a class="dropdown-item" href="#"><del>Gift Shop</del></a>
+                      <a class="dropdown-item" href="#"><del>Send an E-Card</del></a>
+                    </div>
+                  </div>
                 </li>
                 <li class="nav-item bg-light rounded">
-                    @Html.ActionLink("Recruitment", "Index", "Home", new
-                    {
-                      @class = "nav-link"
-                    })
+                  <div class="dropdown show">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Recruitment</a>
+
+                    <div class="dropdown-menu bg-light" aria-labelledby="dropdownMenuLink">
+                      <a class="dropdown-item" href="#"><del>Working at MGH</del></a>
+                      <a class="dropdown-item" href="/JobPosting">Jobs</a>
+                      <a class="dropdown-item" href="/Volunteer">Volunteer</a>
+                    </div>
+                  </div>
                 </li>
                 <li class="nav-item bg-light rounded">
-                    @Html.ActionLink("Education", "Index", "Home", new
-                    {
-                      @class = "nav-link"
-                    })
+                  <div class="dropdown show">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Education</a>
+
+                    <div class="dropdown-menu bg-light" aria-labelledby="dropdownMenuLink">
+                      <a class="dropdown-item" href="#"><del>Current Concerns</del></a>
+                      <a class="dropdown-item" href="#"><del>Medical Resources</del></a>
+                      <a class="dropdown-item" href="#"><del>Health and Safety</del></a>
+                      <a class="dropdown-item" href="#"><del>Accessibility</del></a>
+                    </div>
+                  </div>
                 </li>
                 <li class="nav-item bg-light rounded">
-                    @Html.ActionLink("Fundraising", "Index", "Home", new
-                    {
-                      @class = "nav-link"
-                    })
+                  <div class="dropdown show">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Fundraising</a>
+
+                    <div class="dropdown-menu bg-light" aria-labelledby="dropdownMenuLink">
+                      <a class="dropdown-item" href="/Event">Events</a>
+                      <a class="dropdown-item" href="#"><del>MGH Auxilliary</del></a>
+                      <a class="dropdown-item" href="/Donation">Donations</a>
+                    </div>
+                  </div>
                 </li>
                 <li class="nav-item bg-light rounded">
-                    @Html.ActionLink("About", "Index", "Home", new
-                    {
-                      @class = "nav-link"
-                    })
+                  <div class="dropdown show">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">About</a>
+
+                    <div class="dropdown-menu bg-light" aria-labelledby="dropdownMenuLink">
+                      <a class="dropdown-item" href="#"><del>In the Media</del></a>
+                      <a class="dropdown-item" href="#"><del>Mission Statement</del></a>
+                      <a class="dropdown-item" href="#"><del>Message From the CEO</del></a>
+                      <a class="dropdown-item" href="#"><del>Board of Directors</del></a>
+                      <a class="dropdown-item" href="#"><del>Accountability</del></a>
+                      <a class="dropdown-item" href="#"><del>Quality Assurance</del></a>
+                    </div>
+                  </div>
                 </li>
                 @Html.Partial("_LoginPartial")
             </ul>
@@ -102,7 +137,7 @@
                                 })
                             </li>
                             <li class="nav-item">
-                                @Html.ActionLink("Departments", "Index", "Home", new
+                                @Html.ActionLink("Departments", "Index", "Department", new
                                 {
                                   @class = "nav-link"
                                 })
@@ -111,19 +146,19 @@
                         <h4 class="text-white">For Job Seekers</h4>
                         <ul class="footer-nav mr-auto" style="padding-inline-start: 0">
                             <li class="nav-item">
-                                @Html.ActionLink("Working at Manatouadge Hospital", "Index", "Home", new
+                                @Html.ActionLink("Working at Manatouadge Hospital", "Index", "JobPosting", new
                                 {
                                   @class = "nav-link"
                                 })
                             </li>
                             <li class="nav-item">
-                                @Html.ActionLink("Opportunities", "Index", "Home", new
+                                @Html.ActionLink("Opportunities", "Index", "JobPosting", new
                                 {
                                   @class = "nav-link"
                                 })
                             </li>
                             <li class="nav-item">
-                                @Html.ActionLink("Find out more", "Index", "Home", new
+                                @Html.ActionLink("Find Out More", "Index", "Home", new
                                 {
                                   @class = "nav-link"
                                 })
@@ -131,17 +166,16 @@
                         </ul>
                         <h4 class="text-white">For Faculty and Staff</h4>
                         <ul class="footer-nav mr-auto" style="padding-inline-start: 0">
-                            <li class="nav-item">
-                                @Html.ActionLink("Log in", "Index", "Home", new
-                                {
-                                  @class = "nav-link"
-                                })
-                            </li>
-                            <li>
-                              @Html.ActionLink( "For Developers", "Index", "Help", new {
-                                area = ""
-                              }, null )
-                            </li>
+                          <li>
+                            @Html.ActionLink( "Log In", "Login", "Account", routeValues: null, htmlAttributes: new {
+                             id = "loginLink", @class = "nav-link"
+                            } )
+                          </li>
+                          <li>
+                            @Html.ActionLink( "For Developers", "Index", "Help", new {
+                              @class = "nav-link"
+                            } )
+                          </li>
                         </ul>
                     </div>
                     <div class="col">
@@ -189,26 +223,28 @@
                         <a href="#" class="action-link">Click here to sign up!</a>
                     </div>
                     <div class="col">
-                        <h4 class="text-white">About This Site</h4>
-                        <ul class="footer-nav mr-auto" style="padding-inline-start: 0">
-                            <li class="nav-item">
-                                @Html.ActionLink("Privacy", "Index", "Home", new
-                                {
-                                  @class = "nav-link"
-                                })
-                            </li>
-                            <li class="nav-item">
-                                @Html.ActionLink("Terms and Conditions", "Index", "Home", new
-                                {
-                                  @class = "nav-link"
-                                })
-                            </li>
-                        </ul>
-                        <h4 class="text-white">Giving to the Hospital</h4>
-                        <p class="text-white pl-2">Make a tax-deductable donation today, and be part of making a difference in the health of our community.</p>
-                        <form class="form-inline my-2 my-lg-0 ml-3">
-                            <button class="btn btn-info btn-outline-light my-sm-0" type="submit">Make a Donation</button>
-                        </form>
+                      <h4 class="text-white">Contact Us</h4>
+                      <div class="pt-3 pb-4 my-lg-0 ml-3">
+                        <a class="btn btn-info btn-outline-light my-sm-0" href="/ContactUs/Create">Send a Message</a>
+                      </div>
+                      <h4 class="text-white">Giving to the Hospital</h4>
+                      <p class="text-white pl-2">Make a tax-deductable donation today, and be part of making a difference in the health of our community.</p>
+                      <div class="pt-2 pb-4 my-lg-0 ml-3">
+                        <a class="btn btn-info btn-outline-light my-sm-0" href="/Donation/Create">Make a Donation</a>
+                      </div>
+                      <h4 class="text-white">About This Site</h4>
+                      <ul class="footer-nav mr-auto" style="padding-inline-start: 0">
+                        <li class="nav-item">
+                          @Html.ActionLink( "Privacy", "Index", "Home", new {
+                            @class = "nav-link"
+                          } )
+                        </li>
+                        <li class="nav-item">
+                          @Html.ActionLink( "Terms and Conditions", "Index", "Home", new {
+                            @class = "nav-link"
+                          } )
+                        </li>
+                      </ul>
                     </div>
                 </div>
             </div>

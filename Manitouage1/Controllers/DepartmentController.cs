@@ -50,6 +50,11 @@ namespace Manitouadge.Controllers
             return;
         }
 
+        public ActionResult Index()
+        {
+            return RedirectToAction( "List" );
+        }
+
 
         // GET: Department/List
         public ActionResult List()

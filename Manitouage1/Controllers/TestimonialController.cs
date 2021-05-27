@@ -39,10 +39,7 @@ namespace Manitouadge.Controllers
         // GET: Testimonial
         public ActionResult Index()
         {
-            //var test = User.IsInRole("Admin");
-            //Debug.WriteLine(test);
-
-            return View();
+            return RedirectToAction( "List" );
         }
 
         // GET: Testimonial/List

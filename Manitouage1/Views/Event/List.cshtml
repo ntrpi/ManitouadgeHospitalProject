@@ -1,73 +1,84 @@
 ﻿@model Manitouadge.Models.ViewModels.ListEventxDonation
 
 @{
-    ViewBag.Title = "View";
+  ViewBag.Title = "View";
 }
 
 <h2>Events</h2>
 
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
+@if( Model.events.Count() == 0 ) {
+  <h3 class="mt-5">There are no events to view.</h3>
+} else {
 
-
-<table class="table">
+  <table class="table">
     <tr>
-        <th>
-            Title
-        </th>
-        <th>
-            Description
-        </th>
-        <th>
-            DateTime
-        </th>
-        <th>
-            Location
-        </th>
-        <th>
-            Duration
-        </th>
-        <th>
-            ContactPerson
-        </th>
-        <!--<th>
-        Number of Donations
-        </th>-->
-        <th>
-            Options
-        </th>
+      <th>
+        Title
+      </th>
+      <th>
+        Description
+      </th>
+      <th>
+        DateTime
+      </th>
+      <th>
+        Location
+      </th>
+      <th>
+        Duration
+      </th>
+      <th>
+        ContactPerson
+      </th>
+      <!--<th>
+      Number of Donations
+      </th>-->
+      <th>
+        Options
+      </th>
     </tr>
 
-    @foreach (var events in Model.events)
-    {
-<tr>
+    @foreach( var events in Model.events ) {
+      <tr>
 
-    <td>
-        @Html.DisplayFor(modelItem => events.Title)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => events.Description)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => events.DateTime)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => events.Location)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => events.Duration)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => events.ContactPerson)
-    </td>
-    <td>
-        <span style="margin-right:5px;">@Html.ActionLink("Edit", "Edit", new { id = events.EventId })</span>
-        @Html.ActionLink("Details", "Details", new { id = events.EventId })
-        @Html.ActionLink("Delete", "DeleteConfirm", new { id = events.EventId })
+        <td>
+          @Html.DisplayFor( modelItem => events.Title )
+        </td>
+        <td>
+          @Html.DisplayFor( modelItem => events.Description )
+        </td>
+        <td>
+          @Html.DisplayFor( modelItem => events.DateTime )
+        </td>
+        <td>
+          @Html.DisplayFor( modelItem => events.Location )
+        </td>
+        <td>
+          @Html.DisplayFor( modelItem => events.Duration )
+        </td>
+        <td>
+          @Html.DisplayFor( modelItem => events.ContactPerson )
+        </td>
+        <td>
+          <span style="margin-right:5px;">
+            @Html.ActionLink( "Edit", "Edit", new {
+         id = events.EventId
+       } )
+        </span>
+        @Html.ActionLink( "Details", "Details", new {
+     id = events.EventId
+   } )
+        @Html.ActionLink( "Delete", "DeleteConfirm", new {
+     id = events.EventId
+   } )
 
-    </td>
-</tr>
+      </td>
+    </tr>
     }
 
-</table>
+  </table>
+}
+
+  <div class="m-4 text-right">
+    <a class="btn btn-info btn-outline-light my-sm-0" href="/Event/Create">New Event</a>
+  </div>

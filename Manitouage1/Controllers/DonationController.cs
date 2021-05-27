@@ -40,7 +40,7 @@ namespace Manitouadge.Controllers
         //for views where it links back to list
         public ActionResult Index()
         {
-            return View("List");
+            return RedirectToAction("List");
         }
 
         //GET: Donation/List

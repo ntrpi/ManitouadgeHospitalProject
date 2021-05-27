@@ -51,6 +51,10 @@ namespace Manitouadge.Controllers
             return;
         }
 
+        public ActionResult Index()
+        {
+            return RedirectToAction( "List" );
+        }
 
         // GET: JobPostitng/List
         public ActionResult List()

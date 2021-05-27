@@ -165,6 +165,25 @@ namespace Manitouadge.Controllers
         }
 
         /// <summary>
+        /// Get and display the Invoices for the user that is logged in.
+        /// </summary>
+        /// <returns>A View containing a List of InvoiceDto objects.</returns>
+        /// <example>
+        /// GET: Invoices/Find
+        /// </example>
+        public ActionResult Find()
+        {
+            string userId = User.Identity.GetUserId();
+            HttpResponseMessage response = helper.doGetRequest( getUrl( "Get" ) + "sForUser/" + userId );
+            if( !response.IsSuccessStatusCode ) {
+                return View();
+            }
+
+            return View( helper.getFromResponse<IEnumerable<InvoiceDto>>( response ) );
+        }
+
+
+        /// <summary>
         /// Get and display the information for the Invoice with the given ID.
         /// </summary>
         /// <param name="id">The ID of the Invoice in the database to retrieve.</param>
